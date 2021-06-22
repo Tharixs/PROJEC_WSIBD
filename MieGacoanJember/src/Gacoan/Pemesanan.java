@@ -114,6 +114,11 @@ public class Pemesanan extends javax.swing.JFrame {
         footer.add(bckInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1500, 20, 20, 20));
 
         iknPemesanan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pemesanan.png"))); // NOI18N
+        iknPemesanan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iknPemesananMouseClicked(evt);
+            }
+        });
         footer.add(iknPemesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(1520, 30, -1, -1));
 
         Constructor.add(footer);
@@ -549,6 +554,11 @@ public class Pemesanan extends javax.swing.JFrame {
         // TODO add your handling code here:
         tekan(menu[8]);
     }//GEN-LAST:event_btnmenu9ActionPerformed
+
+    private void iknPemesananMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iknPemesananMouseClicked
+        // TODO add your handling code here:
+        new Pesanan().setVisible(true);
+    }//GEN-LAST:event_iknPemesananMouseClicked
 
     /**
      * @param args the command line arguments
