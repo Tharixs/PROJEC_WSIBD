@@ -27,23 +27,45 @@ public class Pesanan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1044, 1050));
+        Background = new javax.swing.JPanel();
+        Pesanan = new javax.swing.JLabel();
+        lblNama = new javax.swing.JLabel();
+        TxtNama = new javax.swing.JTextField();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1044, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1050, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Background.setBackground(new java.awt.Color(255, 255, 255));
+        Background.setLayout(null);
+
+        Pesanan.setFont(new java.awt.Font("Californian FB", 0, 44)); // NOI18N
+        Pesanan.setText("Nama :");
+        Background.add(Pesanan);
+        Pesanan.setBounds(200, 240, 160, 51);
+
+        lblNama.setFont(new java.awt.Font("Californian FB", 0, 55)); // NOI18N
+        lblNama.setForeground(new java.awt.Color(255, 102, 204));
+        lblNama.setText("Pesanan");
+        Background.add(lblNama);
+        lblNama.setBounds(449, 118, 182, 63);
+
+        TxtNama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtNamaActionPerformed(evt);
+            }
+        });
+        Background.add(TxtNama);
+        TxtNama.setBounds(350, 250, 460, 30);
+
+        getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1044, 1050));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TxtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNamaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtNamaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -81,5 +103,9 @@ public class Pesanan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Background;
+    private javax.swing.JLabel Pesanan;
+    private javax.swing.JTextField TxtNama;
+    private javax.swing.JLabel lblNama;
     // End of variables declaration//GEN-END:variables
 }
