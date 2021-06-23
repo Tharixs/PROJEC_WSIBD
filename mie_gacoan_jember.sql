@@ -32,7 +32,7 @@ CREATE TABLE `beverage` (
   `nama_beverage` varchar(20) NOT NULL,
   `detail_beverage` varchar(100) NOT NULL,
   `gambar_beverage` text NOT NULL,
-  `harga_beverage` varchar(10) NOT NULL
+  `harga_beverage` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -46,7 +46,7 @@ CREATE TABLE `dimsum` (
   `nama_dimsum` varchar(20) NOT NULL,
   `detail_dimsum` varchar(100) NOT NULL,
   `gambar_dimsum` text NOT NULL,
-  `harga_dimsum` varchar(10) NOT NULL
+  `harga_dimsum` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -73,7 +73,7 @@ CREATE TABLE `noodle` (
   `nama_noodle` varchar(20) NOT NULL,
   `detail_noodle` varchar(100) NOT NULL,
   `gambar_noodle` text NOT NULL,
-  `harga_noodle` varchar(10) NOT NULL
+  `harga_noodle` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
