@@ -5,9 +5,16 @@
  */
 package Gacoan;
 
+import Connections.Koneksi;
 import com.mysql.jdbc.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import sun.rmi.server.Activation;
 import sun.security.pkcs11.Secmod;
 /**
  *
@@ -17,11 +24,15 @@ public class Pegawai extends javax.swing.JFrame {
 
     Connection conn;
     PreparedStatement pst;
+    DefaultTableModel tbmPegawai;
+    ResultSet rs;
+    Statement st;
     
 
     public Pegawai() {
         conn = Connections.Koneksi.cekKoneksi();
         initComponents();
+        showTable();
     }
 
     /**
@@ -65,10 +76,10 @@ public class Pegawai extends javax.swing.JFrame {
         txtPassword = new javax.swing.JTextField();
         txtFoto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblPegawai = new javax.swing.JTable();
         btnTambah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
-        btnSimpan = new javax.swing.JButton();
+        btnRubah = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,7 +130,7 @@ public class Pegawai extends javax.swing.JFrame {
 
         jLabel10.setText("Foto");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblPegawai.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -130,7 +141,12 @@ public class Pegawai extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tblPegawai.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPegawaiMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblPegawai);
 
         btnTambah.setText("Tambah");
         btnTambah.addActionListener(new java.awt.event.ActionListener() {
@@ -140,13 +156,23 @@ public class Pegawai extends javax.swing.JFrame {
         });
 
         btnHapus.setText("Hapus");
+        btnHapus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHapusMouseClicked(evt);
+            }
+        });
         btnHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHapusActionPerformed(evt);
             }
         });
 
-        btnSimpan.setText("Simpan");
+        btnRubah.setText("Rubah");
+        btnRubah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRubahActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -227,7 +253,7 @@ public class Pegawai extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnHapus)
                     .addComponent(btnTambah)
-                    .addComponent(btnSimpan))
+                    .addComponent(btnRubah))
                 .addContainerGap(205, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -305,7 +331,7 @@ public class Pegawai extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnHapus)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnSimpan)))
+                                .addComponent(btnRubah)))
                         .addGap(169, 169, 169)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -336,8 +362,23 @@ public class Pegawai extends javax.swing.JFrame {
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
+        String idPegawai;
+        idPegawai = txtID_Pegawai.getText();
+        deleteDB(idPegawai);
+        showTable();
     }//GEN-LAST:event_btnHapusActionPerformed
 
+    public void deleteDB(String idPegawai){
+        try {
+            String sql = "DELETE FROM pegawai WHERE id_pegawai =?";
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, idPegawai);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Pegawai.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // TODO add your handling code here:
 //        , nama, jenis_kelamin, tempat_lahir, alamat, password, jabatan, no_telepon
@@ -350,8 +391,9 @@ public class Pegawai extends javax.swing.JFrame {
         password = txtPassword.getText();
         jabatan = txtJabatan.getText();
         no_telepon = txtNo_Pegawai.getText();
+        showTable();
+        
 //        db.insertDB(id_pegawai, , nama_pegawai, jenis_kelamin, tempat_lahir, jenis_kelamin, alamat, password, jabatan, no_telepon, foto );
-
         try {
             String sql = "INSERT INTO pegawai (id_pegawai, nama_pegawai, jenis_kelamin, tempat_lahir, alamat, password, jabatan, no_telepon) VALUES (?,?,?,?,?,?,?,?)";
             pst = conn.prepareStatement(sql);
@@ -371,6 +413,92 @@ public class Pegawai extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnTambahActionPerformed
 
+    private void tblPegawaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPegawaiMouseClicked
+        // TODO add your handling code here:
+        int row = tblPegawai.getSelectedRow();
+        txtID_Pegawai.setText(tblPegawai.getValueAt(row, 0).toString());
+        txtNama_Pegawai.setText(tblPegawai.getValueAt(row, 0).toString());
+        txtJK_Pegawai.setText(tblPegawai.getValueAt(row, 0).toString());
+        txtTanggal_Lahir_Pegawai.setText(tblPegawai.getValueAt(row, 0).toString());
+        txtAlamat_Pegawai.setText(tblPegawai.getValueAt(row, 0).toString());
+        txtPassword.setText(tblPegawai.getValueAt(row, 0).toString());
+        txtJabatan.setText(tblPegawai.getValueAt(row, 0).toString());
+        txtNo_Pegawai.setText(tblPegawai.getValueAt(row, 0).toString());
+    }//GEN-LAST:event_tblPegawaiMouseClicked
+
+    private void btnHapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHapusMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHapusMouseClicked
+
+    private void btnRubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRubahActionPerformed
+        // TODO add your handling code here:
+        String id_pegawai, nama, jenis_kelamin, tempat_lahir, alamat, password, jabatan, no_telepon;
+        id_pegawai = txtID_Pegawai.getText();
+        nama = txtNama_Pegawai.getText();
+        jenis_kelamin = txtJK_Pegawai.getText();
+        tempat_lahir = txtTanggal_Lahir_Pegawai.getText();
+        alamat = txtAlamat_Pegawai.getText();
+        password = txtPassword.getText();
+        jabatan = txtJabatan.getText();
+        no_telepon = txtNo_Pegawai.getText();
+        updateDB(id_pegawai, id_pegawai, jenis_kelamin, tempat_lahir, alamat, password, jabatan, no_telepon);
+        showTable();
+    }//GEN-LAST:event_btnRubahActionPerformed
+
+    public void updateDB(String id_pegawai, String nama_pegawai, String jenis_kelamin, String tempat_lahir, String alamat, String password, String jabatan, String no_telepon){
+        try {
+//            UPDATE `pegawai` SET `id_pegawai` = '1', `nama_pegawai` = '1', `jenis_kelamin` = '1', `tempat_lahir` = '1', `alamat` = '1', `password` = '1', `jabatan` = '1', `no_telepon` = '1' WHERE `pegawai`.`id_pegawai` = 'sdfhkj';
+            String sql = "UPDATE pegawai SET nama_pegawai=?, jenis_kelamin=?, tempat_lahir=?, alamat=?, password=?, jabatan=?, no_telepon=? WHERE id_pegawai=?";
+            pst = conn.prepareStatement(sql);
+            pst.setString(8, id_pegawai);
+            pst.setString(1, nama_pegawai);
+            pst.setString(2, jenis_kelamin);
+            pst.setString(3, tempat_lahir);
+            pst.setString(4, alamat);
+            pst.setString(5, password);
+            pst.setString(6, jabatan);
+            pst.setString(7, no_telepon);
+            pst.executeUpdate();
+            System.out.println("Data Berhasil");
+        } catch (SQLException ex) {
+            System.err.println(ex);
+            System.out.println("gagal");
+        }
+    }
+    
+    public ResultSet selectDB(){
+        try {
+            String sql = "SELECT * FROM pegawai";
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rs;
+    }
+    
+    public void showTable(){
+        try {
+            tbmPegawai = new DefaultTableModel(new String[]{"id_pegawai", "nama_pegawai", "jenis_kelamin", "tempat_lahir", "alamat", "password", "jabatan", "no_telepon"}, 0);
+            ResultSet rs;
+            rs = selectDB();
+            while (rs.next()){
+                tbmPegawai.addRow(new Object[]{
+                    rs.getString("id_pegawai"),
+                    rs.getString("nama_pegawai"),
+                    rs.getString("jenis_kelamin"),
+                    rs.getString("tempat_lahir"),
+                    rs.getString("alamat"),
+                    rs.getString("password"),
+                    rs.getString("jabatan"),
+                    rs.getString("no_telepon"),
+                });
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Pegawai.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tblPegawai.setModel(tbmPegawai);
+    }
     /**
      * @param args the command line arguments
      */
@@ -408,7 +536,7 @@ public class Pegawai extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHapus;
-    private javax.swing.JButton btnSimpan;
+    private javax.swing.JButton btnRubah;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -432,7 +560,7 @@ public class Pegawai extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblPegawai;
     private javax.swing.JTextField txtAlamat_Pegawai;
     private javax.swing.JTextField txtFoto;
     private javax.swing.JTextField txtID_Pegawai;
