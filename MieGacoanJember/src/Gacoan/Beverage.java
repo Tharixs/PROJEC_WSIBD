@@ -21,15 +21,15 @@ import sun.security.pkcs11.Secmod;
  *
  * @author khoirul
  */
-public class Pegawai extends javax.swing.JFrame {
+public class Beverage extends javax.swing.JFrame {
 
     Connection conn;
     PreparedStatement pst;
-    DefaultTableModel tbmPegawai;
+    DefaultTableModel tbmBeverage;
     ResultSet rs;
     Statement st;
 
-    public Pegawai() {
+    public Beverage() {
         conn = Connections.Koneksi.cekKoneksi();
         initComponents();
         db = new Koneksi();
@@ -61,23 +61,13 @@ public class Pegawai extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        txtID_Pegawai = new javax.swing.JTextField();
-        txtNama_Pegawai = new javax.swing.JTextField();
-        txtJK_Pegawai = new javax.swing.JTextField();
-        txtTempat_Lahir_Pegawai = new javax.swing.JTextField();
-        txtTanggal_Lahir_Pegawai = new javax.swing.JTextField();
-        txtAlamat_Pegawai = new javax.swing.JTextField();
-        txtJabatan = new javax.swing.JTextField();
-        txtNo_Pegawai = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JTextField();
-        txtFoto = new javax.swing.JTextField();
+        txtID_Beverage = new javax.swing.JTextField();
+        txtNama_Beverage = new javax.swing.JTextField();
+        txtDetail_Beverage = new javax.swing.JTextField();
+        txtGambar_Beverage = new javax.swing.JTextField();
+        txtHarga_Beverage = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblPegawai = new javax.swing.JTable();
+        tblBeverage = new javax.swing.JTable();
         btnTambah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
         btnRubah = new javax.swing.JButton();
@@ -111,27 +101,23 @@ public class Pegawai extends javax.swing.JFrame {
 
         jButton10.setText("LogOut");
 
-        jLabel1.setText("ID Pegawai");
+        jLabel1.setText("ID Beverage");
 
-        jLabel2.setText("Nama");
+        jLabel2.setText("Beverage");
 
-        jLabel3.setText("Jenis Kelamin");
+        jLabel3.setText("Detail");
 
-        jLabel4.setText("Tempat Lahir");
+        jLabel4.setText("Gambar");
 
-        jLabel5.setText("Tanggal Lahir");
+        jLabel5.setText("Harga");
 
-        jLabel6.setText("Alamat");
+        txtID_Beverage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtID_BeverageActionPerformed(evt);
+            }
+        });
 
-        jLabel7.setText("Jabatan");
-
-        jLabel8.setText("No Telepon");
-
-        jLabel9.setText("Password");
-
-        jLabel10.setText("Foto");
-
-        tblPegawai.setModel(new javax.swing.table.DefaultTableModel(
+        tblBeverage.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -142,12 +128,12 @@ public class Pegawai extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblPegawai.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblBeverage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblPegawaiMouseClicked(evt);
+                tblBeverageMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblPegawai);
+        jScrollPane1.setViewportView(tblBeverage);
 
         btnTambah.setText("Tambah");
         btnTambah.addActionListener(new java.awt.event.ActionListener() {
@@ -208,54 +194,31 @@ public class Pegawai extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton10)
                         .addGap(31, 31, 31)))
+                .addGap(1, 1, 1)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel3)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtID_Pegawai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNama_Pegawai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtJK_Pegawai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTempat_Lahir_Pegawai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtID_Beverage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNama_Beverage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDetail_Beverage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtGambar_Beverage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtAlamat_Pegawai, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtTanggal_Lahir_Pegawai, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtJabatan, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtNo_Pegawai, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtHarga_Beverage, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnHapus)
                     .addComponent(btnTambah)
                     .addComponent(btnRubah))
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,53 +249,34 @@ public class Pegawai extends javax.swing.JFrame {
                         .addGap(48, 48, 48)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(txtID_Pegawai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(txtJK_Pegawai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(txtTempat_Lahir_Pegawai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(txtNama_Pegawai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtID_Beverage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(7, 7, 7)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtNama_Beverage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtDetail_Beverage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtGambar_Beverage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(9, 9, 9)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(txtTanggal_Lahir_Pegawai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(txtAlamat_Pegawai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(txtJabatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(txtNo_Pegawai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(txtFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
+                            .addComponent(txtHarga_Beverage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(149, 149, 149)
                                 .addComponent(btnTambah)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnHapus)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnRubah)))
+                                .addComponent(btnRubah))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(169, 169, 169)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -363,39 +307,33 @@ public class Pegawai extends javax.swing.JFrame {
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
-        String idPegawai;
-        idPegawai = txtID_Pegawai.getText();
-        db.deletePegawai(idPegawai);
+        String idBeverage;
+        idBeverage = txtID_Beverage.getText();
+        db.deleteBeverage(idBeverage);
         showTable();
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // TODO add your handling code here:
-        String id_pegawai, nama_pegawai, jenis_kelamin, tempat_lahir, alamat, password, jabatan, no_telepon;
-        id_pegawai = txtID_Pegawai.getText();
-        nama_pegawai = txtNama_Pegawai.getText();
-        jenis_kelamin = txtJK_Pegawai.getText();
-        tempat_lahir = txtTanggal_Lahir_Pegawai.getText();
-        alamat = txtAlamat_Pegawai.getText();
-        password = txtPassword.getText();
-        jabatan = txtJabatan.getText();
-        no_telepon = txtNo_Pegawai.getText();
-        db.insertPegawai(id_pegawai, nama_pegawai, jenis_kelamin, tempat_lahir, alamat, password, jabatan, no_telepon);
+        String id_beverage, nama_beverage, detail_beverage, harga_beverage;
+        id_beverage = txtID_Beverage.getText();
+        nama_beverage = txtNama_Beverage.getText();
+        detail_beverage = txtDetail_Beverage.getText();
+//        gambar_beverage = txtGambar_Beverage.getText();
+        harga_beverage = txtHarga_Beverage.getText();
+        db.insertBeverage(id_beverage, nama_beverage, detail_beverage, harga_beverage);
         showTable();
     }//GEN-LAST:event_btnTambahActionPerformed
 
-    private void tblPegawaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPegawaiMouseClicked
+    private void tblBeverageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBeverageMouseClicked
         // TODO add your handling code here:
-        int row = tblPegawai.getSelectedRow();
-        txtID_Pegawai.setText(tblPegawai.getValueAt(row, 0).toString());
-        txtNama_Pegawai.setText(tblPegawai.getValueAt(row, 0).toString());
-        txtJK_Pegawai.setText(tblPegawai.getValueAt(row, 0).toString());
-        txtTanggal_Lahir_Pegawai.setText(tblPegawai.getValueAt(row, 0).toString());
-        txtAlamat_Pegawai.setText(tblPegawai.getValueAt(row, 0).toString());
-        txtPassword.setText(tblPegawai.getValueAt(row, 0).toString());
-        txtJabatan.setText(tblPegawai.getValueAt(row, 0).toString());
-        txtNo_Pegawai.setText(tblPegawai.getValueAt(row, 0).toString());
-    }//GEN-LAST:event_tblPegawaiMouseClicked
+        int row = tblBeverage.getSelectedRow();
+        txtID_Beverage.setText(tblBeverage.getValueAt(row, 0).toString());
+        txtNama_Beverage.setText(tblBeverage.getValueAt(row, 0).toString());
+        txtDetail_Beverage.setText(tblBeverage.getValueAt(row, 0).toString());
+//        txtGambar_Beverage.setText(tblBeverage.getValueAt(row, 0).toString());
+        txtHarga_Beverage.setText(tblBeverage.getValueAt(row, 0).toString());
+    }//GEN-LAST:event_tblBeverageMouseClicked
 
     private void btnHapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHapusMouseClicked
         // TODO add your handling code here:
@@ -403,38 +341,36 @@ public class Pegawai extends javax.swing.JFrame {
 
     private void btnRubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRubahActionPerformed
         // TODO add your handling code here:
-        String id_pegawai, nama, jenis_kelamin, tempat_lahir, alamat, password, jabatan, no_telepon;
-        id_pegawai = txtID_Pegawai.getText();
-        nama = txtNama_Pegawai.getText();
-        jenis_kelamin = txtJK_Pegawai.getText();
-        tempat_lahir = txtTanggal_Lahir_Pegawai.getText();
-        alamat = txtAlamat_Pegawai.getText();
-        password = txtPassword.getText();
-        jabatan = txtJabatan.getText();
-        no_telepon = txtNo_Pegawai.getText();
-        db.updatePegawai(id_pegawai, id_pegawai, jenis_kelamin, tempat_lahir, alamat, password, jabatan, no_telepon);
+        String id_beverage, nama_beverage, detail_beverage, gambar_beverage, harga_beverage;
+        id_beverage = txtID_Beverage.getText();
+        nama_beverage = txtNama_Beverage.getText();
+        detail_beverage = txtDetail_Beverage.getText();
+//        gambar_beverage = txtGambar_Beverage.getText();
+        harga_beverage = txtHarga_Beverage.getText();
+        db.updateBeverage(id_beverage, nama_beverage, detail_beverage, harga_beverage);
         showTable();
     }//GEN-LAST:event_btnRubahActionPerformed
+
+    private void txtID_BeverageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID_BeverageActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtID_BeverageActionPerformed
     public void showTable() {
         try {
-            tbmPegawai = new DefaultTableModel(new String[]{"id_pegawai", "nama_pegawai", "jenis_kelamin", "tempat_lahir", "alamat", "password", "jabatan", "no_telepon"}, 0);
+            tbmBeverage = new DefaultTableModel(new String[]{"id_beverage", "nama_beverage", "detail_beverage", "harga_beverage"}, 0);
             ResultSet rs;
-            rs = db.selectPegawai();
+            rs = db.selectBeverage();
             while (rs.next()) {
-                tbmPegawai.addRow(new Object[]{
-                    rs.getString("id_pegawai"),
-                    rs.getString("nama_pegawai"),
-                    rs.getString("jenis_kelamin"),
-                    rs.getString("tempat_lahir"),
-                    rs.getString("alamat"),
-                    rs.getString("password"),
-                    rs.getString("jabatan"),
-                    rs.getString("no_telepon"),});
+                tbmBeverage.addRow(new Object[]{
+                    rs.getString("id_beverage"),
+                    rs.getString("nama_beverage"),
+                    rs.getString("detail_beverage"),
+//                    rs.getString("gambar_beverage"),
+                    rs.getString("harga_beverage"),});
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Pegawai.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Beverage.class.getName()).log(Level.SEVERE, null, ex);
         }
-        tblPegawai.setModel(tbmPegawai);
+        tblBeverage.setModel(tbmBeverage);
     }
 
     /**
@@ -454,20 +390,23 @@ public class Pegawai extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Pegawai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Beverage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Pegawai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Beverage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Pegawai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Beverage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Pegawai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Beverage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Pegawai().setVisible(true);
+                new Beverage().setVisible(true);
             }
         });
     }
@@ -488,27 +427,17 @@ public class Pegawai extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblPegawai;
-    private javax.swing.JTextField txtAlamat_Pegawai;
-    private javax.swing.JTextField txtFoto;
-    private javax.swing.JTextField txtID_Pegawai;
-    private javax.swing.JTextField txtJK_Pegawai;
-    private javax.swing.JTextField txtJabatan;
-    private javax.swing.JTextField txtNama_Pegawai;
-    private javax.swing.JTextField txtNo_Pegawai;
-    private javax.swing.JTextField txtPassword;
-    private javax.swing.JTextField txtTanggal_Lahir_Pegawai;
-    private javax.swing.JTextField txtTempat_Lahir_Pegawai;
+    private javax.swing.JTable tblBeverage;
+    private javax.swing.JTextField txtDetail_Beverage;
+    private javax.swing.JTextField txtGambar_Beverage;
+    private javax.swing.JTextField txtHarga_Beverage;
+    private javax.swing.JTextField txtID_Beverage;
+    private javax.swing.JTextField txtNama_Beverage;
     // End of variables declaration//GEN-END:variables
 }
