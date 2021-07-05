@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="77003115-9c7c-46df-b2f5-268d4909c2f9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[select * from dimsum]]>
+	</queryString>
+	<field name="id_dimsum" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_dimsum" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="detail_dimsum" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gambar_dimsum" class="java.lang.Object">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="harga_dimsum" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="206" y="16" width="256" height="32" uuid="91eb9899-6abb-4e08-bd48-7ad7b23a7b31"/>
+				<textElement>
+					<font fontName="Garamond" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN DATA DIMSUM]]></text>
+			</staticText>
+			<line>
+				<reportElement x="22" y="68" width="510" height="1" uuid="0c7c461f-d6e0-4f53-8c36-66c50a8f4fbf"/>
+			</line>
+			<staticText>
+				<reportElement x="228" y="34" width="226" height="27" uuid="bfdd6968-87a3-402f-bab2-28c98c7d0c44"/>
+				<textElement>
+					<font fontName="Garamond" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mie Gacoan jember]]></text>
+			</staticText>
+			<image>
+				<reportElement x="42" y="8" width="80" height="53" uuid="eb5aab49-1518-49d6-858b-b361a7617209"/>
+				<imageExpression><![CDATA["D:\\1. Kuliah Semester 2\\9.Workshop Sistem Informasi Berbasis Deskstop\\PROJEC_WSIBD-main\\MieGacoanJember\\src\\img\\logoGacoan.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="432" y="9" width="100" height="20" uuid="b30802d8-6802-4703-ab33-f2d40d4d946c"/>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="47" width="555" height="1" uuid="dd0cb6dc-8832-47af-92ef-2d22e289f5db"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="668c489d-d8a0-4797-acfc-80b0c457c8a4"/>
+				<text><![CDATA[id_dimsum]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="106" y="0" width="100" height="20" uuid="52f4dccf-c65f-4299-bee4-250a81e7183d"/>
+				<text><![CDATA[nama_dimsum]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="206" y="0" width="100" height="20" uuid="b296689a-8130-47a1-8d12-9c133076459e"/>
+				<text><![CDATA[detail_dimsum]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="2" width="100" height="20" uuid="373e768a-1505-4e40-9e42-714f0f6fb854"/>
+				<text><![CDATA[gambar_dimsum]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="446" y="2" width="100" height="20" uuid="d87ddf0d-9eca-4575-b362-491ea92c8223"/>
+				<text><![CDATA[harga_dimsum]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="d224b82f-ca91-4ed7-bdea-0b029017dcde"/>
+				<textFieldExpression><![CDATA[$F{id_dimsum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="106" y="0" width="100" height="20" uuid="b6abfa8d-5c92-4402-98ab-5925ca402c4e"/>
+				<textFieldExpression><![CDATA[$F{nama_dimsum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="206" y="0" width="100" height="20" uuid="431a76c1-9595-4141-9562-a37775d81b4c"/>
+				<textFieldExpression><![CDATA[$F{detail_dimsum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="0" width="100" height="20" uuid="9bf81262-abce-468a-bfca-15783b7d4a90"/>
+				<textFieldExpression><![CDATA[""+$F{gambar_dimsum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="432" y="0" width="100" height="20" uuid="47f8ab5e-78f7-4310-bb40-1d79130aec89"/>
+				<textFieldExpression><![CDATA[$F{harga_dimsum}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="38" width="555" height="1" uuid="6f97c9b3-26c9-4966-b3ec-f0dc42a5ad7c"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="506" y="7" width="40" height="20" uuid="d69cd7b5-d768-4f94-8c2a-f9d948c1d132"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="7" width="80" height="20" uuid="3c0ac797-158b-4217-a9dc-7470f2b74794"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
