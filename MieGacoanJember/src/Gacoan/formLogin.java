@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package login_view;
+package Gacoan;
 
 /**
  *
@@ -107,11 +107,11 @@ public class formLogin extends javax.swing.JFrame {
         String Username2= "admin";
         String Password2= "456";
         if (Username1.equalsIgnoreCase(field1.getText()) && Password1.equalsIgnoreCase(field2.getText())){
-            new mainView().setVisible(true);
+            new Pemesanan().setVisible(true);
             javax.swing.JOptionPane.showMessageDialog(null, "Login Berhasil!");
             this.setVisible(false);
         }else if (Username2.equalsIgnoreCase(field1.getText()) && Password2.equalsIgnoreCase(field2.getText())){
-            new mainView().setVisible(true);
+            new Pemesanan().setVisible(true);
             javax.swing.JOptionPane.showMessageDialog(null, "Login Berhasil!");
             this.setVisible(false);
         } else {

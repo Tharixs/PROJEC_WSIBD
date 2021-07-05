@@ -1,3 +1,5 @@
+package Gacoan;
+
 import com.mysql.jdbc.Statement;
 import java.awt.HeadlessException;
 import java.sql.Connection;
@@ -5,7 +7,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import koneksi.conn;//koneksi database ke netbeans
+import Connections.Koneksi;//koneksi database ke netbeans
 import javax.swing.table.DefaultTableModel;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,6 +24,7 @@ public class form_pembeli extends javax.swing.JFrame {
     /**
      * Creates new form form_pembeli
      */
+    Connection conn = Connections.Koneksi.cekKoneksi();
     public form_pembeli() {
         initComponents();
         datatable();
