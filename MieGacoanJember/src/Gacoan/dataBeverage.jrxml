@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4fa01dd0-052c-4dbc-b85f-e1b810278a12">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[select * from beverage]]>
+	</queryString>
+	<field name="id_beverage" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_beverage" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="detail_beverage" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gambar_beverage" class="java.lang.Object">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="harga_beverage" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="42" y="8" width="80" height="53" uuid="2c4f9d98-b0c3-48af-98b6-81c4ba98fc01"/>
+				<imageExpression><![CDATA["D:\\1. Kuliah Semester 2\\9.Workshop Sistem Informasi Berbasis Deskstop\\PROJEC_WSIBD-main\\MieGacoanJember\\src\\img\\logoGacoan.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="206" y="16" width="256" height="32" uuid="b338b0e7-f079-4d8b-ae15-c644b1b72054"/>
+				<textElement>
+					<font fontName="Garamond" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN DATA BEVERAGE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="228" y="34" width="226" height="27" uuid="ade00319-40d5-4d4c-a1bb-4a5e892c9c0b"/>
+				<textElement>
+					<font fontName="Garamond" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mie Gacoan jember]]></text>
+			</staticText>
+			<line>
+				<reportElement x="22" y="68" width="510" height="1" uuid="e7469f68-7439-4194-9770-9671d916574c"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="432" y="9" width="100" height="20" uuid="88f6d75e-ec66-4d63-901a-472bb6cbdd38"/>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="8f679cc8-dc22-446a-b74f-816335f7e67d"/>
+				<text><![CDATA[id_beverage]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="106" y="0" width="100" height="20" uuid="e2de7b64-b678-4a07-bdfa-76746640d5a3"/>
+				<text><![CDATA[nama_beverage]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="217" y="0" width="100" height="20" uuid="fd64f360-84e5-4122-9290-9e73c6d8edf0"/>
+				<text><![CDATA[detail_beverage]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="332" y="0" width="100" height="20" uuid="05ff2684-2a05-44cd-acbc-98e08ee267b2"/>
+				<text><![CDATA[gambar_beverage]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="443" y="0" width="100" height="20" uuid="e690c439-cfbe-47f3-9b71-13241fcd48f7"/>
+				<text><![CDATA[harga_beverage]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="46" width="555" height="1" uuid="af0eaa4f-bdf4-4e4a-a9fc-8a788edaf29c"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="147ff224-c713-4e81-b3d5-f97dc73059f0"/>
+				<textFieldExpression><![CDATA[$F{id_beverage}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="106" y="0" width="100" height="20" uuid="f3a3bbb8-13ae-487a-b7c2-c523b5ad30df"/>
+				<textFieldExpression><![CDATA[$F{nama_beverage}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="217" y="0" width="100" height="20" uuid="c161cda9-4560-4a9e-a628-7ac6a0537dc0"/>
+				<textFieldExpression><![CDATA[$F{detail_beverage}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="332" y="0" width="100" height="20" uuid="9dfd8724-3a00-4080-beed-9f63931da725"/>
+				<textFieldExpression><![CDATA[""+$F{gambar_beverage}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="443" y="0" width="100" height="20" uuid="01cedd92-1af9-4e74-9ff6-bd1a3a2e3fa4"/>
+				<textFieldExpression><![CDATA[$F{harga_beverage}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="38" width="555" height="1" uuid="a989e95f-ef17-435b-b003-b20aa4500fd7"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="401" y="5" width="80" height="20" uuid="08391ff3-ae11-4411-9537-8accd396e56a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="487" y="5" width="40" height="20" uuid="fe827443-a2a1-42a3-8d62-5c6699140cdd"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
