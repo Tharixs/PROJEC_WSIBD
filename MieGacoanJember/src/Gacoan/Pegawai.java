@@ -54,7 +54,7 @@ public class Pegawai extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnPembeli = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -101,7 +101,12 @@ public class Pegawai extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Pembeli");
+        btnPembeli.setText("Pembeli");
+        btnPembeli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPembeliActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Menu");
 
@@ -210,7 +215,7 @@ public class Pegawai extends javax.swing.JFrame {
                                     .addGap(24, 24, 24)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jButton3)
-                                        .addComponent(jButton2)
+                                        .addComponent(btnPembeli)
                                         .addComponent(jButton1)))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(37, 37, 37)
@@ -282,7 +287,7 @@ public class Pegawai extends javax.swing.JFrame {
                         .addGap(68, 68, 68)
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(btnPembeli)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton3)
                         .addGap(18, 18, 18)
@@ -489,6 +494,12 @@ public class Pegawai extends javax.swing.JFrame {
         Connections.Koneksi.print();
     }//GEN-LAST:event_btnPrintActionPerformed
 
+    private void btnPembeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPembeliActionPerformed
+        // TODO add your handling code here:
+        new form_pembeli().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnPembeliActionPerformed
+
     public void updatePegawai(String id_pegawai, String nama_pegawai, String jenis_kelamin, String tempat_lahir, String alamat, String password, String jabatan, String no_telepon) {
         try {
             String sql = "UPDATE pegawai SET nama_pegawai=?, jenis_kelamin=?, tempat_lahir=?, alamat=?, password=?, jabatan=?, no_telepon=? WHERE id_pegawai=?";
@@ -568,12 +579,12 @@ public class Pegawai extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHapus;
+    private javax.swing.JButton btnPembeli;
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnRubah;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;

@@ -41,6 +41,7 @@ public class Pemesanan extends javax.swing.JFrame {
         bckInfo = new javax.swing.JPanel();
         info = new javax.swing.JLabel();
         iknPemesanan = new javax.swing.JLabel();
+        gues = new javax.swing.JLabel();
         MAIN = new javax.swing.JPanel();
         Logo = new javax.swing.JLabel();
         BacgroundMenuMakanan2 = new javax.swing.JPanel();
@@ -120,6 +121,15 @@ public class Pemesanan extends javax.swing.JFrame {
             }
         });
         footer.add(iknPemesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(1520, 30, -1, -1));
+
+        gues.setFont(new java.awt.Font("Garamond", 0, 16)); // NOI18N
+        gues.setText("Login As Gues ");
+        gues.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                guesMouseClicked(evt);
+            }
+        });
+        footer.add(gues, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
 
         Constructor.add(footer);
         footer.setBounds(0, 891, 1680, 160);
@@ -560,6 +570,13 @@ public class Pemesanan extends javax.swing.JFrame {
         new Pesanan().setVisible(true);
     }//GEN-LAST:event_iknPemesananMouseClicked
 
+    private void guesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guesMouseClicked
+        // TODO add your handling code here:
+        new formLogin().setVisible(true);
+        this.setVisible(false);
+        new Pemesanan().setVisible(false);
+    }//GEN-LAST:event_guesMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -627,6 +644,7 @@ public class Pemesanan extends javax.swing.JFrame {
     private javax.swing.JButton btnmenu8;
     private javax.swing.JButton btnmenu9;
     private javax.swing.JPanel footer;
+    private javax.swing.JLabel gues;
     private javax.swing.JLabel iknPemesanan;
     private javax.swing.JLabel info;
     // End of variables declaration//GEN-END:variables
