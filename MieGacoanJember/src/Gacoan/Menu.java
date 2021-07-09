@@ -29,7 +29,7 @@ import sun.security.pkcs11.Secmod;
  *
  * @author khoirul
  */
-public class Pegawai extends javax.swing.JFrame {
+public class Menu extends javax.swing.JFrame {
 
     Connection conn;
     PreparedStatement pst;
@@ -37,7 +37,7 @@ public class Pegawai extends javax.swing.JFrame {
     ResultSet rs;
     Statement st;
 
-    public Pegawai() {
+    public Menu() {
         conn = Connections.Koneksi.cekKoneksi();
         initComponents();
         showTable();
@@ -396,7 +396,7 @@ public class Pegawai extends javax.swing.JFrame {
             pst.executeUpdate();
             System.out.println("Data berhasil dihapus");
         } catch (SQLException ex) {
-            Logger.getLogger(Pegawai.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -526,7 +526,7 @@ public class Pegawai extends javax.swing.JFrame {
                     rs.getString("no_telepon"),});
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Pegawai.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
         tblPegawai.setModel(tbmPegawai);
     }
@@ -548,20 +548,21 @@ public class Pegawai extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Pegawai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Pegawai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Pegawai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Pegawai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Pegawai().setVisible(true);
+                new Menu().setVisible(true);
             }
         });
     }

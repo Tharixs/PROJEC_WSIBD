@@ -112,26 +112,7 @@ public class form_pembeli extends javax.swing.JFrame {
         dispose();
     }
 
-    private void btncariActionPerformed(java.awt.event.ActionEvent evt) {
-        String ID = fieldID.getText();
-        try {
-            Statement statement = (Statement) conn.createStatement();
-            ResultSet res = statement.executeQuery("select * from pembeli where id_pembeli='" + ID + "'");
-            DefaultTableModel tbl = new DefaultTableModel();
-            tbl.addColumn("ID Pembeli");
-            tbl.addColumn("Nama Pembeli");
-            tabel.setModel(tbl);
-
-            while (res.next()) {
-                tbl.addRow(new Object[]{
-                    res.getString("id_pembeli"),
-                    res.getString("nama_pembeli"),});
-                tabel.setModel(tbl);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, "Data Yang Anda Cari Tidak Sesuai");
-        }
-    }
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -178,6 +159,11 @@ public class form_pembeli extends javax.swing.JFrame {
         btnUbah.setText("Ubah");
 
         btnCari.setText("Cari");
+        btnCari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCariActionPerformed(evt);
+            }
+        });
 
         btnSimpan.setText("Simpan");
 
@@ -349,6 +335,28 @@ public class form_pembeli extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_btnTambahActionPerformed
+
+    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
+        // TODO add your handling code here:
+         String ID = fieldID.getText();
+        try {
+            Statement statement = (Statement) conn.createStatement();
+            ResultSet res = statement.executeQuery("select * from pembeli where id_pembeli='" + ID + "'");
+            DefaultTableModel tbl = new DefaultTableModel();
+            tbl.addColumn("ID Pembeli");
+            tbl.addColumn("Nama Pembeli");
+            tabel.setModel(tbl);
+
+            while (res.next()) {
+                tbl.addRow(new Object[]{
+                    res.getString("id_pembeli"),
+                    res.getString("nama_pembeli"),});
+                tabel.setModel(tbl);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Data Yang Anda Cari Tidak Sesuai");
+        }
+    }//GEN-LAST:event_btnCariActionPerformed
 
     /**
      * @param args the command line arguments
