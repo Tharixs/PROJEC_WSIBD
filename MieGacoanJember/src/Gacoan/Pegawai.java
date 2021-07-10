@@ -25,6 +25,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
@@ -512,7 +513,11 @@ public class Pegawai extends javax.swing.JFrame {
         txtPassword.setText(tblPegawai.getValueAt(row, 6).toString());
         txtJabatan.setText(tblPegawai.getValueAt(row, 7).toString());
         txtNo_Telepon.setText(tblPegawai.getValueAt(row, 8).toString());
-       
+        
+        JLabel imgLb = (JLabel) tbmPegawai.getValueAt(row, 9);
+        ImageIcon imgIcn = (ImageIcon) imgLb.getIcon();
+        Image imgJlfit = imgIcn.getImage().getScaledInstance(ShowImage.getWidth(), ShowImage.getHeight(), Image.SCALE_SMOOTH);
+        ShowImage.setIcon(imgIcn);
             
         
     }//GEN-LAST:event_tblPegawaiMouseClicked
@@ -617,7 +622,7 @@ public class Pegawai extends javax.swing.JFrame {
 
     public void showTable() {
         try {
-            tbmPegawai = new DefaultTableModel(new String[]{"id_pegawai", "nama_pegawai", "jenis_kelamin", "tempat_lahir", "tanggal_lahir", "alamat", "password", "jabatan", "no_telepon"}, 0);
+            tbmPegawai = new DefaultTableModel(new String[]{"id_pegawai", "nama_pegawai", "jenis_kelamin", "tempat_lahir", "tanggal_lahir", "alamat", "password", "jabatan", "no_telepon","fot"}, 0);
             ResultSet rs;
             rs = selectPegawai();
             while (rs.next()) {
@@ -630,7 +635,8 @@ public class Pegawai extends javax.swing.JFrame {
                     rs.getString("alamat"),
                     rs.getString("password"),
                     rs.getString("jabatan"),
-                    rs.getString("no_telepon"),});
+                    rs.getString("no_telepon"),
+                    rs.getBlob("foto")});
             }
         } catch (SQLException ex) {
             Logger.getLogger(Pegawai.class.getName()).log(Level.SEVERE, null, ex);

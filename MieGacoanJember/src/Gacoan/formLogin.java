@@ -440,22 +440,22 @@ public class formLogin extends javax.swing.JFrame {
 //            fieldPassword.setText("");
 //            fieldUsername.requestFocus();
 
-         try {
-            String sql = "SELECT * FROM pegawai WHERE nama_pegawai='"+fieldUsername.getText()+"' AND password='"+fieldPassword1.getText()+"'";
+        try {
+            String sql = "SELECT * FROM pegawai WHERE nama_pegawai='" + fieldUsername.getText() + "' AND password='" + fieldPassword1.getText() + "'";
             st = conn.createStatement();
             rs = st.executeQuery(sql);
-            if(rs.next()){
-                if(fieldUsername.getText().equals(rs.getString("nama_pegawai")) && fieldPassword1.getText().equals(rs.getString("password"))){
+            if (rs.next()) {
+                if (fieldUsername.getText().equals(rs.getString("nama_pegawai")) && fieldPassword1.getText().equals(rs.getString("password"))) {
                     JOptionPane.showMessageDialog(null, "berhasil login");
                     new Pegawai().setVisible(true);
                     this.setVisible(false);
                 }
-            }else{  
-                    JOptionPane.showMessageDialog(null, "username atau password salah");
-                }
+            } else {
+                JOptionPane.showMessageDialog(null, "username atau password salah");
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
-             System.out.println(e);
+            System.out.println(e);
         }
     }//GEN-LAST:event_btnMasukActionPerformed
 
@@ -491,10 +491,18 @@ public class formLogin extends javax.swing.JFrame {
             // eksekusi statement SQL
             st.executeUpdate(sql);
             System.out.println("tambah data berhasil");
-
+            javax.swing.JOptionPane.showMessageDialog(null, "Daftar Berhasil!");
+            KodePegawai.setText("");
+            txtFieldName.setText("");
+            fieldPassword.setText("");
+            txtFieldJabatan.setText("");
+            txtTempat.setText("");
+            txtAlamat.setText("");
+            txtNoHp.setText("");
+            txtFieldFoto.setText("");
         } catch (SQLException e) {
             System.out.println("tambah data gagal!");
-            System.out.println(e.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(null, "Daftar Gagal!"+e);
         }
     }//GEN-LAST:event_btndaftarActionPerformed
 
@@ -518,7 +526,7 @@ public class formLogin extends javax.swing.JFrame {
         String fileName = f.getAbsolutePath();
         txtFieldFoto.setText(fileName);
         Image getAbsolutePath = null;
-        
+
 //        ImageIcon icon = new ImageIcon(fileName);
 //        image = icon.getImage().getScaledInstance(, WIDTH, WIDTH)
 
