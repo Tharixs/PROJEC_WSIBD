@@ -5,6 +5,29 @@
  */
 package Gacoan;
 
+import com.mysql.jdbc.Connection;
+import java.awt.Color;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+import sun.java2d.pipe.SpanShapeRenderer;
+
 /**
  *
  * @author Nabiyla Hamestuti
@@ -14,8 +37,16 @@ public class formLogin extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
+    Connection conn;
+    PreparedStatement pst;
+    DefaultTableModel tbmPegawai;
+    ResultSet rs;
+    Statement st;
+    Image image;
+
     public formLogin() {
         initComponents();
+        conn = Connections.Koneksi.cekKoneksi();
     }
 
     /**
@@ -30,8 +61,9 @@ public class formLogin extends javax.swing.JFrame {
         Kelamin = new javax.swing.ButtonGroup();
         Countainer = new javax.swing.JPanel();
         fieldUsername = new javax.swing.JTextField();
+        Lpaswoard = new javax.swing.JLabel();
         fieldPassword = new javax.swing.JPasswordField();
-        btnBatal = new javax.swing.JButton();
+        btndaftar = new javax.swing.JButton();
         btnMasuk = new javax.swing.JButton();
         txtPsw = new javax.swing.JLabel();
         txtUsername = new javax.swing.JLabel();
@@ -45,22 +77,24 @@ public class formLogin extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtFieldName = new javax.swing.JTextField();
-        txtFieldPassword = new javax.swing.JTextField();
+        KodePegawai = new javax.swing.JTextField();
         txtFieldJabatan = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtAlamat = new javax.swing.JTextField();
         txtFieldFoto = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtNoHp = new javax.swing.JTextField();
+        Pilihfile = new javax.swing.JButton();
         rbtnPerempuan = new javax.swing.JRadioButton();
         RbtnLakiLaki = new javax.swing.JRadioButton();
+        LTanggalLahir = new javax.swing.JLabel();
+        TanggalLahir = new com.toedter.calendar.JDateChooser();
+        txtTempat = new javax.swing.JTextField();
+        fieldPassword1 = new javax.swing.JPasswordField();
+        txtFieldName = new javax.swing.JTextField();
         fillback = new javax.swing.JPanel();
         Bacground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1680, 1050));
-        setPreferredSize(new java.awt.Dimension(1680, 1050));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Countainer.setBackground(new java.awt.Color(255, 255, 255,177));
@@ -76,20 +110,35 @@ public class formLogin extends javax.swing.JFrame {
         });
         Countainer.add(fieldUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 165, 318, 44));
 
-        fieldPassword.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
-        Countainer.add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(985, 165, 318, 44));
+        Lpaswoard.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        Lpaswoard.setForeground(new java.awt.Color(204, 204, 204));
+        Lpaswoard.setText("Passwoard");
+        Countainer.add(Lpaswoard, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 420, 855, 44));
 
-        btnBatal.setBackground(new java.awt.Color(255, 0, 152));
-        btnBatal.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
-        btnBatal.setForeground(new java.awt.Color(255, 255, 255));
-        btnBatal.setText("Daftarkan");
-        btnBatal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 153)));
-        btnBatal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBatalActionPerformed(evt);
+        fieldPassword.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        fieldPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                fieldPasswordMouseClicked(evt);
             }
         });
-        Countainer.add(btnBatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 860, 376, 62));
+        fieldPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldPasswordActionPerformed(evt);
+            }
+        });
+        Countainer.add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 420, 855, 44));
+
+        btndaftar.setBackground(new java.awt.Color(255, 0, 152));
+        btndaftar.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        btndaftar.setForeground(new java.awt.Color(255, 255, 255));
+        btndaftar.setText("Daftarkan");
+        btndaftar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 153)));
+        btndaftar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndaftarActionPerformed(evt);
+            }
+        });
+        Countainer.add(btndaftar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 860, 376, 62));
 
         btnMasuk.setBackground(new java.awt.Color(255, 0, 152));
         btnMasuk.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
@@ -192,57 +241,72 @@ public class formLogin extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Garamond", 1, 55)); // NOI18N
         jLabel7.setText("Buat akun admin Anda!");
-        Countainer.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 241, -1, -1));
+        Countainer.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 220, -1, -1));
 
-        txtFieldName.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
-        txtFieldName.setForeground(new java.awt.Color(204, 204, 204));
-        txtFieldName.setText("Nama / Username");
-        txtFieldName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFieldNameActionPerformed(evt);
+        KodePegawai.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        KodePegawai.setForeground(new java.awt.Color(204, 204, 204));
+        KodePegawai.setText("Kode Pegawai");
+        KodePegawai.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                KodePegawaiMouseClicked(evt);
             }
         });
-        Countainer.add(txtFieldName, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 357, 855, 44));
-
-        txtFieldPassword.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
-        txtFieldPassword.setForeground(new java.awt.Color(204, 204, 204));
-        txtFieldPassword.setText("Buat password");
-        txtFieldPassword.addActionListener(new java.awt.event.ActionListener() {
+        KodePegawai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFieldPasswordActionPerformed(evt);
+                KodePegawaiActionPerformed(evt);
             }
         });
-        Countainer.add(txtFieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 420, 855, 44));
+        Countainer.add(KodePegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 290, 855, 44));
 
         txtFieldJabatan.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
         txtFieldJabatan.setForeground(new java.awt.Color(204, 204, 204));
         txtFieldJabatan.setText("Jabatan/Posisi di Mie Gacoan");
+        txtFieldJabatan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtFieldJabatanMouseClicked(evt);
+            }
+        });
         Countainer.add(txtFieldJabatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 483, 855, 44));
 
-        jTextField2.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField2.setText("Tempat, Tanggal Lahir (tgl/bulan/tahun)");
-        Countainer.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 546, 855, 44));
-
-        jTextField3.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField3.setText("Alamat lengkap");
-        Countainer.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 612, 855, 44));
+        txtAlamat.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        txtAlamat.setForeground(new java.awt.Color(204, 204, 204));
+        txtAlamat.setText("Alamat lengkap");
+        txtAlamat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtAlamatMouseClicked(evt);
+            }
+        });
+        Countainer.add(txtAlamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 612, 855, 44));
 
         txtFieldFoto.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
         txtFieldFoto.setForeground(new java.awt.Color(204, 204, 204));
         txtFieldFoto.setText("Masukkan foto Anda");
         Countainer.add(txtFieldFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 744, 599, 44));
 
-        jTextField5.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField5.setText("No. HP / WhatsApp");
-        Countainer.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 678, 855, 44));
+        txtNoHp.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        txtNoHp.setForeground(new java.awt.Color(204, 204, 204));
+        txtNoHp.setText("No. HP / WhatsApp");
+        txtNoHp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNoHpMouseClicked(evt);
+            }
+        });
+        Countainer.add(txtNoHp, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 678, 855, 44));
 
-        jButton1.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(112, 112, 112));
-        jButton1.setText("Pilih file");
-        Countainer.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 744, 237, 44));
+        Pilihfile.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        Pilihfile.setForeground(new java.awt.Color(112, 112, 112));
+        Pilihfile.setText("Pilih file");
+        Pilihfile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PilihfileMouseClicked(evt);
+            }
+        });
+        Pilihfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PilihfileActionPerformed(evt);
+            }
+        });
+        Countainer.add(Pilihfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 744, 237, 44));
 
         rbtnPerempuan.setBackground(new java.awt.Color(255, 255, 255));
         Kelamin.add(rbtnPerempuan);
@@ -270,6 +334,65 @@ public class formLogin extends javax.swing.JFrame {
         });
         Countainer.add(RbtnLakiLaki, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 809, 190, 30));
 
+        LTanggalLahir.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        LTanggalLahir.setForeground(new java.awt.Color(204, 204, 204));
+        LTanggalLahir.setText("Tanggal Lahir");
+        LTanggalLahir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LTanggalLahirMouseClicked(evt);
+            }
+        });
+        Countainer.add(LTanggalLahir, new org.netbeans.lib.awtextra.AbsoluteConstraints(945, 550, 520, 44));
+
+        TanggalLahir.setForeground(new java.awt.Color(204, 204, 204));
+        TanggalLahir.setToolTipText("");
+        TanggalLahir.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        TanggalLahir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TanggalLahirMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                TanggalLahirMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                TanggalLahirMouseExited(evt);
+            }
+        });
+        Countainer.add(TanggalLahir, new org.netbeans.lib.awtextra.AbsoluteConstraints(945, 550, 550, 44));
+
+        txtTempat.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        txtTempat.setForeground(new java.awt.Color(204, 204, 204));
+        txtTempat.setText("Tempat ");
+        txtTempat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtTempatMouseClicked(evt);
+            }
+        });
+        Countainer.add(txtTempat, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 550, 290, 44));
+
+        fieldPassword1.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        fieldPassword1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldPassword1ActionPerformed(evt);
+            }
+        });
+        Countainer.add(fieldPassword1, new org.netbeans.lib.awtextra.AbsoluteConstraints(985, 165, 318, 44));
+
+        txtFieldName.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        txtFieldName.setForeground(new java.awt.Color(204, 204, 204));
+        txtFieldName.setText("Nama / Username");
+        txtFieldName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtFieldNameMouseClicked(evt);
+            }
+        });
+        txtFieldName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFieldNameActionPerformed(evt);
+            }
+        });
+        Countainer.add(txtFieldName, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 357, 855, 44));
+
         getContentPane().add(Countainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 53, 1567, 944));
 
         fillback.setBackground(new java.awt.Color(0, 179, 216,70));
@@ -293,47 +416,91 @@ public class formLogin extends javax.swing.JFrame {
         Bacground.setPreferredSize(new java.awt.Dimension(1680, 1050));
         getContentPane().add(Bacground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1680, 1050));
 
-        pack();
+        setSize(new java.awt.Dimension(1702, 1106));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasukActionPerformed
         // TODO add your handling code here:
-        String Username1= "admin";
-        String Password1= "123";
-        String Username2= "admin";
-        String Password2= "456";
-        if (Username1.equalsIgnoreCase(fieldUsername.getText()) && Password1.equalsIgnoreCase(fieldPassword.getText())){
-            new Pemesanan().setVisible(true);
-            javax.swing.JOptionPane.showMessageDialog(null, "Login Berhasil!");
-            this.setVisible(false);
-        }else if (Username2.equalsIgnoreCase(fieldUsername.getText()) && Password2.equalsIgnoreCase(fieldPassword.getText())){
-            new Pemesanan().setVisible(true);
-            javax.swing.JOptionPane.showMessageDialog(null, "Login Berhasil!");
-            this.setVisible(false);
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(null, "Username/Password tidak Valid");
-            fieldUsername.setText("");
-            fieldPassword.setText("");
-            fieldUsername.requestFocus();
+//        String Username1 = "admin";
+//        String Password1 = "123";
+//        String Username2 = "admin";
+//        String Password2 = "456";
+//        if (Username1.equalsIgnoreCase(fieldUsername.getText()) && Password1.equalsIgnoreCase(fieldPassword.getText())) {
+//            new Pemesanan().setVisible(true);
+//            javax.swing.JOptionPane.showMessageDialog(null, "Login Berhasil!");
+//            this.setVisible(false);
+//        } else if (Username2.equalsIgnoreCase(fieldUsername.getText()) && Password2.equalsIgnoreCase(fieldPassword.getText())) {
+//            new Pemesanan().setVisible(true);
+//            javax.swing.JOptionPane.showMessageDialog(null, "Login Berhasil!");
+//            this.setVisible(false);
+//        } else {
+//            javax.swing.JOptionPane.showMessageDialog(null, "Username/Password tidak Valid");
+//            fieldUsername.setText("");
+//            fieldPassword.setText("");
+//            fieldUsername.requestFocus();
+
+         try {
+            String sql = "SELECT * FROM pegawai WHERE nama_pegawai='"+fieldUsername.getText()+"' AND password='"+fieldPassword1.getText()+"'";
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+            if(rs.next()){
+                if(fieldUsername.getText().equals(rs.getString("nama_pegawai")) && fieldPassword1.getText().equals(rs.getString("password"))){
+                    JOptionPane.showMessageDialog(null, "berhasil login");
+                    new Pegawai().setVisible(true);
+                    this.setVisible(false);
+                }
+            }else{  
+                    JOptionPane.showMessageDialog(null, "username atau password salah");
+                }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+             System.out.println(e);
         }
     }//GEN-LAST:event_btnMasukActionPerformed
 
-    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
-        // TODO add your handling code here:
-//        dispose();
-    }//GEN-LAST:event_btnBatalActionPerformed
+    private void btndaftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndaftarActionPerformed
+
+        try {
+            // nama kolom harus sama dengan yang di database
+            st = conn.createStatement();
+            String id_pegawai, nama_pegawai, tempat_lahir, tanggal_lahir, jenis_kelamin, alamat, password, jabatan, no_telepon, foto;
+            String tampilan = "yy-MM-dd";
+            SimpleDateFormat f = new SimpleDateFormat(tampilan);
+            id_pegawai = KodePegawai.getText();
+            nama_pegawai = txtFieldName.getText();
+            tempat_lahir = txtTempat.getText();
+            tanggal_lahir = String.valueOf(f.format(TanggalLahir.getDate()));
+            jenis_kelamin = Kelamin.getSelection().getActionCommand();
+            RbtnLakiLaki.setActionCommand("L");
+            rbtnPerempuan.setActionCommand("P");
+            alamat = txtAlamat.getText();
+            password = fieldPassword.getText();
+            jabatan = txtFieldJabatan.getText();
+            no_telepon = txtNoHp.getText();
+
+            if (RbtnLakiLaki.isSelected()) {
+                jenis_kelamin = "L";
+            } else if (rbtnPerempuan.isSelected()) {
+                jenis_kelamin = "P";
+            }
+            foto = txtFieldFoto.getText();
+            foto = foto.replace("\\", "\\\\");
+            String sql = "INSERT INTO pegawai (id_pegawai, nama_pegawai, tempat_lahir, tanggal_lahir, jenis_kelamin, alamat, password, jabatan, no_telepon, foto) VALUES('" + id_pegawai + "','" + nama_pegawai + "','" + tempat_lahir + "','" + tanggal_lahir + "','" + jenis_kelamin + "','" + alamat + "','" + password + "','" + jabatan + "','" + no_telepon + "','" + foto + "')";
+
+            // eksekusi statement SQL
+            st.executeUpdate(sql);
+            System.out.println("tambah data berhasil");
+
+        } catch (SQLException e) {
+            System.out.println("tambah data gagal!");
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btndaftarActionPerformed
 
     private void fieldUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldUsernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldUsernameActionPerformed
-
-    private void txtFieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFieldNameActionPerformed
-
-    private void txtFieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFieldPasswordActionPerformed
 
     private void RbtnLakiLakiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RbtnLakiLakiActionPerformed
         // TODO add your handling code here:
@@ -342,6 +509,104 @@ public class formLogin extends javax.swing.JFrame {
     private void rbtnPerempuanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnPerempuanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbtnPerempuanActionPerformed
+
+    private void PilihfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PilihfileActionPerformed
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        File f = chooser.getSelectedFile();
+        String fileName = f.getAbsolutePath();
+        txtFieldFoto.setText(fileName);
+        Image getAbsolutePath = null;
+        
+//        ImageIcon icon = new ImageIcon(fileName);
+//        image = icon.getImage().getScaledInstance(, WIDTH, WIDTH)
+
+    }//GEN-LAST:event_PilihfileActionPerformed
+
+    private void TanggalLahirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TanggalLahirMouseClicked
+        // TODO add your handling code here:
+//        LTanggalLahir.setVisible(false);
+    }//GEN-LAST:event_TanggalLahirMouseClicked
+
+    private void TanggalLahirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TanggalLahirMouseEntered
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_TanggalLahirMouseEntered
+
+    private void TanggalLahirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TanggalLahirMouseExited
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_TanggalLahirMouseExited
+
+    private void fieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldPasswordActionPerformed
+
+    private void fieldPassword1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldPassword1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldPassword1ActionPerformed
+
+    private void KodePegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KodePegawaiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_KodePegawaiActionPerformed
+
+    private void txtFieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFieldNameActionPerformed
+
+    private void KodePegawaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KodePegawaiMouseClicked
+        // TODO add your handling code here:
+        KodePegawai.setText("");
+        KodePegawai.setForeground(Color.BLACK);
+    }//GEN-LAST:event_KodePegawaiMouseClicked
+
+    private void txtFieldNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFieldNameMouseClicked
+        // TODO add your handling code here:
+        txtFieldName.setText("");
+        txtFieldName.setForeground(Color.BLACK);
+    }//GEN-LAST:event_txtFieldNameMouseClicked
+
+    private void fieldPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fieldPasswordMouseClicked
+        // TODO add your handling code here:
+        Lpaswoard.setText("");
+        fieldPassword.setForeground(Color.BLACK);
+    }//GEN-LAST:event_fieldPasswordMouseClicked
+
+    private void txtFieldJabatanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFieldJabatanMouseClicked
+        // TODO add your handling code here:
+        txtFieldJabatan.setText("");
+        txtFieldJabatan.setForeground(Color.BLACK);
+    }//GEN-LAST:event_txtFieldJabatanMouseClicked
+
+    private void txtTempatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTempatMouseClicked
+        // TODO add your handling code here:
+        txtTempat.setText("");
+        txtTempat.setForeground(Color.BLACK);
+    }//GEN-LAST:event_txtTempatMouseClicked
+
+    private void txtAlamatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAlamatMouseClicked
+        // TODO add your handling code here:
+        txtAlamat.setText("");
+        txtAlamat.setForeground(Color.BLACK);
+    }//GEN-LAST:event_txtAlamatMouseClicked
+
+    private void txtNoHpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNoHpMouseClicked
+        // TODO add your handling code here:
+        txtNoHp.setText("");
+        txtNoHp.setForeground(Color.BLACK);
+    }//GEN-LAST:event_txtNoHpMouseClicked
+
+    private void PilihfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PilihfileMouseClicked
+        // TODO add your handling code here:
+//        Lfoto.setForeground(Color.BLACK);
+    }//GEN-LAST:event_PilihfileMouseClicked
+
+    private void LTanggalLahirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LTanggalLahirMouseClicked
+        // TODO add your handling code here:
+        LTanggalLahir.setText("");
+
+    }//GEN-LAST:event_LTanggalLahirMouseClicked
 
     /**
      * @param args the command line arguments
@@ -383,15 +648,20 @@ public class formLogin extends javax.swing.JFrame {
     private javax.swing.JLabel Bacground;
     private javax.swing.JPanel Countainer;
     private javax.swing.ButtonGroup Kelamin;
+    private javax.swing.JTextField KodePegawai;
+    private javax.swing.JLabel LTanggalLahir;
+    private javax.swing.JLabel Lpaswoard;
     private javax.swing.JPanel Notice;
+    private javax.swing.JButton Pilihfile;
     private javax.swing.JRadioButton RbtnLakiLaki;
-    private javax.swing.JButton btnBatal;
+    private com.toedter.calendar.JDateChooser TanggalLahir;
     private javax.swing.JButton btnMasuk;
+    private javax.swing.JButton btndaftar;
     private javax.swing.JPasswordField fieldPassword;
+    private javax.swing.JPasswordField fieldPassword1;
     private javax.swing.JTextField fieldUsername;
     private javax.swing.JPanel fillback;
     private javax.swing.JPanel info;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -399,16 +669,15 @@ public class formLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JLabel logo;
     private javax.swing.JRadioButton rbtnPerempuan;
+    private javax.swing.JTextField txtAlamat;
     private javax.swing.JTextField txtFieldFoto;
     private javax.swing.JTextField txtFieldJabatan;
     private javax.swing.JTextField txtFieldName;
-    private javax.swing.JTextField txtFieldPassword;
+    private javax.swing.JTextField txtNoHp;
     private javax.swing.JLabel txtPsw;
+    private javax.swing.JTextField txtTempat;
     private javax.swing.JLabel txtUsername;
     // End of variables declaration//GEN-END:variables
 }
