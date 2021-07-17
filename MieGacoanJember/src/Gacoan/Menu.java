@@ -35,12 +35,12 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.view.JasperViewer;
+//import net.sf.jasperreports.engine.JRException;
+//import net.sf.jasperreports.engine.JasperCompileManager;
+//import net.sf.jasperreports.engine.JasperFillManager;
+//import net.sf.jasperreports.engine.JasperPrint;
+//import net.sf.jasperreports.engine.JasperReport;
+//import net.sf.jasperreports.view.JasperViewer;
 import sun.rmi.server.Activation;
 import sun.security.pkcs11.Secmod;
 
@@ -60,6 +60,11 @@ public class Menu extends javax.swing.JFrame {
         conn = Connections.Koneksi.cekKoneksi();
         initComponents();
         showTable();
+        try {
+            tampil_combo();
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         btnCari.setEnabled(true);
         btnSimpan.setEnabled(false);
         btnHapus.setEnabled(false);
@@ -89,13 +94,10 @@ public class Menu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtID_Menu = new javax.swing.JTextField();
         txtMenu = new javax.swing.JTextField();
-        txtID_Jenis = new javax.swing.JTextField();
-        txtJenis = new javax.swing.JTextField();
         txtDetail = new javax.swing.JTextField();
         txtHarga = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -108,7 +110,7 @@ public class Menu extends javax.swing.JFrame {
         btnCari = new javax.swing.JButton();
         txtmenu = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        cmbID_Jenis = new javax.swing.JComboBox<>();
+        cmbJenis = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -138,8 +140,6 @@ public class Menu extends javax.swing.JFrame {
         jLabel2.setText("Menu *");
 
         jLabel4.setText("ID Jenis *");
-
-        jLabel6.setText("Jenis *");
 
         jLabel7.setText("Detail *");
 
@@ -188,14 +188,14 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btnRubah.setText("Rubah");
+        btnRubah.setText("Ubah");
         btnRubah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRubahActionPerformed(evt);
             }
         });
 
-        btnPrint.setText("Print");
+        btnPrint.setText("Cetak");
         btnPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrintActionPerformed(evt);
@@ -236,13 +236,6 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel11.setText("Masukkan Menu");
 
-        cmbID_Jenis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cmbID_Jenis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbID_JenisActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -272,7 +265,6 @@ public class Menu extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtJenis, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -283,75 +275,53 @@ public class Menu extends javax.swing.JFrame {
                                                 .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtID_Jenis, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtID_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                                        .addComponent(txtID_Menu, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                                        .addComponent(cmbJenis, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(txtmenu, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(27, 27, 27)
                                     .addComponent(btnCari))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel7)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel8)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel6))
-                        .addGap(80, 80, 80)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                                    .addComponent(txtHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(59, 59, 59)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnSimpan)
-                                    .addComponent(btnBaru))
-                                .addGap(18, 18, 18)
-                                .addComponent(btnHapus)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnPrint)
-                                    .addComponent(btnRubah)))
-                            .addComponent(cmbID_Jenis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnSimpan)
+                            .addComponent(btnHapus)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnBaru)
+                                .addComponent(btnRubah)
+                                .addComponent(btnPrint))))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 932, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(488, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(btnPegawai)
-                                .addGap(255, 255, 255)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnBaru)
-                                    .addComponent(btnPrint)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(135, 135, 135)
-                                        .addComponent(btnMenu)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnJenis_Menu)
-                                        .addGap(79, 79, 79)
-                                        .addComponent(btnPemesanan)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(cmbID_Jenis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(121, 121, 121)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(btnRubah)
-                                        .addComponent(btnSimpan)
-                                        .addComponent(btnHapus))
-                                    .addComponent(btnPembayaran))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnLaporan)))
-                        .addGap(32, 32, 32))
+                        .addGap(50, 50, 50)
+                        .addComponent(btnPegawai))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(135, 135, 135)
+                        .addComponent(btnMenu)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnJenis_Menu)
+                        .addGap(79, 79, 79)
+                        .addComponent(btnPemesanan)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnPembayaran)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnLaporan)
+                            .addComponent(jLabel8)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(75, 75, 75)
                         .addComponent(jLabel11)
@@ -362,34 +332,34 @@ public class Menu extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(txtID_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtID_Jenis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6)
-                            .addComponent(txtJenis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtID_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSimpan))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(txtMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(cmbJenis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(26, 26, 26)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(txtDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(txtHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addComponent(txtDetail)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel8))
-                            .addComponent(txtHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)))
+                                .addGap(7, 7, 7)
+                                .addComponent(btnHapus)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnRubah)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnBaru)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnPrint)))))
+                .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLogOut)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -440,11 +410,11 @@ public class Menu extends javax.swing.JFrame {
 
     public void tampil_combo() throws SQLException{
         try {
-            String sql = "SELECT * FROM jenis_menu";
-            st = conn.createStatement();
-            rs = st.executeQuery(sql);
+            String query = "SELECT * FROM jenis_menu";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
             while (rs.next()){
-                cmbID_Jenis.addItem(rs.getString("id_jenis"));
+                cmbJenis.addItem(rs.getString("id_jenis"));
             }
             rs.last();
             int jumlahdata = rs.getRow();
@@ -467,23 +437,23 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        String id_menu, menu, id_jenis, jenis, detail;
+        String id_menu, menu, id_jenis, detail, nilai;
         int harga;
         id_menu = txtID_Menu.getText();
         menu = txtMenu.getText();
-        id_jenis = txtID_Jenis.getText();
-        jenis = txtJenis.getText();
+        id_jenis = (String) cmbJenis.getSelectedItem();
+        nilai = txtHarga.getText();
         detail = txtDetail.getText();
-//        harga = txtHarga.gett;
+        harga = Integer.parseInt(nilai);
         try {
             if (txtID_Menu.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "ID Menu Tidak Boleh Kosong");
             } else if (txtMenu.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Menu Tidak Boleh Kosong");
-            } else if (txtID_Jenis.getText().equals("")) {
+            } else if (cmbJenis.getSelectedItem ().equals("")) {
                 JOptionPane.showMessageDialog(null, "ID Jenis Tidak Boleh Kosong");
-            } else if (txtJenis.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Jenis Tidak Boleh Kosong");
+            //} else if (txtJenis.getText().equals("")) {
+              //  JOptionPane.showMessageDialog(null, "Jenis Tidak Boleh Kosong");
             } else if (txtDetail.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Detail Tidak Boleh Kosong");
             } else if (txtHarga.getText().equals("")) {
@@ -492,7 +462,7 @@ public class Menu extends javax.swing.JFrame {
                 int opsi = JOptionPane.showConfirmDialog(null, "Apakah anda ingin menyimpan data ini ?", "Simpan Data", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 switch (opsi) {
                     case JOptionPane.YES_OPTION:
-//                        insertMenu(String id_menu, String menu, String id_jenis, String detail, int harga);
+                  insertMenu(id_menu, menu, id_jenis, detail, harga);
                         
                         JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
                         break;
@@ -505,11 +475,7 @@ public class Menu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Data Gagal Disimpan!");
         }
         showTable();
-        try {
-            tampil_combo();
-        } catch (SQLException ex) {
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         clear();
     }//GEN-LAST:event_btnSimpanActionPerformed
 
@@ -534,7 +500,7 @@ public class Menu extends javax.swing.JFrame {
         int row = tblMenu.getSelectedRow();
         txtID_Menu.setText(tblMenu.getValueAt(row, 0).toString());
         txtMenu.setText(tblMenu.getValueAt(row, 1).toString());
-        txtID_Jenis.setText(tblMenu.getValueAt(row, 2).toString());
+        cmbJenis.setSelectedItem(tblMenu.getValueAt(row, 2).toString());
 //        txtJenis.setText(tblMenu.getValueAt(row, ).toString());
         txtDetail.setText(tblMenu.getValueAt(row, 3).toString());
         txtHarga.setText(tblMenu.getValueAt(row, 4).toString());
@@ -564,11 +530,11 @@ public class Menu extends javax.swing.JFrame {
     private void btnRubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRubahActionPerformed
         // TODO add your handling code here:
         String id_menu, menu, id_jenis, jenis, detail;
-        int harga;
+        int harga = 0;
         id_menu = txtID_Menu.getText();
         menu = txtMenu.getText();
-        id_jenis = txtID_Jenis.getText();
-        jenis = txtJenis.getText();
+        id_jenis = (String) cmbJenis.getSelectedItem();
+        //jenis = txtJenis.getText();
         detail = txtDetail.getText();
 //        harga = txtHarga.getText();
 
@@ -577,10 +543,10 @@ public class Menu extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "ID Menu Tidak Boleh Kosong");
             } else if (txtMenu.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Menu Tidak Boleh Kosong");
-            } else if (txtID_Jenis.getText().equals("")) {
+            } else if (cmbJenis.getSelectedItem().equals("")) {
                 JOptionPane.showMessageDialog(null, "ID Jenis Tidak Boleh Kosong");
-            } else if (txtJenis.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Jenis Tidak Boleh Kosong");
+            //} else if (txtJenis.getText().equals("")) {
+              //  JOptionPane.showMessageDialog(null, "Jenis Tidak Boleh Kosong");
             } else if (txtDetail.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Detail Tidak Boleh Kosong");
             } else if (txtHarga.getText().equals("")) {
@@ -589,7 +555,7 @@ public class Menu extends javax.swing.JFrame {
                 int opsi = JOptionPane.showConfirmDialog(null, "Apakah anda ingin merubah data ini ?", "Rubah Data", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 switch (opsi) {
                     case JOptionPane.YES_OPTION:
-//                        updateMenu(id_menu, menu, jenis_kelamin, tempat_lahir, tanggal_lahir, alamat_kota, password, jabatan, no_telepon, foto);
+                      updateMenu(id_menu, menu, id_jenis, detail, harga);
                         
                         JOptionPane.showMessageDialog(null, "Data berhasil dirubah");
                         break;
@@ -622,14 +588,14 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         // TODO add your handling code here:
-        Connections.Koneksi.print();
+  //      Connections.Koneksi.print();
     }//GEN-LAST:event_btnPrintActionPerformed
 
     public void clear() {
         txtID_Menu.setText("");
         txtMenu.setText("");
-        txtID_Jenis.setText("");
-        txtJenis.setText("");
+        cmbJenis.setSelectedItem("");
+        //txtJenis.setText("");
         txtDetail.setText("");
         txtHarga.setText("");
         btnRubah.setEnabled(false);
@@ -692,15 +658,6 @@ public class Menu extends javax.swing.JFrame {
     private void txtmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmenuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtmenuActionPerformed
-
-    private void cmbID_JenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbID_JenisActionPerformed
-        try {
-            // TODO add your handling code here:
-            tampil_combo();
-        } catch (SQLException ex) {
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_cmbID_JenisActionPerformed
 
     public void showTable() {
         try {
@@ -772,12 +729,11 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnRubah;
     private javax.swing.JButton btnSimpan;
-    private javax.swing.JComboBox<String> cmbID_Jenis;
+    private javax.swing.JComboBox<String> cmbJenis;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
@@ -785,9 +741,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTable tblMenu;
     private javax.swing.JTextField txtDetail;
     private javax.swing.JTextField txtHarga;
-    private javax.swing.JTextField txtID_Jenis;
     private javax.swing.JTextField txtID_Menu;
-    private javax.swing.JTextField txtJenis;
     private javax.swing.JTextField txtMenu;
     private javax.swing.JTextField txtmenu;
     // End of variables declaration//GEN-END:variables

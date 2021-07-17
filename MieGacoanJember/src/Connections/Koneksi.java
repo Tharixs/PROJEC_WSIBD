@@ -14,12 +14,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.view.JasperViewer;
+//import net.sf.jasperreports.engine.JRException;
+//import net.sf.jasperreports.engine.JasperCompileManager;
+//import net.sf.jasperreports.engine.JasperFillManager;
+//import net.sf.jasperreports.engine.JasperPrint;
+//import net.sf.jasperreports.engine.JasperReport;
+//import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -43,20 +43,20 @@ public class Koneksi {
         return conn;
     }
 
-    public static void print() {
-        try {
-            String file = "C:\\Users\\kelvin\\Documents\\GitHub Desktop\\project\\PROJEC_WSIBD\\MieGacoanJember\\src\\Gacoan\\DataPegawai.jrxml";
-            JasperReport jr;
+    //public static void print() {
+      //  try {
+        //    String file = "C:\\Users\\kelvin\\Documents\\GitHub Desktop\\project\\PROJEC_WSIBD\\MieGacoanJember\\src\\Gacoan\\DataPegawai.jrxml";
+          //  JasperReport jr;
             
-            jr = JasperCompileManager.compileReport(file);
-            JasperPrint jp = JasperFillManager.fillReport(jr, null, conn);
-            JasperViewer.viewReport(jp);
-        } catch (JRException ex) {
-            Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+           // jr = JasperCompileManager.compileReport(file);
+            //JasperPrint jp = JasperFillManager.fillReport(jr, null, conn);
+            //JasperViewer.viewReport(jp);
+        //} catch (JRException ex) {
+          //  Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
+        //}
+    //}
 
-    public static void main(String[] args) {
-        cekKoneksi();
+    //public static void main(String[] args) {
+      //  cekKoneksi();
     }
-}
+//}
