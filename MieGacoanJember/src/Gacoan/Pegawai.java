@@ -111,7 +111,6 @@ public class Pegawai extends javax.swing.JFrame {
         txtNama_Pegawai = new javax.swing.JTextField();
         txtTempat_Lahir = new javax.swing.JTextField();
         txtAlamat_Kota = new javax.swing.JTextField();
-        txtJabatan = new javax.swing.JTextField();
         txtNo_Telepon = new javax.swing.JTextField();
         txtFoto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -130,7 +129,7 @@ public class Pegawai extends javax.swing.JFrame {
         btnCari = new javax.swing.JButton();
         txtnama = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbJabatan = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -294,7 +293,7 @@ public class Pegawai extends javax.swing.JFrame {
 
         jLabel11.setText("Masukkan Nama");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbJabatan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---SELECT---", "Manager", "Kasir", "Crew" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -324,6 +323,10 @@ public class Pegawai extends javax.swing.JFrame {
                     .addComponent(jLabel11)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel2)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txtAlamat_Kota, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -349,31 +352,25 @@ public class Pegawai extends javax.swing.JFrame {
                                     .addGap(27, 27, 27)
                                     .addComponent(btnCari))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel7)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel8)
+                                        .addComponent(jLabel7))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtJabatan, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel8)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtNo_Telepon, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel2))
-                        .addGap(80, 80, 80)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtNo_Telepon, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                                        .addComponent(cmbJabatan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addGap(109, 109, 109)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(panelGambar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(txtFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(27, 27, 27)
-                                        .addComponent(btnAttach))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(panelGambar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(74, 74, 74)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(btnAttach)))
+                                .addGap(232, 232, 232))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnSimpan)
@@ -385,7 +382,7 @@ public class Pegawai extends javax.swing.JFrame {
                                     .addComponent(btnPrint)
                                     .addComponent(btnRubah)))))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 932, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(488, Short.MAX_VALUE))
+                .addContainerGap(281, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -394,50 +391,45 @@ public class Pegawai extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel11)
+                        .addGap(9, 9, 9)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtnama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCari))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(txtID_Pegawai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10)
+                            .addComponent(txtFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAttach)
+                            .addComponent(btnPegawai))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtnama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnCari))
+                                    .addComponent(jLabel2)
+                                    .addComponent(txtNama_Pegawai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(txtID_Pegawai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel10)
-                                    .addComponent(txtFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnAttach)
-                                    .addComponent(btnPegawai))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(txtTempat_Lahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(16, 16, 16)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel2)
-                                            .addComponent(txtNama_Pegawai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel5)
                                         .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(txtTempat_Lahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(16, 16, 16)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel5)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jLabel3)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jLabel6))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jdcTanggal_Lahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(RbtnLaki_Laki)
-                                                    .addComponent(RbtnPerempuan))
-                                                .addGap(18, 18, 18)
-                                                .addComponent(txtAlamat_Kota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(panelGambar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(141, 141, 141)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jLabel3)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel6))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jdcTanggal_Lahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(RbtnLaki_Laki)
+                                            .addComponent(RbtnPerempuan))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtAlamat_Kota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(panelGambar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(13, 13, 13)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -448,7 +440,7 @@ public class Pegawai extends javax.swing.JFrame {
                                 .addGap(13, 13, 13)
                                 .addComponent(jLabel9))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtJabatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmbJabatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtNo_Telepon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -549,7 +541,7 @@ public class Pegawai extends javax.swing.JFrame {
         tempat_lahir = txtTempat_Lahir.getText();
         alamat_kota = txtAlamat_Kota.getText();
         password = txtPassword.getText();
-        jabatan = txtJabatan.getText();
+        jabatan = (String) cmbJabatan.getSelectedItem();
         no_telepon = txtNo_Telepon.getText();
         if (!txtFoto.getText().equals("")) {
             ObjectOutputStream objectOutputStream = null;
@@ -577,7 +569,7 @@ public class Pegawai extends javax.swing.JFrame {
             //            } 
             else if (txtAlamat_Kota.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Alamat Tidak Boleh Kosong");
-            } else if (txtJabatan.getText().equals("")) {
+            } else if (cmbJabatan.getSelectedItem().equals("")) {
                 JOptionPane.showMessageDialog(null, "Jabatan Tidak Boleh Kosong");
             } else if (txtNo_Telepon.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "No Telepon Tidak Boleh Kosong");
@@ -641,7 +633,7 @@ public class Pegawai extends javax.swing.JFrame {
         jdcTanggal_Lahir.setDate(Date.valueOf(tblPegawai.getValueAt(row, 4).toString()));
         txtAlamat_Kota.setText(tblPegawai.getValueAt(row, 5).toString());
         txtPassword.setText(tblPegawai.getValueAt(row, 6).toString());
-        txtJabatan.setText(tblPegawai.getValueAt(row, 7).toString());
+        cmbJabatan.setSelectedItem(tblPegawai.getValueAt(row, 7).toString());
         txtNo_Telepon.setText(tblPegawai.getValueAt(row, 8).toString());
         btnRubah.setEnabled(true);
         btnHapus.setEnabled(true);
@@ -700,7 +692,7 @@ public class Pegawai extends javax.swing.JFrame {
         tempat_lahir = txtTempat_Lahir.getText();
         alamat_kota = txtAlamat_Kota.getText();
         password = txtPassword.getText();
-        jabatan = txtJabatan.getText();
+        jabatan = (String) cmbJabatan.getSelectedItem();
         no_telepon = txtNo_Telepon.getText();
         if (!txtFoto.getText().equals("")) {
             ObjectOutputStream objectOutputStream = null;
@@ -728,7 +720,7 @@ public class Pegawai extends javax.swing.JFrame {
             //            } 
             else if (txtAlamat_Kota.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Alamat Tidak Boleh Kosong");
-            } else if (txtJabatan.getText().equals("")) {
+            } else if (cmbJabatan.getSelectedItem().equals("")) {
                 JOptionPane.showMessageDialog(null, "Jabatan Tidak Boleh Kosong");
             } else if (txtNo_Telepon.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "No Telepon Tidak Boleh Kosong");
@@ -803,7 +795,7 @@ public class Pegawai extends javax.swing.JFrame {
         txtTempat_Lahir.setText("");
         jdcTanggal_Lahir.setDate(new java.util.Date());
         txtAlamat_Kota.setText("");
-        txtJabatan.setText("");
+        cmbJabatan.setSelectedItem("");
         txtNo_Telepon.setText("");
         txtPassword.setText("");
         txtFoto.setText("");
@@ -855,7 +847,7 @@ public class Pegawai extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Data Yang Anda Cari Tidak Sesuai");
         }
         txtnama.setText("");
-        
+
     }//GEN-LAST:event_btnCariActionPerformed
 
     private void txtnamaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtnamaMouseClicked
@@ -958,7 +950,7 @@ public class Pegawai extends javax.swing.JFrame {
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnRubah;
     private javax.swing.JButton btnSimpan;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cmbJabatan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -978,7 +970,6 @@ public class Pegawai extends javax.swing.JFrame {
     private javax.swing.JTextField txtAlamat_Kota;
     private javax.swing.JTextField txtFoto;
     private javax.swing.JTextField txtID_Pegawai;
-    private javax.swing.JTextField txtJabatan;
     private javax.swing.JTextField txtNama_Pegawai;
     private javax.swing.JTextField txtNo_Telepon;
     private javax.swing.JPasswordField txtPassword;
