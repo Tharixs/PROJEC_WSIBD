@@ -232,6 +232,9 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JTextField" name="txtID_Pemesanan">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtID_PemesananKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNama_Pembeli">
     </Component>

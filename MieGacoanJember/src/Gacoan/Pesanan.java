@@ -7,12 +7,15 @@ package Gacoan;
 
 import Connections.Koneksi;
 import com.mysql.jdbc.Connection;
+import java.awt.event.KeyEvent;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -32,6 +35,7 @@ public class Pesanan extends javax.swing.JFrame {
     Statement st;
 
     public Pesanan() {
+        conn = Connections.Koneksi.cekKoneksi();
         initComponents();
     }
 
@@ -99,6 +103,12 @@ public class Pesanan extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(tblPemesanan);
+
+        txtID_Pemesanan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtID_PemesananKeyPressed(evt);
+            }
+        });
 
         jLabel1.setText("ID Pemesanan");
 
@@ -326,6 +336,29 @@ public class Pesanan extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnSimpanActionPerformed
 
+    private void txtID_PemesananKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtID_PemesananKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String id_pemesanan = txtID_Pemesanan.getText();
+            try {
+                pst = conn.prepareStatement("SELECT * FROM pemesanan WHERE id_pemesanan = ?");
+                pst.setString(1, id_pemesanan);
+                rs = pst.executeQuery();
+                if (rs.next() == false) {
+                    JOptionPane.showMessageDialog(this, "ID tidak ada");
+                } else {
+                    String nama_pembeli = rs.getString("nama_pembeli");
+                    String id_detail_pemesanan = rs.getString("id_detail_pemesanan");
+                    txtNama_Pembeli.setText(nama_pembeli.trim());
+                    txtID_Detail_Pemesanan.setText(id_detail_pemesanan.trim());
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Pesanan.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }//GEN-LAST:event_txtID_PemesananKeyPressed
+
     public void insertQuery(int id_pemesanan, String nama_pembeli, int id_detail_pemesanan, int jumlah, int total_bayar, String id_menu, int qty, String menu, String id_jenis, int harga, String jenis) {
         try {
             String sql = "INSERT INTO pemesanan.id_pemesanan, pemesanan.nama_pembeli, pemesanan.id_detail_pemesanan, pemesanan.jumlah, pemesanan.total_bayar, detail_pemesanan.id_menu, detail_pemesanan.qty, menu.menu, menu.id_jenis, menu.harga, jenis_menu.jenis FROM (jenis_menu INNER JOIN (detail_pemesanan INNER JOIN menu ON detail_pemesanan.id_menu = menu.id_menu) ON jenis_menu.id_jenis = menu.id_jenis) INNER JOIN ((pegawai INNER JOIN pembayaran ON pegawai.id_pegawai = pembayaran.id_pegawai) INNER JOIN pemesanan ON pembayaran.id_pemesanan = pemesanan.id_pemesanan) ON detail_pemesanan.id_detail_pemesanan = pemesanan.id_detail_pemesanan";
@@ -350,27 +383,6 @@ public class Pesanan extends javax.swing.JFrame {
     public ResultSet selectPemesanan() {
         try {
             String sql = "SELECT pemesanan.id_pemesanan, pemesanan.nama_pembeli, pemesanan.id_detail_pemesanan, pemesanan.jumlah, pemesanan.total_bayar, detail_pemesanan.id_menu, detail_pemesanan.qty, menu.menu, menu.id_jenis, menu.harga, jenis_menu.jenis FROM pegawai, (jenis_menu INNER JOIN (detail_pemesanan INNER JOIN menu ON detail_pemesanan.id_menu = menu.id_menu) ON jenis_menu.id_jenis = menu.id_jenis) INNER JOIN pemesanan ON detail_pemesanan.id_detail_pemesanan = pemesanan.id_detail_pemesanan";
-            String sql = "SELECT u.id, u.nama, a.id, a.nama FROM user AS u INNER JOIN user_achievement AS i ON u.id = i.user_id INNER JOIN achievement AS a ON i.achievement_id = a.id";
-            MysqlDataReader result = ReadData(sql);
-            List<UserAchievement> listUserAchievement = new List<UserAchievement>()
-            while (result == true) {
-                User user = new User();
-                user.id = result[0].getStringData();
-                user.nama = result[1].getStringData();
-
-                Achievement achievement = new Achievement();
-                achievement.id = result[2].getStringData();
-                achievement.nama = result[3].getStringData();
-
-                UserAchievement userachievement = new UserAchievement();
-                userachievement.user = user;
-                userachievement.achievement = achievement;
-
-                listUserAchievement.add(userachievement);
-            }
-            while (result == true) {
-                listBoxInfo.items.add(result[1].getStringData() + " memiliki achievement " + result[3].getStringData());
-            }
             st = conn.createStatement();
             rs = st.executeQuery(sql);
         } catch (SQLException ex) {
