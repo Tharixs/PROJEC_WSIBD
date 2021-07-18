@@ -572,7 +572,7 @@ public class Pemesanan extends javax.swing.JFrame {
 
     private void guesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guesMouseClicked
         // TODO add your handling code here:
-        new formLogin().setVisible(true);
+        new Login().setVisible(true);
         this.setVisible(false);
         new Pemesanan().setVisible(false);
     }//GEN-LAST:event_guesMouseClicked

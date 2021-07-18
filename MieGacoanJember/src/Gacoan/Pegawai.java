@@ -67,7 +67,6 @@ public class Pegawai extends javax.swing.JFrame {
     public byte[] getFoto() {
         return foto;
     }
-//
 
     public void setFoto(byte[] foto) {
         this.foto = foto;
@@ -76,7 +75,6 @@ public class Pegawai extends javax.swing.JFrame {
     public Pegawai() {
         conn = Connections.Koneksi.cekKoneksi();
         initComponents();
-//        tblPegawai.setModel(model);
         showTable();
         btnCari.setEnabled(true);
         btnSimpan.setEnabled(false);
@@ -84,7 +82,7 @@ public class Pegawai extends javax.swing.JFrame {
         btnRubah.setEnabled(false);
         btnBaru.setEnabled(false);
         btnAttach.setEnabled(false);
-        btnPrint.setEnabled(true);
+//        btnPrint.setEnabled(true);
     }
 
     /**
@@ -126,7 +124,6 @@ public class Pegawai extends javax.swing.JFrame {
         btnSimpan = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
         btnRubah = new javax.swing.JButton();
-        btnPrint = new javax.swing.JButton();
         btnAttach = new javax.swing.JButton();
         jdcTanggal_Lahir = new com.toedter.calendar.JDateChooser();
         RbtnLaki_Laki = new javax.swing.JRadioButton();
@@ -192,6 +189,38 @@ public class Pegawai extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtID_PegawaiMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtID_PegawaiMouseEntered(evt);
+            }
+        });
+        txtID_Pegawai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtID_PegawaiActionPerformed(evt);
+            }
+        });
+
+        txtNama_Pegawai.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNama_PegawaiMouseClicked(evt);
+            }
+        });
+
+        txtTempat_Lahir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtTempat_LahirMouseClicked(evt);
+            }
+        });
+
+        txtAlamat_Kota.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtAlamat_KotaMouseClicked(evt);
+            }
+        });
+
+        txtNo_Telepon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNo_TeleponMouseClicked(evt);
+            }
         });
 
         tblPegawai.setModel(new javax.swing.table.DefaultTableModel(
@@ -238,13 +267,6 @@ public class Pegawai extends javax.swing.JFrame {
             }
         });
 
-        btnPrint.setText("Print");
-        btnPrint.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrintActionPerformed(evt);
-            }
-        });
-
         btnAttach.setText("...");
         btnAttach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,12 +275,23 @@ public class Pegawai extends javax.swing.JFrame {
         });
 
         jdcTanggal_Lahir.setDateFormatString("yyyy-MM-dd\n");
+        jdcTanggal_Lahir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jdcTanggal_LahirMouseClicked(evt);
+            }
+        });
 
         RbtnJenis_Kelamin.add(RbtnLaki_Laki);
         RbtnLaki_Laki.setText("Laki - Laki");
 
         RbtnJenis_Kelamin.add(RbtnPerempuan);
         RbtnPerempuan.setText("Perempuan");
+
+        txtPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPasswordMouseClicked(evt);
+            }
+        });
 
         btnBaru.setText("Baru");
         btnBaru.addActionListener(new java.awt.event.ActionListener() {
@@ -295,6 +328,11 @@ public class Pegawai extends javax.swing.JFrame {
         jLabel11.setText("Masukkan Nama");
 
         cmbJabatan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---SELECT---", "Manager", "Kasir", "Crew" }));
+        cmbJabatan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cmbJabatanMouseClicked(evt);
+            }
+        });
 
         lblFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jScrollPane2.setViewportView(lblFoto);
@@ -378,10 +416,7 @@ public class Pegawai extends javax.swing.JFrame {
                                         .addComponent(txtFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(27, 27, 27)
                                         .addComponent(btnAttach))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnBaru)
-                                .addGap(174, 174, 174)
-                                .addComponent(btnPrint))))
+                            .addComponent(btnBaru)))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(btnRubah)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 932, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -451,8 +486,7 @@ public class Pegawai extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnBaru)
-                                    .addComponent(btnPrint)))))
+                                    .addComponent(btnBaru)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(135, 135, 135)
                         .addComponent(btnMenu)
@@ -532,8 +566,8 @@ public class Pegawai extends javax.swing.JFrame {
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
         String id_pegawai, nama_pegawai, jenis_kelamin, tempat_lahir, alamat_kota, password, jabatan, no_telepon;
+        Date tanggal_lahir = null;
         try {
-            Date tanggal_lahir = null;
             id_pegawai = txtID_Pegawai.getText();
             nama_pegawai = txtNama_Pegawai.getText();
             jenis_kelamin = RbtnJenis_Kelamin.getSelection().getActionCommand();
@@ -550,24 +584,21 @@ public class Pegawai extends javax.swing.JFrame {
             jabatan = (String) cmbJabatan.getSelectedItem();
             no_telepon = txtNo_Telepon.getText();
             if (!txtFoto.getText().equals("")) {
-//            ObjectOutputStream objectOutputStream = null;
+                ObjectOutputStream objectOutputStream = null;
                 ByteArrayOutputStream output = new ByteArrayOutputStream();
                 File img = new File(path);
                 FileInputStream input = new FileInputStream(img);
                 try {
-
                     byte[] buf = new byte[1024];
                     for (int readbyte; (readbyte = input.read(buf)) != -1;) {
                         output.write(buf, 0, readbyte);
                     }
                     byteArr = output.toByteArray();
                     setFoto(byteArr);
-
                 } catch (IOException ex) {
                     Logger.getLogger(Pegawai.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-
             try {
                 if (txtID_Pegawai.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "ID Tidak Boleh Kosong");
@@ -586,8 +617,6 @@ public class Pegawai extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "No Telepon Tidak Boleh Kosong");
                 } else if (txtPassword.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Password Tidak Boleh Kosong");
-                } else if (txtFoto.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "foto tidak boleh kosong!", "foto anda kosong!", JOptionPane.WARNING_MESSAGE);
                 } else {
                     int opsi = JOptionPane.showConfirmDialog(null, "Apakah anda ingin menyimpan data ini ?", "Simpan Data", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
                     switch (opsi) {
@@ -604,11 +633,9 @@ public class Pegawai extends javax.swing.JFrame {
             } catch (Exception t) {
                 JOptionPane.showMessageDialog(null, "Data Gagal Disimpan!");
             }
-            
         } catch (Exception e) {
         }
         showTable();
-        
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     public void insertPegawai(String id_pegawai, String nama_pegawai, String jenis_kelamin, String tempat_lahir, Date tanggal_lahir, String alamat_kota, String password, String jabatan, String no_telepon, byte[] foto) {
@@ -659,24 +686,19 @@ public class Pegawai extends javax.swing.JFrame {
         btnBaru.setEnabled(true);
         btnCari.setEnabled(false);
 
-//          String nama = (String) tbmPegawai.getValueAt(row, 1);
         try {
             st = conn.createStatement();
-            String sql = "select * from pegawai where nama_pegawai='" + txtNama_Pegawai.getText() + "';";
+            String sql = "SELECT * FROM pegawai where nama_pegawai='" + txtNama_Pegawai.getText() + "';";
             rs = st.executeQuery(sql);
             while (rs.next()) {
                 Blob Gambar = rs.getBlob("foto");
                 int ukuran = (int) Gambar.length();
                 icon = new ImageIcon(Gambar.getBytes(1, ukuran));
-
                 lblFoto.setIcon(icon);
-                System.out.println("Gambar berhasil dimuat");
             }
-
         } catch (SQLException e) {
-            System.out.println("Gambar tidak tambil " + e);
+            System.out.println("Gambar tidak tampil " + e);
         }
-
         showTable();
         lblFoto.setVisible(true);
     }//GEN-LAST:event_tblPegawaiMouseClicked
@@ -700,70 +722,75 @@ public class Pegawai extends javax.swing.JFrame {
         // TODO add your handling code here:
         String id_pegawai, nama_pegawai, jenis_kelamin, tempat_lahir, alamat_kota, password, jabatan, no_telepon;
         Date tanggal_lahir = null;
-        id_pegawai = txtID_Pegawai.getText();
-        nama_pegawai = txtNama_Pegawai.getText();
-        jenis_kelamin = RbtnJenis_Kelamin.getSelection().getActionCommand();
-        RbtnLaki_Laki.setActionCommand("Laki - Laki");
-        RbtnPerempuan.setActionCommand("Perempuan");
-        if (RbtnLaki_Laki.isSelected()) {
-            jenis_kelamin = "Laki - Laki";
-        } else if (RbtnPerempuan.isSelected()) {
-            jenis_kelamin = "Perempuan";
-        }
-        tempat_lahir = txtTempat_Lahir.getText();
-        alamat_kota = txtAlamat_Kota.getText();
-        password = txtPassword.getText();
-        jabatan = (String) cmbJabatan.getSelectedItem();
-        no_telepon = txtNo_Telepon.getText();
-        if (!txtFoto.getText().equals("")) {
-            ObjectOutputStream objectOutputStream = null;
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            try {
-                objectOutputStream = new ObjectOutputStream(outputStream);
-                icon = new ImageIcon(image);
-                objectOutputStream.writeObject(icon);
-                objectOutputStream.flush();
-                objectOutputStream.close();
-            } catch (IOException ex) {
-                Logger.getLogger(Pegawai.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            foto = outputStream.toByteArray();
-        }
         try {
-            if (txtID_Pegawai.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "ID Tidak Boleh Kosong");
-            } else if (txtNama_Pegawai.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Nama Tidak Boleh Kosong");
-            } else if (txtTempat_Lahir.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Tempat Lahir Tidak Boleh Kosong");
-            } //            else if (jdcTanggal_Lahir.getDate().equals("")) {
-            //                JOptionPane.showMessageDialog(null, "Tanggal Lahir Tidak Boleh Kosong");
-            //            } 
-            else if (txtAlamat_Kota.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Alamat Tidak Boleh Kosong");
-            } else if (cmbJabatan.getSelectedItem().equals("")) {
-                JOptionPane.showMessageDialog(null, "Jabatan Tidak Boleh Kosong");
-            } else if (txtNo_Telepon.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "No Telepon Tidak Boleh Kosong");
-            } else if (txtPassword.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Password Tidak Boleh Kosong");
-            } else {
-                int opsi = JOptionPane.showConfirmDialog(null, "Apakah anda ingin merubah data ini ?", "Rubah Data", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-                switch (opsi) {
-                    case JOptionPane.YES_OPTION:
-                        updatePegawai(id_pegawai, nama_pegawai, jenis_kelamin, tempat_lahir, tanggal_lahir, alamat_kota, password, jabatan, no_telepon, foto);
-                        JOptionPane.showMessageDialog(null, "Data berhasil dirubah");
-                        break;
-                    case JOptionPane.NO_OPTION:
-                        JOptionPane.showMessageDialog(null, "Data tidak dirubah");
-                        break;
+            id_pegawai = txtID_Pegawai.getText();
+            nama_pegawai = txtNama_Pegawai.getText();
+            jenis_kelamin = RbtnJenis_Kelamin.getSelection().getActionCommand();
+            RbtnLaki_Laki.setActionCommand("Laki - Laki");
+            RbtnPerempuan.setActionCommand("Perempuan");
+            if (RbtnLaki_Laki.isSelected()) {
+                jenis_kelamin = "Laki - Laki";
+            } else if (RbtnPerempuan.isSelected()) {
+                jenis_kelamin = "Perempuan";
+            }
+            tempat_lahir = txtTempat_Lahir.getText();
+            alamat_kota = txtAlamat_Kota.getText();
+            password = txtPassword.getText();
+            jabatan = (String) cmbJabatan.getSelectedItem();
+            no_telepon = txtNo_Telepon.getText();
+            if (!txtFoto.getText().equals("")) {
+                ObjectOutputStream objectOutputStream = null;
+                ByteArrayOutputStream output = new ByteArrayOutputStream();
+                File img = new File(path);
+                FileInputStream input = new FileInputStream(img);
+                try {
+                    byte[] buf = new byte[1024];
+                    for (int readbyte; (readbyte = input.read(buf)) != -1;) {
+                        output.write(buf, 0, readbyte);
+                    }
+                    byteArr = output.toByteArray();
+                    setFoto(byteArr);
+                } catch (IOException ex) {
+                    Logger.getLogger(Pegawai.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        } catch (Exception t) {
-            JOptionPane.showMessageDialog(null, "Data Gagal Dirubah!");
+            try {
+                if (txtID_Pegawai.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "ID Tidak Boleh Kosong");
+                } else if (txtNama_Pegawai.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Nama Tidak Boleh Kosong");
+                } else if (txtTempat_Lahir.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Tempat Lahir Tidak Boleh Kosong");
+                } //            else if (jdcTanggal_Lahir.getDate().equals("")) {
+                //                JOptionPane.showMessageDialog(null, "Tanggal Lahir Tidak Boleh Kosong");
+                //            } 
+                else if (txtAlamat_Kota.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Alamat Tidak Boleh Kosong");
+                } else if (cmbJabatan.getSelectedItem().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Jabatan Tidak Boleh Kosong");
+                } else if (txtNo_Telepon.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "No Telepon Tidak Boleh Kosong");
+                } else if (txtPassword.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Password Tidak Boleh Kosong");
+                } else {
+                    int opsi = JOptionPane.showConfirmDialog(null, "Apakah anda ingin merubah data ini ?", "Rubah Data", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                    switch (opsi) {
+                        case JOptionPane.YES_OPTION:
+                            updatePegawai(id_pegawai, nama_pegawai, jenis_kelamin, tempat_lahir, tanggal_lahir, alamat_kota, password, jabatan, no_telepon, foto);
+                            JOptionPane.showMessageDialog(null, "Data berhasil dirubah");
+                            clear();
+                            break;
+                        case JOptionPane.NO_OPTION:
+                            JOptionPane.showMessageDialog(null, "Data tidak dirubah");
+                            break;
+                    }
+                }
+            } catch (Exception t) {
+                JOptionPane.showMessageDialog(null, "Data Gagal Dirubah!");
+            }
+        } catch (Exception e) {
         }
         showTable();
-        clear();
     }//GEN-LAST:event_btnRubahActionPerformed
 
     public void updatePegawai(String id_pegawai, String nama_pegawai, String jenis_kelamin, String tempat_lahir, Date tanggal_lahir, String alamat_kota, String password, String jabatan, String no_telepon, byte[] foto) {
@@ -785,11 +812,6 @@ public class Pegawai extends javax.swing.JFrame {
             System.err.println(ex);
         }
     }
-
-    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-        // TODO add your handling code here:
-        //     Connections.Koneksi.print();
-    }//GEN-LAST:event_btnPrintActionPerformed
 
     private void btnAttachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttachActionPerformed
         // TODO add your handling code here:
@@ -819,7 +841,7 @@ public class Pegawai extends javax.swing.JFrame {
         txtNama_Pegawai.setText("");
         RbtnJenis_Kelamin.clearSelection();
         txtTempat_Lahir.setText("");
-        jdcTanggal_Lahir.setDate(new java.util.Date());
+        jdcTanggal_Lahir.setCalendar(null);
         txtAlamat_Kota.setText("");
         cmbJabatan.setSelectedItem("");
         txtNo_Telepon.setText("");
@@ -904,6 +926,70 @@ public class Pegawai extends javax.swing.JFrame {
         lblFoto.setVisible(false);
     }//GEN-LAST:event_jPanel1MouseClicked
 
+    private void txtID_PegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID_PegawaiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtID_PegawaiActionPerformed
+
+    private void txtNama_PegawaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNama_PegawaiMouseClicked
+        // TODO add your handling code here:
+        btnSimpan.setEnabled(true);
+        btnBaru.setEnabled(true);
+        btnAttach.setEnabled(true);
+        btnCari.setEnabled(false);
+    }//GEN-LAST:event_txtNama_PegawaiMouseClicked
+
+    private void txtTempat_LahirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTempat_LahirMouseClicked
+        // TODO add your handling code here:
+        btnSimpan.setEnabled(true);
+        btnBaru.setEnabled(true);
+        btnAttach.setEnabled(true);
+        btnCari.setEnabled(false);
+    }//GEN-LAST:event_txtTempat_LahirMouseClicked
+
+    private void jdcTanggal_LahirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jdcTanggal_LahirMouseClicked
+        // TODO add your handling code here:
+        btnSimpan.setEnabled(true);
+        btnBaru.setEnabled(true);
+        btnAttach.setEnabled(true);
+        btnCari.setEnabled(false);
+    }//GEN-LAST:event_jdcTanggal_LahirMouseClicked
+
+    private void txtAlamat_KotaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAlamat_KotaMouseClicked
+        // TODO add your handling code here:
+        btnSimpan.setEnabled(true);
+        btnBaru.setEnabled(true);
+        btnAttach.setEnabled(true);
+        btnCari.setEnabled(false);
+    }//GEN-LAST:event_txtAlamat_KotaMouseClicked
+
+    private void cmbJabatanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbJabatanMouseClicked
+        // TODO add your handling code here:
+        btnSimpan.setEnabled(true);
+        btnBaru.setEnabled(true);
+        btnAttach.setEnabled(true);
+        btnCari.setEnabled(false);
+    }//GEN-LAST:event_cmbJabatanMouseClicked
+
+    private void txtNo_TeleponMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNo_TeleponMouseClicked
+        // TODO add your handling code here:
+        btnSimpan.setEnabled(true);
+        btnBaru.setEnabled(true);
+        btnAttach.setEnabled(true);
+        btnCari.setEnabled(false);
+    }//GEN-LAST:event_txtNo_TeleponMouseClicked
+
+    private void txtPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPasswordMouseClicked
+        // TODO add your handling code here:
+        btnSimpan.setEnabled(true);
+        btnBaru.setEnabled(true);
+        btnAttach.setEnabled(true);
+        btnCari.setEnabled(false);
+    }//GEN-LAST:event_txtPasswordMouseClicked
+
+    private void txtID_PegawaiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtID_PegawaiMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtID_PegawaiMouseEntered
+
     public void showTable() {
         try {
             tbmPegawai = new DefaultTableModel(new String[]{"ID Pegawai", "Nama Pegawai", "Jenis Kelamin", "Tempat Lahir", "Tanggal Lahir", "Alamat (Kota)", "Jabatan", "No Telepon", "Password", "Foto"}, 0);
@@ -978,7 +1064,6 @@ public class Pegawai extends javax.swing.JFrame {
     private javax.swing.JButton btnPegawai;
     private javax.swing.JButton btnPembayaran;
     private javax.swing.JButton btnPemesanan;
-    private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnRubah;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JComboBox<String> cmbJabatan;

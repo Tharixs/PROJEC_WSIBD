@@ -157,11 +157,7 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="btnBaru" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
-                                  <Component id="btnPrint" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="btnBaru" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" alignment="0" groupAlignment="1" attributes="0">
@@ -250,7 +246,6 @@
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="txtPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="btnBaru" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnPrint" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -377,15 +372,29 @@
         <Component class="javax.swing.JTextField" name="txtID_Pegawai">
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtID_PegawaiMouseClicked"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtID_PegawaiMouseEntered"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtID_PegawaiActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNama_Pegawai">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtNama_PegawaiMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTempat_Lahir">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtTempat_LahirMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtAlamat_Kota">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtAlamat_KotaMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNo_Telepon">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtNo_TeleponMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtFoto">
         </Component>
@@ -438,14 +447,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRubahActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnPrint">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Print"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPrintActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="btnAttach">
           <Properties>
             <Property name="text" type="java.lang.String" value="..."/>
@@ -458,6 +459,9 @@
           <Properties>
             <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd&#xa;"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jdcTanggal_LahirMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="RbtnLaki_Laki">
           <Properties>
@@ -476,6 +480,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="txtPassword">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtPasswordMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnBaru">
           <Properties>
@@ -516,6 +523,9 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cmbJabatanMouseClicked"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>

@@ -395,7 +395,7 @@ public class JenisMenu extends javax.swing.JFrame {
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         // TODO add your handling code here:
-        Connections.Koneksi.print();
+//        Connections.Koneksi.print();
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void btnRubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRubahActionPerformed
