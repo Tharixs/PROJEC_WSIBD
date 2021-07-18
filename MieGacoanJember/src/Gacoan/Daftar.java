@@ -398,6 +398,7 @@ public class Daftar extends javax.swing.JFrame {
         });
         Countainer.add(txtNama_Pegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 357, 855, 44));
 
+        cmbJabatan.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
         cmbJabatan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---PILIH---", "Manager", "Kasir", "Crew" }));
         Countainer.add(cmbJabatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 480, 850, 50));
 
