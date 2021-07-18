@@ -313,10 +313,10 @@ public class Pegawai extends javax.swing.JFrame {
             }
         });
         txtnama.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txtnamaInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         txtnama.addActionListener(new java.awt.event.ActionListener() {
@@ -821,14 +821,15 @@ public class Pegawai extends javax.swing.JFrame {
         if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File file = chooser.getSelectedFile();
             try {
-                if (file.length() == 10000) {
-                    JOptionPane.showMessageDialog(rootPane, "Gambar terlalu besar", "Max 500kb", JOptionPane.WARNING_MESSAGE);
+                if (file.length() > 67108864) {
+                    JOptionPane.showMessageDialog(rootPane, "Gambar terlalu besar", "Max 64mb", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    image = ImageIO.read(file);
+                    icon = new ImageIcon(image);
+                    lblFoto.setIcon(icon);
+                    path = file.getAbsolutePath();
+                    lblFoto.setVisible(true);
                 }
-                image = ImageIO.read(file);
-                icon = new ImageIcon(image);
-                lblFoto.setIcon(icon);
-                path = file.getAbsolutePath();
-                lblFoto.setVisible(true);
             } catch (IOException ex) {
                 System.out.println("Gambar tidak berhasil dimuat " + ex);
             }
