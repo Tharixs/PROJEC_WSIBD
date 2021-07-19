@@ -74,14 +74,11 @@ public class Daftar extends javax.swing.JFrame {
     private void initComponents() {
 
         RbtnJenis_Kelamin = new javax.swing.ButtonGroup();
+        fillback = new javax.swing.JPanel();
         Countainer = new javax.swing.JPanel();
-        fieldUsername = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JLabel();
-        fieldPassword = new javax.swing.JPasswordField();
+        Password = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
         btnDaftar = new javax.swing.JButton();
-        btnMasuk = new javax.swing.JButton();
-        txtPsw = new javax.swing.JLabel();
-        txtUsername = new javax.swing.JLabel();
         Notice = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         info = new javax.swing.JPanel();
@@ -102,49 +99,42 @@ public class Daftar extends javax.swing.JFrame {
         JLabel = new javax.swing.JLabel();
         jdcTanggal_Lahir = new com.toedter.calendar.JDateChooser();
         txtTempat_Lahir = new javax.swing.JTextField();
-        fieldPassword1 = new javax.swing.JPasswordField();
         txtNama_Pegawai = new javax.swing.JTextField();
         cmbJabatan = new javax.swing.JComboBox<>();
-        fillback = new javax.swing.JPanel();
         Bacground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1680, 1050));
+        setMinimumSize(new java.awt.Dimension(1366, 768));
+        setPreferredSize(new java.awt.Dimension(1366, 768));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        fillback.setBackground(new java.awt.Color(0, 179, 216,70));
 
         Countainer.setBackground(new java.awt.Color(255, 255, 255,177));
         Countainer.setMinimumSize(new java.awt.Dimension(1567, 944));
         Countainer.setPreferredSize(new java.awt.Dimension(1567, 944));
         Countainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        fieldUsername.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
-        fieldUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldUsernameActionPerformed(evt);
-            }
-        });
-        Countainer.add(fieldUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 165, 318, 44));
+        Password.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        Password.setForeground(new java.awt.Color(204, 204, 204));
+        Password.setText("Passwoard");
+        Countainer.add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 230, 618, 34));
 
         txtPassword.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
-        txtPassword.setForeground(new java.awt.Color(204, 204, 204));
-        txtPassword.setText("Passwoard");
-        Countainer.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 420, 855, 44));
-
-        fieldPassword.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
-        fieldPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtPassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                fieldPasswordMouseClicked(evt);
+                txtPasswordMouseClicked(evt);
             }
         });
-        fieldPassword.addActionListener(new java.awt.event.ActionListener() {
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldPasswordActionPerformed(evt);
+                txtPasswordActionPerformed(evt);
             }
         });
-        Countainer.add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 420, 855, 44));
+        Countainer.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 230, 618, 34));
 
         btnDaftar.setBackground(new java.awt.Color(255, 0, 152));
-        btnDaftar.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        btnDaftar.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         btnDaftar.setForeground(new java.awt.Color(255, 255, 255));
         btnDaftar.setText("Daftarkan");
         btnDaftar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 153)));
@@ -153,112 +143,52 @@ public class Daftar extends javax.swing.JFrame {
                 btnDaftarActionPerformed(evt);
             }
         });
-        Countainer.add(btnDaftar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 860, 376, 62));
-
-        btnMasuk.setBackground(new java.awt.Color(255, 0, 152));
-        btnMasuk.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
-        btnMasuk.setForeground(new java.awt.Color(255, 255, 255));
-        btnMasuk.setText("Masuk");
-        btnMasuk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 204)));
-        btnMasuk.setPreferredSize(new java.awt.Dimension(169, 44));
-        btnMasuk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasukActionPerformed(evt);
-            }
-        });
-        Countainer.add(btnMasuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(1328, 165, -1, -1));
-
-        txtPsw.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
-        txtPsw.setText("Password ");
-        Countainer.add(txtPsw, new org.netbeans.lib.awtextra.AbsoluteConstraints(985, 125, -1, -1));
-
-        txtUsername.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
-        txtUsername.setText("Nama / Username ");
-        Countainer.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 125, -1, -1));
+        Countainer.add(btnDaftar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 520, 376, 34));
 
         Notice.setBackground(new java.awt.Color(6, 181, 217,58));
         Notice.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logoGacoan.png"))); // NOI18N
-        Notice.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, -1, -1));
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logoGacoanAdmin_Resize.png"))); // NOI18N
+        Notice.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, -1, -1));
 
         info.setBackground(new java.awt.Color(255, 255, 255,0));
+        info.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         jLabel1.setText("NOTICE !!!");
+        info.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         jLabel2.setText("Halaman ini hanya ");
+        info.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         jLabel3.setText("untuk admin atau pelayan dari");
+        info.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 51, 255));
         jLabel4.setText("Mie");
+        info.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 153, 255));
         jLabel5.setText("Gacoan");
+        info.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         jLabel6.setText("Terimakasih. :)");
+        info.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, -1, -1));
 
-        javax.swing.GroupLayout infoLayout = new javax.swing.GroupLayout(info);
-        info.setLayout(infoLayout);
-        infoLayout.setHorizontalGroup(
-            infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(infoLayout.createSequentialGroup()
-                .addGroup(infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(infoLayout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel3)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(70, 70, 70))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)
-                        .addGap(117, 117, 117))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(95, 95, 95))))
-        );
-        infoLayout.setVerticalGroup(
-            infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(infoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(55, 55, 55)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addComponent(jLabel6))
-        );
+        Notice.add(info, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 320, 230));
 
-        Notice.add(info, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 404, 311));
+        Countainer.add(Notice, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 343, 495));
 
-        Countainer.add(Notice, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 142, 502, 780));
-
-        jLabel7.setFont(new java.awt.Font("Garamond", 1, 55)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Garamond", 1, 45)); // NOI18N
         jLabel7.setText("Buat akun admin Anda!");
-        Countainer.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 220, -1, -1));
+        Countainer.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, -1, -1));
 
-        txtID_Pegawai.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        txtID_Pegawai.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         txtID_Pegawai.setForeground(new java.awt.Color(204, 204, 204));
         txtID_Pegawai.setText("Kode Pegawai");
         txtID_Pegawai.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -271,9 +201,9 @@ public class Daftar extends javax.swing.JFrame {
                 txtID_PegawaiActionPerformed(evt);
             }
         });
-        Countainer.add(txtID_Pegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 290, 855, 44));
+        Countainer.add(txtID_Pegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, 618, 34));
 
-        txtAlamat_Kota.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        txtAlamat_Kota.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         txtAlamat_Kota.setForeground(new java.awt.Color(204, 204, 204));
         txtAlamat_Kota.setText("Alamat lengkap");
         txtAlamat_Kota.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -281,14 +211,19 @@ public class Daftar extends javax.swing.JFrame {
                 txtAlamat_KotaMouseClicked(evt);
             }
         });
-        Countainer.add(txtAlamat_Kota, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 612, 855, 44));
+        txtAlamat_Kota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAlamat_KotaActionPerformed(evt);
+            }
+        });
+        Countainer.add(txtAlamat_Kota, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, 618, 34));
 
-        txtFoto.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        txtFoto.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         txtFoto.setForeground(new java.awt.Color(204, 204, 204));
         txtFoto.setText("Masukkan foto Anda");
-        Countainer.add(txtFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 744, 599, 44));
+        Countainer.add(txtFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 430, 450, 34));
 
-        txtNo_Telepon.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        txtNo_Telepon.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         txtNo_Telepon.setForeground(new java.awt.Color(204, 204, 204));
         txtNo_Telepon.setText("No. HP / WhatsApp");
         txtNo_Telepon.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -296,9 +231,9 @@ public class Daftar extends javax.swing.JFrame {
                 txtNo_TeleponMouseClicked(evt);
             }
         });
-        Countainer.add(txtNo_Telepon, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 678, 855, 44));
+        Countainer.add(txtNo_Telepon, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 390, 618, 34));
 
-        btnAttach.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        btnAttach.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         btnAttach.setForeground(new java.awt.Color(112, 112, 112));
         btnAttach.setText("Pilih file");
         btnAttach.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -311,11 +246,11 @@ public class Daftar extends javax.swing.JFrame {
                 btnAttachActionPerformed(evt);
             }
         });
-        Countainer.add(btnAttach, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 744, 237, 44));
+        Countainer.add(btnAttach, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 430, 160, 34));
 
         RbtnPerempuan.setBackground(new java.awt.Color(255, 255, 255));
         RbtnJenis_Kelamin.add(RbtnPerempuan);
-        RbtnPerempuan.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        RbtnPerempuan.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         RbtnPerempuan.setForeground(new java.awt.Color(102, 102, 102));
         RbtnPerempuan.setText("Perempuan");
         RbtnPerempuan.setBorder(null);
@@ -324,11 +259,11 @@ public class Daftar extends javax.swing.JFrame {
                 RbtnPerempuanActionPerformed(evt);
             }
         });
-        Countainer.add(RbtnPerempuan, new org.netbeans.lib.awtextra.AbsoluteConstraints(853, 809, 190, 30));
+        Countainer.add(RbtnPerempuan, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 470, 190, 30));
 
         RbtnLaki_Laki.setBackground(new java.awt.Color(255, 255, 255));
         RbtnJenis_Kelamin.add(RbtnLaki_Laki);
-        RbtnLaki_Laki.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        RbtnLaki_Laki.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         RbtnLaki_Laki.setForeground(new java.awt.Color(102, 102, 102));
         RbtnLaki_Laki.setText("Laki - Laki");
         RbtnLaki_Laki.setBorder(null);
@@ -337,9 +272,9 @@ public class Daftar extends javax.swing.JFrame {
                 RbtnLaki_LakiActionPerformed(evt);
             }
         });
-        Countainer.add(RbtnLaki_Laki, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 809, 190, 30));
+        Countainer.add(RbtnLaki_Laki, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 470, 190, 30));
 
-        JLabel.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        JLabel.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         JLabel.setForeground(new java.awt.Color(204, 204, 204));
         JLabel.setText("Tanggal Lahir");
         JLabel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -347,11 +282,12 @@ public class Daftar extends javax.swing.JFrame {
                 JLabelMouseClicked(evt);
             }
         });
-        Countainer.add(JLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(945, 550, 520, 44));
+        Countainer.add(JLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 310, 380, 34));
 
         jdcTanggal_Lahir.setForeground(new java.awt.Color(204, 204, 204));
         jdcTanggal_Lahir.setToolTipText("");
-        jdcTanggal_Lahir.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        jdcTanggal_Lahir.setDateFormatString("yyyy-MM-dd");
+        jdcTanggal_Lahir.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         jdcTanggal_Lahir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jdcTanggal_LahirMouseClicked(evt);
@@ -363,9 +299,9 @@ public class Daftar extends javax.swing.JFrame {
                 jdcTanggal_LahirMouseExited(evt);
             }
         });
-        Countainer.add(jdcTanggal_Lahir, new org.netbeans.lib.awtextra.AbsoluteConstraints(945, 550, 550, 44));
+        Countainer.add(jdcTanggal_Lahir, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 310, 400, 34));
 
-        txtTempat_Lahir.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        txtTempat_Lahir.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         txtTempat_Lahir.setForeground(new java.awt.Color(204, 204, 204));
         txtTempat_Lahir.setText("Tempat ");
         txtTempat_Lahir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -373,17 +309,14 @@ public class Daftar extends javax.swing.JFrame {
                 txtTempat_LahirMouseClicked(evt);
             }
         });
-        Countainer.add(txtTempat_Lahir, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 550, 290, 44));
-
-        fieldPassword1.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
-        fieldPassword1.addActionListener(new java.awt.event.ActionListener() {
+        txtTempat_Lahir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldPassword1ActionPerformed(evt);
+                txtTempat_LahirActionPerformed(evt);
             }
         });
-        Countainer.add(fieldPassword1, new org.netbeans.lib.awtextra.AbsoluteConstraints(985, 165, 318, 44));
+        Countainer.add(txtTempat_Lahir, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 310, 210, 34));
 
-        txtNama_Pegawai.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        txtNama_Pegawai.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         txtNama_Pegawai.setForeground(new java.awt.Color(204, 204, 204));
         txtNama_Pegawai.setText("Nama / Username");
         txtNama_Pegawai.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -396,77 +329,40 @@ public class Daftar extends javax.swing.JFrame {
                 txtNama_PegawaiActionPerformed(evt);
             }
         });
-        Countainer.add(txtNama_Pegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 357, 855, 44));
+        Countainer.add(txtNama_Pegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, 618, 34));
 
-        cmbJabatan.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        cmbJabatan.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         cmbJabatan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---PILIH---", "Manager", "Kasir", "Crew" }));
-        Countainer.add(cmbJabatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 480, 850, 50));
-
-        getContentPane().add(Countainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 53, 1567, 944));
-
-        fillback.setBackground(new java.awt.Color(0, 179, 216,70));
+        Countainer.add(cmbJabatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, 618, 34));
 
         javax.swing.GroupLayout fillbackLayout = new javax.swing.GroupLayout(fillback);
         fillback.setLayout(fillbackLayout);
         fillbackLayout.setHorizontalGroup(
             fillbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1680, Short.MAX_VALUE)
+            .addGroup(fillbackLayout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(Countainer, javax.swing.GroupLayout.PREFERRED_SIZE, 1251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(374, Short.MAX_VALUE))
         );
         fillbackLayout.setVerticalGroup(
             fillbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1050, Short.MAX_VALUE)
+            .addGroup(fillbackLayout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addComponent(Countainer, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(341, Short.MAX_VALUE))
         );
 
         getContentPane().add(fillback, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1680, 1050));
 
-        Bacground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/BacgroundAdmin.jpg"))); // NOI18N
+        Bacground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/background admin_Resize.jpg"))); // NOI18N
         Bacground.setMaximumSize(new java.awt.Dimension(1680, 1050));
         Bacground.setMinimumSize(new java.awt.Dimension(1680, 1050));
         Bacground.setPreferredSize(new java.awt.Dimension(1680, 1050));
-        getContentPane().add(Bacground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1680, 1050));
+        getContentPane().add(Bacground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, 768));
 
-        setSize(new java.awt.Dimension(1702, 1106));
+        setSize(new java.awt.Dimension(1388, 824));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasukActionPerformed
-        // TODO add your handling code here:
-//        String Username1 = "admin";
-//        String Password1 = "123";
-//        String Username2 = "admin";
-//        String Password2 = "456";
-//        if (Username1.equalsIgnoreCase(fieldUsername.getText()) && Password1.equalsIgnoreCase(fieldPassword.getText())) {
-//            new Pemesanan().setVisible(true);
-//            javax.swing.JOptionPane.showMessageDialog(null, "Login Berhasil!");
-//            this.setVisible(false);
-//        } else if (Username2.equalsIgnoreCase(fieldUsername.getText()) && Password2.equalsIgnoreCase(fieldPassword.getText())) {
-//            new Pemesanan().setVisible(true);
-//            javax.swing.JOptionPane.showMessageDialog(null, "Login Berhasil!");
-//            this.setVisible(false);
-//        } else {
-//            javax.swing.JOptionPane.showMessageDialog(null, "Username/Password tidak Valid");
-//            fieldUsername.setText("");
-//            fieldPassword.setText("");
-//            fieldUsername.requestFocus();
-
-        try {
-            String sql = "SELECT * FROM pegawai WHERE nama_pegawai='" + fieldUsername.getText() + "' AND password='" + fieldPassword1.getText() + "'";
-            st = conn.createStatement();
-            rs = st.executeQuery(sql);
-            if (rs.next()) {
-                if (fieldUsername.getText().equals(rs.getString("nama_pegawai")) && fieldPassword1.getText().equals(rs.getString("password"))) {
-                    JOptionPane.showMessageDialog(null, "berhasil login");
-                    new Pegawai().setVisible(true);
-                    this.setVisible(false);
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "username atau password salah");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-            System.out.println(e);
-        }
-    }//GEN-LAST:event_btnMasukActionPerformed
 
     private void btnDaftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaftarActionPerformed
 
@@ -528,6 +424,8 @@ public class Daftar extends javax.swing.JFrame {
                         case JOptionPane.YES_OPTION:
                             insertPegawai(id_pegawai, nama_pegawai, jenis_kelamin, tempat_lahir, tanggal_lahir, alamat_kota, password, jabatan, no_telepon, foto);
                             JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
+                            this.setVisible(false);
+                            new Login().setVisible(true);
                             clear();
                             break;
                         case JOptionPane.NO_OPTION:
@@ -571,13 +469,9 @@ public class Daftar extends javax.swing.JFrame {
         txtAlamat_Kota.setText("");
         cmbJabatan.setSelectedItem("");
         txtNo_Telepon.setText("");
-        txtPassword.setText("");
+        Password.setText("");
         txtFoto.setText("");
     }
-    private void fieldUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fieldUsernameActionPerformed
-
     private void RbtnLaki_LakiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RbtnLaki_LakiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_RbtnLaki_LakiActionPerformed
@@ -609,13 +503,9 @@ public class Daftar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAttachActionPerformed
 
-    private void fieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldPasswordActionPerformed
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fieldPasswordActionPerformed
-
-    private void fieldPassword1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldPassword1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fieldPassword1ActionPerformed
+    }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void txtID_PegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID_PegawaiActionPerformed
         // TODO add your handling code here:
@@ -637,11 +527,11 @@ public class Daftar extends javax.swing.JFrame {
         txtNama_Pegawai.setForeground(Color.BLACK);
     }//GEN-LAST:event_txtNama_PegawaiMouseClicked
 
-    private void fieldPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fieldPasswordMouseClicked
+    private void txtPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPasswordMouseClicked
         // TODO add your handling code here:
-        txtPassword.setText("");
-        fieldPassword.setForeground(Color.BLACK);
-    }//GEN-LAST:event_fieldPasswordMouseClicked
+        Password.setText("");
+        txtPassword.setForeground(Color.BLACK);
+    }//GEN-LAST:event_txtPasswordMouseClicked
 
     private void txtTempat_LahirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTempat_LahirMouseClicked
         // TODO add your handling code here:
@@ -683,6 +573,14 @@ public class Daftar extends javax.swing.JFrame {
         // TODO add your handling code here:
         //        LTanggalLahir.setVisible(false);
     }//GEN-LAST:event_jdcTanggal_LahirMouseClicked
+
+    private void txtTempat_LahirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTempat_LahirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTempat_LahirActionPerformed
+
+    private void txtAlamat_KotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlamat_KotaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAlamat_KotaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -731,16 +629,13 @@ public class Daftar extends javax.swing.JFrame {
     private javax.swing.JPanel Countainer;
     private javax.swing.JLabel JLabel;
     private javax.swing.JPanel Notice;
+    private javax.swing.JLabel Password;
     private javax.swing.ButtonGroup RbtnJenis_Kelamin;
     private javax.swing.JRadioButton RbtnLaki_Laki;
     private javax.swing.JRadioButton RbtnPerempuan;
     private javax.swing.JButton btnAttach;
     private javax.swing.JButton btnDaftar;
-    private javax.swing.JButton btnMasuk;
     private javax.swing.JComboBox<String> cmbJabatan;
-    private javax.swing.JPasswordField fieldPassword;
-    private javax.swing.JPasswordField fieldPassword1;
-    private javax.swing.JTextField fieldUsername;
     private javax.swing.JPanel fillback;
     private javax.swing.JPanel info;
     private javax.swing.JLabel jLabel1;
@@ -757,9 +652,7 @@ public class Daftar extends javax.swing.JFrame {
     private javax.swing.JTextField txtID_Pegawai;
     private javax.swing.JTextField txtNama_Pegawai;
     private javax.swing.JTextField txtNo_Telepon;
-    private javax.swing.JLabel txtPassword;
-    private javax.swing.JLabel txtPsw;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtTempat_Lahir;
-    private javax.swing.JLabel txtUsername;
     // End of variables declaration//GEN-END:variables
 }
