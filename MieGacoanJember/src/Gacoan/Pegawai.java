@@ -8,6 +8,7 @@ package Gacoan;
 import Connections.Koneksi;
 import com.mysql.jdbc.Connection;
 import com.toedter.calendar.JDateChooser;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -31,9 +32,11 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.AbstractTableModel;
@@ -56,6 +59,8 @@ public class Pegawai extends javax.swing.JFrame {
     Connection conn;
     PreparedStatement pst;
     DefaultTableModel tbmPegawai;
+    DefaultTableModel tbmMenu;
+    DefaultTableModel tbmJenisMenu;
     ResultSet rs;
     Statement st;
     Image image;
@@ -75,14 +80,41 @@ public class Pegawai extends javax.swing.JFrame {
     public Pegawai() {
         conn = Connections.Koneksi.cekKoneksi();
         initComponents();
-        showTable();
-        btnCari.setEnabled(true);
-        btnSimpan.setEnabled(false);
-        btnHapus.setEnabled(false);
-        btnRubah.setEnabled(false);
-        btnBaru.setEnabled(false);
-        btnAttach.setEnabled(false);
+        showTablePegawai();
+        showTableMenu();
+        showTableJenisMenu();
+        btnCariPegawai.setEnabled(true);
+        btnSimpanPegawai.setEnabled(false);
+        btnHapusPegawai.setEnabled(false);
+        btnRubahPegawai.setEnabled(false);
+        btnBaruPegawi.setEnabled(false);
+        btnAttachPegawai.setEnabled(false);
+
+        BackFieldPegawai.setVisible(true);
+        BackFieldMenu.setVisible(false);
+        BackFieldJenisMenu.setVisible(false);
 //        btnPrint.setEnabled(true);
+
+        try {
+            tampil_combo();
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        btnCariMenu.setEnabled(true);
+        btnSimpanMenu.setEnabled(false);
+        btnHapusMenu.setEnabled(false);
+        btnRubahMenu.setEnabled(false);
+        btnBaruMenu.setEnabled(false);
+        btnPrintMenu.setEnabled(true);
+        
+//------------------------------code jenis menu -----------------------        
+        btnCariJenisMenu.setEnabled(true);
+        btnSimpanJenisMenu.setEnabled(false);
+        btnHapusJenisMenu.setEnabled(false);
+        btnRubahJenisMenu.setEnabled(false);
+        btnBaruJenisMenu.setEnabled(false);
+        btnPrintJenisMenu.setEnabled(true);
+
     }
 
     /**
@@ -95,96 +127,97 @@ public class Pegawai extends javax.swing.JFrame {
     private void initComponents() {
 
         RbtnJenis_Kelamin = new javax.swing.ButtonGroup();
-        jPanel1 = new javax.swing.JPanel();
-        btnPegawai = new javax.swing.JButton();
-        btnMenu = new javax.swing.JButton();
-        btnJenis_Menu = new javax.swing.JButton();
-        btnPemesanan = new javax.swing.JButton();
-        btnPembayaran = new javax.swing.JButton();
-        btnLaporan = new javax.swing.JButton();
-        btnLogOut = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        Constructor = new javax.swing.JPanel();
+        BackFieldPegawai = new javax.swing.JPanel();
         txtID_Pegawai = new javax.swing.JTextField();
         txtNama_Pegawai = new javax.swing.JTextField();
         txtTempat_Lahir = new javax.swing.JTextField();
+        lblTanggal = new javax.swing.JLabel();
+        jdcTanggal_Lahir = new com.toedter.calendar.JDateChooser();
+        RbtnPerempuan = new javax.swing.JRadioButton();
+        RbtnLaki_Laki = new javax.swing.JRadioButton();
         txtAlamat_Kota = new javax.swing.JTextField();
+        cmbJabatan = new javax.swing.JComboBox<>();
         txtNo_Telepon = new javax.swing.JTextField();
-        txtFoto = new javax.swing.JTextField();
+        lblPasswoard = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPegawai = new javax.swing.JTable();
-        btnSimpan = new javax.swing.JButton();
-        btnHapus = new javax.swing.JButton();
-        btnRubah = new javax.swing.JButton();
-        btnAttach = new javax.swing.JButton();
-        jdcTanggal_Lahir = new com.toedter.calendar.JDateChooser();
-        RbtnLaki_Laki = new javax.swing.JRadioButton();
-        RbtnPerempuan = new javax.swing.JRadioButton();
-        txtPassword = new javax.swing.JPasswordField();
-        btnBaru = new javax.swing.JButton();
-        btnCari = new javax.swing.JButton();
-        txtnama = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        cmbJabatan = new javax.swing.JComboBox<>();
+        btnBaruPegawi = new javax.swing.JButton();
+        btnSimpanPegawai = new javax.swing.JButton();
+        btnHapusPegawai = new javax.swing.JButton();
+        btnRubahPegawai = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        lblFoto = new javax.swing.JLabel();
+        PenampungFoto = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtFotoPegawi = new javax.swing.JTextField();
+        btnAttachPegawai = new javax.swing.JButton();
+        txtnama = new javax.swing.JTextField();
+        btnCariPegawai = new javax.swing.JButton();
+        BackMenu = new javax.swing.JPanel();
+        btnLogOut = new javax.swing.JButton();
+        LogoMenu = new javax.swing.JLabel();
+        btnPegawai = new javax.swing.JButton();
+        btnMenu = new javax.swing.JButton();
+        btnLaporan = new javax.swing.JButton();
+        btnJenisMenu = new javax.swing.JButton();
+        btnPemesanan = new javax.swing.JButton();
+        btnPembayaran = new javax.swing.JButton();
+        BackFieldMenu = new javax.swing.JPanel();
+        txtCarimenu = new javax.swing.JTextField();
+        btnCariMenu = new javax.swing.JButton();
+        txtID_Menu = new javax.swing.JTextField();
+        btnSimpanMenu = new javax.swing.JButton();
+        btnHapusMenu = new javax.swing.JButton();
+        btnRubahMenu = new javax.swing.JButton();
+        btnBaruMenu = new javax.swing.JButton();
+        btnPrintMenu = new javax.swing.JButton();
+        cmbJenis = new javax.swing.JComboBox<>();
+        txtMenu = new javax.swing.JTextField();
+        txtHarga = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblMenu = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txtDetail = new javax.swing.JTextArea();
+        BackFieldJenisMenu = new javax.swing.JPanel();
+        txtjenis = new javax.swing.JTextField();
+        btnCariJenisMenu = new javax.swing.JButton();
+        txtID_Jenis = new javax.swing.JTextField();
+        txtNamaJenis = new javax.swing.JTextField();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tblJenisMenu = new javax.swing.JTable();
+        btnBaruJenisMenu = new javax.swing.JButton();
+        btnSimpanJenisMenu = new javax.swing.JButton();
+        btnHapusJenisMenu = new javax.swing.JButton();
+        btnRubahJenisMenu = new javax.swing.JButton();
+        btnPrintJenisMenu = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        txtDetail_Jenis = new javax.swing.JTextArea();
+        UiBack = new javax.swing.JPanel();
+        Bacground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        Constructor.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        Constructor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel1MouseClicked(evt);
+                ConstructorMouseClicked(evt);
             }
         });
+        Constructor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnPegawai.setText("Pegawai");
-        btnPegawai.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPegawaiActionPerformed(evt);
-            }
-        });
+        BackFieldPegawai.setBackground(new java.awt.Color(255, 255, 255,180));
+        BackFieldPegawai.setForeground(new java.awt.Color(153, 153, 153));
+        BackFieldPegawai.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnMenu.setText("Menu");
-
-        btnJenis_Menu.setText("Jenis Menu");
-
-        btnPemesanan.setText("Pemesanan");
-
-        btnPembayaran.setText("Pembayaran");
-
-        btnLaporan.setText("Laporan");
-
-        btnLogOut.setText("LogOut");
-
-        jLabel1.setText("ID Pegawai *");
-
-        jLabel2.setText("Nama *");
-
-        jLabel3.setText("Jenis Kelamin");
-
-        jLabel4.setText("Tempat Lahir *");
-
-        jLabel5.setText("Tanggal Lahir");
-
-        jLabel6.setText("Alamat (Kota) *");
-
-        jLabel7.setText("Jabatan *");
-
-        jLabel8.setText("No Telepon *");
-
-        jLabel9.setText("Password");
-
-        jLabel10.setText("Foto");
-
+        txtID_Pegawai.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        txtID_Pegawai.setForeground(new java.awt.Color(153, 153, 153));
+        txtID_Pegawai.setText("Id_pegawai");
         txtID_Pegawai.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtID_PegawaiMouseClicked(evt);
@@ -198,31 +231,128 @@ public class Pegawai extends javax.swing.JFrame {
                 txtID_PegawaiActionPerformed(evt);
             }
         });
+        BackFieldPegawai.add(txtID_Pegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 524, 33));
 
+        txtNama_Pegawai.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        txtNama_Pegawai.setForeground(new java.awt.Color(153, 153, 153));
+        txtNama_Pegawai.setText("Nama Lengkap");
         txtNama_Pegawai.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtNama_PegawaiMouseClicked(evt);
             }
         });
+        txtNama_Pegawai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNama_PegawaiActionPerformed(evt);
+            }
+        });
+        BackFieldPegawai.add(txtNama_Pegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 524, 33));
 
+        txtTempat_Lahir.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        txtTempat_Lahir.setForeground(new java.awt.Color(153, 153, 153));
+        txtTempat_Lahir.setText("Tempat Lahir");
         txtTempat_Lahir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtTempat_LahirMouseClicked(evt);
             }
         });
+        txtTempat_Lahir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTempat_LahirActionPerformed(evt);
+            }
+        });
+        BackFieldPegawai.add(txtTempat_Lahir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 524, 33));
 
+        lblTanggal.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        lblTanggal.setForeground(new java.awt.Color(153, 153, 153));
+        lblTanggal.setText("Tanggal Lahir");
+        BackFieldPegawai.add(lblTanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 150, 30));
+
+        jdcTanggal_Lahir.setDateFormatString("yyyy-MM-dd\n");
+        jdcTanggal_Lahir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jdcTanggal_LahirMouseClicked(evt);
+            }
+        });
+        BackFieldPegawai.add(jdcTanggal_Lahir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 524, 33));
+
+        RbtnJenis_Kelamin.add(RbtnPerempuan);
+        RbtnPerempuan.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        RbtnPerempuan.setForeground(new java.awt.Color(153, 153, 153));
+        RbtnPerempuan.setText("Perempuan");
+        BackFieldPegawai.add(RbtnPerempuan, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
+
+        RbtnJenis_Kelamin.add(RbtnLaki_Laki);
+        RbtnLaki_Laki.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        RbtnLaki_Laki.setForeground(new java.awt.Color(153, 153, 153));
+        RbtnLaki_Laki.setText("Laki - Laki");
+        BackFieldPegawai.add(RbtnLaki_Laki, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
+
+        txtAlamat_Kota.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        txtAlamat_Kota.setForeground(new java.awt.Color(153, 153, 153));
+        txtAlamat_Kota.setText("Alamat");
         txtAlamat_Kota.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtAlamat_KotaMouseClicked(evt);
             }
         });
+        txtAlamat_Kota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAlamat_KotaActionPerformed(evt);
+            }
+        });
+        BackFieldPegawai.add(txtAlamat_Kota, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 524, 33));
 
+        cmbJabatan.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        cmbJabatan.setForeground(new java.awt.Color(153, 153, 153));
+        cmbJabatan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---SELECT JABATAN---", "Manager", "Kasir", "Crew" }));
+        cmbJabatan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cmbJabatanMouseClicked(evt);
+            }
+        });
+        cmbJabatan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbJabatanActionPerformed(evt);
+            }
+        });
+        BackFieldPegawai.add(cmbJabatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 524, 33));
+
+        txtNo_Telepon.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        txtNo_Telepon.setForeground(new java.awt.Color(153, 153, 153));
+        txtNo_Telepon.setText("No Telepon");
         txtNo_Telepon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtNo_TeleponMouseClicked(evt);
             }
         });
+        txtNo_Telepon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNo_TeleponActionPerformed(evt);
+            }
+        });
+        BackFieldPegawai.add(txtNo_Telepon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 524, 33));
 
+        lblPasswoard.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        lblPasswoard.setForeground(new java.awt.Color(153, 153, 153));
+        lblPasswoard.setText("Passwoard");
+        BackFieldPegawai.add(lblPasswoard, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 140, 30));
+
+        txtPassword.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        txtPassword.setForeground(new java.awt.Color(153, 153, 153));
+        txtPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPasswordMouseClicked(evt);
+            }
+        });
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
+        BackFieldPegawai.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 524, 33));
+
+        tblPegawai.setFont(new java.awt.Font("Garamond", 1, 16)); // NOI18N
         tblPegawai.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -241,82 +371,100 @@ public class Pegawai extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblPegawai);
 
-        btnSimpan.setText("Simpan");
-        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
+        BackFieldPegawai.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 890, 280));
+
+        btnBaruPegawi.setBackground(new java.awt.Color(236, 0, 141));
+        btnBaruPegawi.setFont(new java.awt.Font("Garamond", 1, 15)); // NOI18N
+        btnBaruPegawi.setForeground(new java.awt.Color(255, 255, 255));
+        btnBaruPegawi.setText("Baru");
+        btnBaruPegawi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSimpanActionPerformed(evt);
+                btnBaruPegawiActionPerformed(evt);
             }
         });
+        BackFieldPegawai.add(btnBaruPegawi, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 370, 187, 33));
 
-        btnHapus.setText("Hapus");
-        btnHapus.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnSimpanPegawai.setBackground(new java.awt.Color(236, 0, 141));
+        btnSimpanPegawai.setFont(new java.awt.Font("Garamond", 1, 15)); // NOI18N
+        btnSimpanPegawai.setForeground(new java.awt.Color(255, 255, 255));
+        btnSimpanPegawai.setText("Simpan");
+        btnSimpanPegawai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanPegawaiActionPerformed(evt);
+            }
+        });
+        BackFieldPegawai.add(btnSimpanPegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 250, 187, 33));
+
+        btnHapusPegawai.setBackground(new java.awt.Color(236, 0, 141));
+        btnHapusPegawai.setFont(new java.awt.Font("Garamond", 1, 15)); // NOI18N
+        btnHapusPegawai.setForeground(new java.awt.Color(255, 255, 255));
+        btnHapusPegawai.setText("Hapus");
+        btnHapusPegawai.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnHapusMouseClicked(evt);
+                btnHapusPegawaiMouseClicked(evt);
             }
         });
-        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+        btnHapusPegawai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHapusActionPerformed(evt);
+                btnHapusPegawaiActionPerformed(evt);
             }
         });
+        BackFieldPegawai.add(btnHapusPegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 290, 187, 33));
 
-        btnRubah.setText("Rubah");
-        btnRubah.addActionListener(new java.awt.event.ActionListener() {
+        btnRubahPegawai.setBackground(new java.awt.Color(236, 0, 141));
+        btnRubahPegawai.setFont(new java.awt.Font("Garamond", 1, 15)); // NOI18N
+        btnRubahPegawai.setForeground(new java.awt.Color(255, 255, 255));
+        btnRubahPegawai.setText("Rubah");
+        btnRubahPegawai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRubahActionPerformed(evt);
+                btnRubahPegawaiActionPerformed(evt);
             }
         });
+        BackFieldPegawai.add(btnRubahPegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 330, 187, 33));
 
-        btnAttach.setText("...");
-        btnAttach.addActionListener(new java.awt.event.ActionListener() {
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255,30));
+
+        PenampungFoto.setBackground(new java.awt.Color(255, 255, 255,180));
+        PenampungFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jScrollPane2.setViewportView(PenampungFoto);
+
+        BackFieldPegawai.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, 160, 150));
+
+        jLabel10.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel10.setText("Foto");
+        BackFieldPegawai.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(611, 170, 60, 30));
+
+        txtFotoPegawi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAttachActionPerformed(evt);
+                txtFotoPegawiActionPerformed(evt);
             }
         });
+        BackFieldPegawai.add(txtFotoPegawi, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 170, 240, 33));
 
-        jdcTanggal_Lahir.setDateFormatString("yyyy-MM-dd\n");
-        jdcTanggal_Lahir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jdcTanggal_LahirMouseClicked(evt);
-            }
-        });
-
-        RbtnJenis_Kelamin.add(RbtnLaki_Laki);
-        RbtnLaki_Laki.setText("Laki - Laki");
-
-        RbtnJenis_Kelamin.add(RbtnPerempuan);
-        RbtnPerempuan.setText("Perempuan");
-
-        txtPassword.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtPasswordMouseClicked(evt);
-            }
-        });
-
-        btnBaru.setText("Baru");
-        btnBaru.addActionListener(new java.awt.event.ActionListener() {
+        btnAttachPegawai.setBackground(new java.awt.Color(236, 0, 141));
+        btnAttachPegawai.setForeground(new java.awt.Color(255, 255, 255));
+        btnAttachPegawai.setText("Pilih");
+        btnAttachPegawai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBaruActionPerformed(evt);
+                btnAttachPegawaiActionPerformed(evt);
             }
         });
+        BackFieldPegawai.add(btnAttachPegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 210, 187, 33));
 
-        btnCari.setText("Cari");
-        btnCari.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCariActionPerformed(evt);
-            }
-        });
-
+        txtnama.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        txtnama.setForeground(new java.awt.Color(153, 153, 153));
+        txtnama.setText("Masukkan Nama");
         txtnama.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtnamaMouseClicked(evt);
             }
         });
         txtnama.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txtnamaInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         txtnama.addActionListener(new java.awt.event.ActionListener() {
@@ -324,217 +472,441 @@ public class Pegawai extends javax.swing.JFrame {
                 txtnamaActionPerformed(evt);
             }
         });
+        BackFieldPegawai.add(txtnama, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 450, 33));
 
-        jLabel11.setText("Masukkan Nama");
-
-        cmbJabatan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---SELECT---", "Manager", "Kasir", "Crew" }));
-        cmbJabatan.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cmbJabatanMouseClicked(evt);
+        btnCariPegawai.setBackground(new java.awt.Color(236, 0, 141));
+        btnCariPegawai.setFont(new java.awt.Font("Garamond", 1, 15)); // NOI18N
+        btnCariPegawai.setForeground(new java.awt.Color(255, 255, 255));
+        btnCariPegawai.setText("Cari");
+        btnCariPegawai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCariPegawaiActionPerformed(evt);
             }
         });
+        BackFieldPegawai.add(btnCariPegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 60, 33));
 
-        lblFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jScrollPane2.setViewportView(lblFoto);
+        Constructor.add(BackFieldPegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 32, 924, 705));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnMenu)
-                            .addComponent(btnPegawai)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(btnJenis_Menu))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnPemesanan)
-                            .addComponent(btnPembayaran)
-                            .addComponent(btnLaporan)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(btnLogOut)))
-                .addGap(47, 47, 47)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel2)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtAlamat_Kota, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel9)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1)
-                                        .addComponent(jLabel4))
-                                    .addGap(114, 114, 114)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtTempat_Lahir, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtNama_Pegawai, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtID_Pegawai, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jdcTanggal_Lahir, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(RbtnLaki_Laki)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(RbtnPerempuan))))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(txtnama, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(27, 27, 27)
-                                    .addComponent(btnCari))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel8)
-                                        .addComponent(jLabel7))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtNo_Telepon, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
-                                        .addComponent(cmbJabatan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                        .addGap(109, 109, 109)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnSimpan)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnHapus))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txtFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(btnAttach))))
-                            .addComponent(btnBaru)))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnRubah)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 932, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(488, Short.MAX_VALUE))
+        BackMenu.setBackground(new java.awt.Color(255, 255, 255,180));
+        BackMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnLogOut.setBackground(new java.awt.Color(236, 0, 141));
+        btnLogOut.setFont(new java.awt.Font("Garamond", 0, 15)); // NOI18N
+        btnLogOut.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogOut.setText("LogOut");
+        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogOutActionPerformed(evt);
+            }
+        });
+        BackMenu.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 600, 187, 33));
+
+        LogoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logoGacoanAdmin_Resize.png"))); // NOI18N
+        BackMenu.add(LogoMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, -1, -1));
+
+        btnPegawai.setBackground(new java.awt.Color(153, 153, 153));
+        btnPegawai.setFont(new java.awt.Font("Garamond", 0, 30)); // NOI18N
+        btnPegawai.setForeground(new java.awt.Color(255, 255, 255));
+        btnPegawai.setText("Pegawai");
+        btnPegawai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPegawaiActionPerformed(evt);
+            }
+        });
+        BackMenu.add(btnPegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 314, 46));
+
+        btnMenu.setBackground(new java.awt.Color(153, 153, 153));
+        btnMenu.setFont(new java.awt.Font("Garamond", 0, 30)); // NOI18N
+        btnMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnMenu.setText("Menu");
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
+        BackMenu.add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 314, 46));
+
+        btnLaporan.setBackground(new java.awt.Color(153, 153, 153));
+        btnLaporan.setFont(new java.awt.Font("Garamond", 0, 30)); // NOI18N
+        btnLaporan.setForeground(new java.awt.Color(255, 255, 255));
+        btnLaporan.setText("Laporan");
+        btnLaporan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaporanActionPerformed(evt);
+            }
+        });
+        BackMenu.add(btnLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 314, 46));
+
+        btnJenisMenu.setBackground(new java.awt.Color(153, 153, 153));
+        btnJenisMenu.setFont(new java.awt.Font("Garamond", 0, 30)); // NOI18N
+        btnJenisMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnJenisMenu.setText("Jenis Menu");
+        btnJenisMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnJenisMenuActionPerformed(evt);
+            }
+        });
+        BackMenu.add(btnJenisMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 314, 46));
+
+        btnPemesanan.setBackground(new java.awt.Color(153, 153, 153));
+        btnPemesanan.setFont(new java.awt.Font("Garamond", 0, 30)); // NOI18N
+        btnPemesanan.setForeground(new java.awt.Color(255, 255, 255));
+        btnPemesanan.setText("Pemesanan");
+        btnPemesanan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPemesananActionPerformed(evt);
+            }
+        });
+        BackMenu.add(btnPemesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 314, 46));
+
+        btnPembayaran.setBackground(new java.awt.Color(153, 153, 153));
+        btnPembayaran.setFont(new java.awt.Font("Garamond", 0, 30)); // NOI18N
+        btnPembayaran.setForeground(new java.awt.Color(255, 255, 255));
+        btnPembayaran.setText("Pembayaran");
+        btnPembayaran.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPembayaranActionPerformed(evt);
+            }
+        });
+        BackMenu.add(btnPembayaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 314, 46));
+
+        Constructor.add(BackMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 32, 372, 705));
+
+        BackFieldMenu.setBackground(new java.awt.Color(255, 255, 255,180));
+        BackFieldMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtCarimenu.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        txtCarimenu.setForeground(new java.awt.Color(153, 153, 153));
+        txtCarimenu.setText("Masukkan Menu");
+        txtCarimenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCarimenuMouseClicked(evt);
+            }
+        });
+        BackFieldMenu.add(txtCarimenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 704, 33));
+
+        btnCariMenu.setBackground(new java.awt.Color(236, 0, 141));
+        btnCariMenu.setFont(new java.awt.Font("Garamond", 0, 15)); // NOI18N
+        btnCariMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnCariMenu.setText("Cari");
+        btnCariMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCariMenuActionPerformed(evt);
+            }
+        });
+        BackFieldMenu.add(btnCariMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 70, 110, 33));
+
+        txtID_Menu.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        txtID_Menu.setForeground(new java.awt.Color(153, 153, 153));
+        txtID_Menu.setText("ID Menu");
+        txtID_Menu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtID_MenuMouseClicked(evt);
+            }
+        });
+        txtID_Menu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtID_MenuActionPerformed(evt);
+            }
+        });
+        BackFieldMenu.add(txtID_Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 591, 33));
+
+        btnSimpanMenu.setBackground(new java.awt.Color(236, 0, 141));
+        btnSimpanMenu.setFont(new java.awt.Font("Garamond", 0, 15)); // NOI18N
+        btnSimpanMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnSimpanMenu.setText("Simpan");
+        btnSimpanMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanMenuActionPerformed(evt);
+            }
+        });
+        BackFieldMenu.add(btnSimpanMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 160, 187, 33));
+
+        btnHapusMenu.setBackground(new java.awt.Color(236, 0, 141));
+        btnHapusMenu.setFont(new java.awt.Font("Garamond", 0, 15)); // NOI18N
+        btnHapusMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnHapusMenu.setText("Hapus");
+        btnHapusMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHapusMenuMouseClicked(evt);
+            }
+        });
+        btnHapusMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusMenuActionPerformed(evt);
+            }
+        });
+        BackFieldMenu.add(btnHapusMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 210, 187, 30));
+
+        btnRubahMenu.setBackground(new java.awt.Color(236, 0, 141));
+        btnRubahMenu.setFont(new java.awt.Font("Garamond", 0, 15)); // NOI18N
+        btnRubahMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnRubahMenu.setText("Ubah");
+        btnRubahMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRubahMenuActionPerformed(evt);
+            }
+        });
+        BackFieldMenu.add(btnRubahMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 260, 187, 33));
+
+        btnBaruMenu.setBackground(new java.awt.Color(236, 0, 141));
+        btnBaruMenu.setFont(new java.awt.Font("Garamond", 0, 15)); // NOI18N
+        btnBaruMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnBaruMenu.setText("Baru");
+        btnBaruMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBaruMenuActionPerformed(evt);
+            }
+        });
+        BackFieldMenu.add(btnBaruMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 310, 187, 33));
+
+        btnPrintMenu.setBackground(new java.awt.Color(236, 0, 141));
+        btnPrintMenu.setFont(new java.awt.Font("Garamond", 0, 15)); // NOI18N
+        btnPrintMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnPrintMenu.setText("Cetak");
+        btnPrintMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintMenuActionPerformed(evt);
+            }
+        });
+        BackFieldMenu.add(btnPrintMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 360, 187, 33));
+
+        BackFieldMenu.add(cmbJenis, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 591, 33));
+
+        txtMenu.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        txtMenu.setForeground(new java.awt.Color(153, 153, 153));
+        txtMenu.setText("Nama Menu");
+        txtMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtMenuMouseClicked(evt);
+            }
+        });
+        BackFieldMenu.add(txtMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 591, 33));
+
+        txtHarga.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        txtHarga.setForeground(new java.awt.Color(153, 153, 153));
+        txtHarga.setText("Harga");
+        txtHarga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtHargaActionPerformed(evt);
+            }
+        });
+        BackFieldMenu.add(txtHarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 591, 33));
+
+        tblMenu.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMenuMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tblMenu);
+
+        BackFieldMenu.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 440, 910, 261));
+
+        jLabel1.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        jLabel1.setText("Cari Menu ");
+        BackFieldMenu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        jLabel2.setText("Buat Menu Baru ");
+        BackFieldMenu.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+
+        txtDetail.setColumns(20);
+        txtDetail.setRows(5);
+        txtDetail.setText("Detail pemesanan ");
+        jScrollPane4.setViewportView(txtDetail);
+
+        BackFieldMenu.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 590, -1));
+
+        Constructor.add(BackFieldMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 32, 924, 705));
+
+        BackFieldJenisMenu.setBackground(new java.awt.Color(255, 255, 255,180
+        ));
+        BackFieldJenisMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtjenis.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        txtjenis.setForeground(new java.awt.Color(153, 153, 153));
+        txtjenis.setText("Masukkan Jenis");
+        txtjenis.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtjenisMouseClicked(evt);
+            }
+        });
+        txtjenis.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                txtjenisInputMethodTextChanged(evt);
+            }
+        });
+        txtjenis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtjenisActionPerformed(evt);
+            }
+        });
+        BackFieldJenisMenu.add(txtjenis, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 670, 33));
+
+        btnCariJenisMenu.setBackground(new java.awt.Color(236, 0, 141));
+        btnCariJenisMenu.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        btnCariJenisMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnCariJenisMenu.setText("Cari");
+        btnCariJenisMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCariJenisMenuActionPerformed(evt);
+            }
+        });
+        BackFieldJenisMenu.add(btnCariJenisMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 50, 88, 33));
+
+        txtID_Jenis.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        txtID_Jenis.setForeground(new java.awt.Color(153, 153, 153));
+        txtID_Jenis.setText("ID Jenis Menu");
+        txtID_Jenis.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtID_JenisMouseClicked(evt);
+            }
+        });
+        BackFieldJenisMenu.add(txtID_Jenis, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 591, 33));
+
+        txtNamaJenis.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        txtNamaJenis.setForeground(new java.awt.Color(153, 153, 153));
+        txtNamaJenis.setText("Nama Jenis Menu");
+        BackFieldJenisMenu.add(txtNamaJenis, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 591, 33));
+
+        tblJenisMenu.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblJenisMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblJenisMenuMouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(tblJenisMenu);
+
+        BackFieldJenisMenu.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 800, 100));
+
+        btnBaruJenisMenu.setBackground(new java.awt.Color(236, 0, 141));
+        btnBaruJenisMenu.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        btnBaruJenisMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnBaruJenisMenu.setText("Baru");
+        btnBaruJenisMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBaruJenisMenuActionPerformed(evt);
+            }
+        });
+        BackFieldJenisMenu.add(btnBaruJenisMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 260, 187, 33));
+
+        btnSimpanJenisMenu.setBackground(new java.awt.Color(236, 0, 141));
+        btnSimpanJenisMenu.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        btnSimpanJenisMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnSimpanJenisMenu.setText("Simpan");
+        btnSimpanJenisMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanJenisMenuActionPerformed(evt);
+            }
+        });
+        BackFieldJenisMenu.add(btnSimpanJenisMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 187, 33));
+
+        btnHapusJenisMenu.setBackground(new java.awt.Color(236, 0, 141));
+        btnHapusJenisMenu.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        btnHapusJenisMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnHapusJenisMenu.setText("Hapus");
+        btnHapusJenisMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHapusJenisMenuMouseClicked(evt);
+            }
+        });
+        btnHapusJenisMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusJenisMenuActionPerformed(evt);
+            }
+        });
+        BackFieldJenisMenu.add(btnHapusJenisMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 180, 187, 33));
+
+        btnRubahJenisMenu.setBackground(new java.awt.Color(236, 0, 141));
+        btnRubahJenisMenu.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        btnRubahJenisMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnRubahJenisMenu.setText("Rubah");
+        btnRubahJenisMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRubahJenisMenuActionPerformed(evt);
+            }
+        });
+        BackFieldJenisMenu.add(btnRubahJenisMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 220, 187, 33));
+
+        btnPrintJenisMenu.setBackground(new java.awt.Color(236, 0, 141));
+        btnPrintJenisMenu.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        btnPrintJenisMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnPrintJenisMenu.setText("Print");
+        btnPrintJenisMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintJenisMenuActionPerformed(evt);
+            }
+        });
+        BackFieldJenisMenu.add(btnPrintJenisMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 300, 187, 33));
+
+        jLabel3.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        jLabel3.setText("Cari Jenis Menu");
+        BackFieldJenisMenu.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Garamond", 1, 30)); // NOI18N
+        jLabel4.setText("Buat Jenis Menu baru");
+        BackFieldJenisMenu.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+
+        txtDetail_Jenis.setColumns(20);
+        txtDetail_Jenis.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        txtDetail_Jenis.setForeground(new java.awt.Color(153, 153, 153));
+        txtDetail_Jenis.setRows(5);
+        txtDetail_Jenis.setText("Detail Menu");
+        jScrollPane6.setViewportView(txtDetail_Jenis);
+
+        BackFieldJenisMenu.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 590, 110));
+
+        Constructor.add(BackFieldJenisMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 32, 924, 705));
+
+        UiBack.setBackground(new java.awt.Color(0, 179, 216, 80));
+
+        javax.swing.GroupLayout UiBackLayout = new javax.swing.GroupLayout(UiBack);
+        UiBack.setLayout(UiBackLayout);
+        UiBackLayout.setHorizontalGroup(
+            UiBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1366, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel11)
-                        .addGap(9, 9, 9)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtnama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCari))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(txtID_Pegawai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)
-                            .addComponent(txtFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAttach)
-                            .addComponent(btnPegawai))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(txtNama_Pegawai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(txtTempat_Lahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(16, 16, 16)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel3)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel6))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jdcTanggal_Lahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(RbtnLaki_Laki)
-                                            .addComponent(RbtnPerempuan))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtAlamat_Kota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(44, 44, 44)))
-                        .addGap(13, 13, 13)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel8)
-                                .addGap(13, 13, 13)
-                                .addComponent(jLabel9))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(cmbJabatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtNo_Telepon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnBaru)))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
-                        .addComponent(btnMenu)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnJenis_Menu)
-                        .addGap(79, 79, 79)
-                        .addComponent(btnPemesanan)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnRubah)
-                                .addComponent(btnSimpan)
-                                .addComponent(btnHapus))
-                            .addComponent(btnPembayaran))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnLaporan)))
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnLogOut)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(44, Short.MAX_VALUE))
+        UiBackLayout.setVerticalGroup(
+            UiBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 768, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(39, 39, 39))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        Constructor.add(UiBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, 768));
+
+        Bacground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/background admin_Resize.jpg"))); // NOI18N
+        Bacground.setText("jLabel12");
+        Constructor.add(Bacground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, 768));
+
+        getContentPane().add(Constructor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, 768));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPegawaiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPegawaiActionPerformed
-
-    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+    private void btnHapusPegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusPegawaiActionPerformed
         // TODO add your handling code here:
         String idPegawai;
         idPegawai = txtID_Pegawai.getText();
@@ -548,9 +920,9 @@ public class Pegawai extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Data tidak dihapus");
                 break;
         }
-        showTable();
-        clear();
-    }//GEN-LAST:event_btnHapusActionPerformed
+        showTablePegawai();
+        clearPegawai();
+    }//GEN-LAST:event_btnHapusPegawaiActionPerformed
 
     public void deletePegawai(String idPegawai) {
         try {
@@ -563,7 +935,7 @@ public class Pegawai extends javax.swing.JFrame {
         }
     }
 
-    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+    private void btnSimpanPegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanPegawaiActionPerformed
         // TODO add your handling code here:
         String id_pegawai, nama_pegawai, jenis_kelamin, tempat_lahir, alamat_kota, password, jabatan, no_telepon;
         Date tanggal_lahir = null;
@@ -583,7 +955,7 @@ public class Pegawai extends javax.swing.JFrame {
             password = txtPassword.getText();
             jabatan = (String) cmbJabatan.getSelectedItem();
             no_telepon = txtNo_Telepon.getText();
-            if (!txtFoto.getText().equals("")) {
+            if (!txtFotoPegawi.getText().equals("")) {
                 ObjectOutputStream objectOutputStream = null;
                 ByteArrayOutputStream output = new ByteArrayOutputStream();
                 File img = new File(path);
@@ -623,7 +995,7 @@ public class Pegawai extends javax.swing.JFrame {
                         case JOptionPane.YES_OPTION:
                             insertPegawai(id_pegawai, nama_pegawai, jenis_kelamin, tempat_lahir, tanggal_lahir, alamat_kota, password, jabatan, no_telepon, foto);
                             JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
-                            clear();
+                            clearPegawai();
                             break;
                         case JOptionPane.NO_OPTION:
                             JOptionPane.showMessageDialog(null, "Data tidak disimpan");
@@ -635,8 +1007,8 @@ public class Pegawai extends javax.swing.JFrame {
             }
         } catch (Exception e) {
         }
-        showTable();
-    }//GEN-LAST:event_btnSimpanActionPerformed
+        showTablePegawai();
+    }//GEN-LAST:event_btnSimpanPegawaiActionPerformed
 
     public void insertPegawai(String id_pegawai, String nama_pegawai, String jenis_kelamin, String tempat_lahir, Date tanggal_lahir, String alamat_kota, String password, String jabatan, String no_telepon, byte[] foto) {
         try {
@@ -660,6 +1032,8 @@ public class Pegawai extends javax.swing.JFrame {
 
     private void tblPegawaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPegawaiMouseClicked
         // TODO add your handling code here:
+//        ChangeForegroundPegawai();
+        clearPegawai();
         int row = tblPegawai.getSelectedRow();
         String jenis_kelamin = tbmPegawai.getValueAt(row, 2).toString();
         txtID_Pegawai.setText(tblPegawai.getValueAt(row, 0).toString());
@@ -679,12 +1053,12 @@ public class Pegawai extends javax.swing.JFrame {
         txtPassword.setText(tblPegawai.getValueAt(row, 6).toString());
         cmbJabatan.setSelectedItem(tblPegawai.getValueAt(row, 7).toString());
         txtNo_Telepon.setText(tblPegawai.getValueAt(row, 8).toString());
-        btnRubah.setEnabled(true);
-        btnHapus.setEnabled(true);
-        btnSimpan.setEnabled(false);
-        btnAttach.setEnabled(true);
-        btnBaru.setEnabled(true);
-        btnCari.setEnabled(false);
+        btnRubahPegawai.setEnabled(true);
+        btnHapusPegawai.setEnabled(true);
+        btnSimpanPegawai.setEnabled(false);
+        btnAttachPegawai.setEnabled(true);
+        btnBaruPegawi.setEnabled(true);
+        btnCariPegawai.setEnabled(false);
 
         try {
             st = conn.createStatement();
@@ -694,13 +1068,14 @@ public class Pegawai extends javax.swing.JFrame {
                 Blob Gambar = rs.getBlob("foto");
                 int ukuran = (int) Gambar.length();
                 icon = new ImageIcon(Gambar.getBytes(1, ukuran));
-                lblFoto.setIcon(icon);
+                PenampungFoto.setIcon(icon);
             }
         } catch (SQLException e) {
             System.out.println("Gambar tidak tampil " + e);
         }
-        showTable();
-        lblFoto.setVisible(true);
+
+        showTablePegawai();
+        PenampungFoto.setVisible(true);
     }//GEN-LAST:event_tblPegawaiMouseClicked
 
     public ResultSet selectPegawai() {
@@ -714,11 +1089,11 @@ public class Pegawai extends javax.swing.JFrame {
         return rs;
     }
 
-    private void btnHapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHapusMouseClicked
+    private void btnHapusPegawaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHapusPegawaiMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnHapusMouseClicked
+    }//GEN-LAST:event_btnHapusPegawaiMouseClicked
 
-    private void btnRubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRubahActionPerformed
+    private void btnRubahPegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRubahPegawaiActionPerformed
         // TODO add your handling code here:
         String id_pegawai, nama_pegawai, jenis_kelamin, tempat_lahir, alamat_kota, password, jabatan, no_telepon;
         Date tanggal_lahir = null;
@@ -738,7 +1113,7 @@ public class Pegawai extends javax.swing.JFrame {
             password = txtPassword.getText();
             jabatan = (String) cmbJabatan.getSelectedItem();
             no_telepon = txtNo_Telepon.getText();
-            if (!txtFoto.getText().equals("")) {
+            if (!txtFotoPegawi.getText().equals("")) {
                 ObjectOutputStream objectOutputStream = null;
                 ByteArrayOutputStream output = new ByteArrayOutputStream();
                 File img = new File(path);
@@ -778,7 +1153,7 @@ public class Pegawai extends javax.swing.JFrame {
                         case JOptionPane.YES_OPTION:
                             updatePegawai(id_pegawai, nama_pegawai, jenis_kelamin, tempat_lahir, tanggal_lahir, alamat_kota, password, jabatan, no_telepon, foto);
                             JOptionPane.showMessageDialog(null, "Data berhasil dirubah");
-                            clear();
+                            clearPegawai();
                             break;
                         case JOptionPane.NO_OPTION:
                             JOptionPane.showMessageDialog(null, "Data tidak dirubah");
@@ -790,8 +1165,8 @@ public class Pegawai extends javax.swing.JFrame {
             }
         } catch (Exception e) {
         }
-        showTable();
-    }//GEN-LAST:event_btnRubahActionPerformed
+        showTablePegawai();
+    }//GEN-LAST:event_btnRubahPegawaiActionPerformed
 
     public void updatePegawai(String id_pegawai, String nama_pegawai, String jenis_kelamin, String tempat_lahir, Date tanggal_lahir, String alamat_kota, String password, String jabatan, String no_telepon, byte[] foto) {
         try {
@@ -813,7 +1188,7 @@ public class Pegawai extends javax.swing.JFrame {
         }
     }
 
-    private void btnAttachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttachActionPerformed
+    private void btnAttachPegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttachPegawaiActionPerformed
         // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser(System.getProperty("user.home"));
         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -826,18 +1201,18 @@ public class Pegawai extends javax.swing.JFrame {
                 } else {
                     image = ImageIO.read(file);
                     icon = new ImageIcon(image);
-                    lblFoto.setIcon(icon);
+                    PenampungFoto.setIcon(icon);
                     path = file.getAbsolutePath();
-                    lblFoto.setVisible(true);
+                    PenampungFoto.setVisible(true);
                 }
             } catch (IOException ex) {
                 System.out.println("Gambar tidak berhasil dimuat " + ex);
             }
-            txtFoto.setText(file.getAbsolutePath());
+            txtFotoPegawi.setText(file.getAbsolutePath());
         }
-    }//GEN-LAST:event_btnAttachActionPerformed
+    }//GEN-LAST:event_btnAttachPegawaiActionPerformed
 
-    public void clear() {
+    public void clearPegawai() {
         txtID_Pegawai.setText("");
         txtNama_Pegawai.setText("");
         RbtnJenis_Kelamin.clearSelection();
@@ -846,19 +1221,20 @@ public class Pegawai extends javax.swing.JFrame {
         txtAlamat_Kota.setText("");
         cmbJabatan.setSelectedItem("");
         txtNo_Telepon.setText("");
-        txtPassword.setText("");
-        txtFoto.setText("");
-        lblFoto.setVisible(false);
-        btnRubah.setEnabled(false);
-        btnHapus.setEnabled(false);
-        btnSimpan.setEnabled(true);
+        lblPasswoard.setText("");
+        txtFotoPegawi.setText("");
+        ChangeForegroundPegawai();
+        PenampungFoto.setVisible(false);
+        btnRubahPegawai.setEnabled(false);
+        btnHapusPegawai.setEnabled(false);
+        btnSimpanPegawai.setEnabled(true);
     }
-    private void btnBaruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaruActionPerformed
+    private void btnBaruPegawiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaruPegawiActionPerformed
         // TODO add your handling code here:
-        clear();
-    }//GEN-LAST:event_btnBaruActionPerformed
+        clearPegawai();
+    }//GEN-LAST:event_btnBaruPegawiActionPerformed
 
-    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
+    private void btnCariPegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariPegawaiActionPerformed
         // TODO add your handling code here:
         String nama_pegawai = txtnama.getText();
         try {
@@ -897,13 +1273,14 @@ public class Pegawai extends javax.swing.JFrame {
         }
         txtnama.setText("");
 
-    }//GEN-LAST:event_btnCariActionPerformed
+    }//GEN-LAST:event_btnCariPegawaiActionPerformed
 
     private void txtnamaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtnamaMouseClicked
         // TODO add your handling code here:
-        btnCari.setEnabled(true);
-        btnSimpan.setEnabled(false);
-        clear();
+        btnCariPegawai.setEnabled(true);
+        btnSimpanPegawai.setEnabled(false);
+        txtnama.setText("");
+        clearPegawai();
     }//GEN-LAST:event_txtnamaMouseClicked
 
     private void txtnamaInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtnamaInputMethodTextChanged
@@ -912,20 +1289,25 @@ public class Pegawai extends javax.swing.JFrame {
 
     private void txtID_PegawaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtID_PegawaiMouseClicked
         // TODO add your handling code here:
-        btnSimpan.setEnabled(true);
-        btnBaru.setEnabled(true);
-        btnAttach.setEnabled(true);
-        btnCari.setEnabled(false);
+        btnSimpanPegawai.setEnabled(true);
+        btnBaruPegawi.setEnabled(true);
+        btnAttachPegawai.setEnabled(true);
+        btnCariPegawai.setEnabled(false);
+        clearPegawai();
+        lblTanggal.setText("");
+        lblPasswoard.setText("");
+        jLabel10.setText("");
+        txtnama.setText("");
     }//GEN-LAST:event_txtID_PegawaiMouseClicked
 
     private void txtnamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnamaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnamaActionPerformed
 
-    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+    private void ConstructorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConstructorMouseClicked
         // TODO add your handling code here:
-        lblFoto.setVisible(false);
-    }//GEN-LAST:event_jPanel1MouseClicked
+        PenampungFoto.setVisible(false);
+    }//GEN-LAST:event_ConstructorMouseClicked
 
     private void txtID_PegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID_PegawaiActionPerformed
         // TODO add your handling code here:
@@ -933,68 +1315,558 @@ public class Pegawai extends javax.swing.JFrame {
 
     private void txtNama_PegawaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNama_PegawaiMouseClicked
         // TODO add your handling code here:
-        btnSimpan.setEnabled(true);
-        btnBaru.setEnabled(true);
-        btnAttach.setEnabled(true);
-        btnCari.setEnabled(false);
+        btnSimpanPegawai.setEnabled(true);
+        btnBaruPegawi.setEnabled(true);
+        btnAttachPegawai.setEnabled(true);
+        btnCariPegawai.setEnabled(false);
     }//GEN-LAST:event_txtNama_PegawaiMouseClicked
 
     private void txtTempat_LahirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTempat_LahirMouseClicked
         // TODO add your handling code here:
-        btnSimpan.setEnabled(true);
-        btnBaru.setEnabled(true);
-        btnAttach.setEnabled(true);
-        btnCari.setEnabled(false);
+        btnSimpanPegawai.setEnabled(true);
+        btnBaruPegawi.setEnabled(true);
+        btnAttachPegawai.setEnabled(true);
+        btnCariPegawai.setEnabled(false);
     }//GEN-LAST:event_txtTempat_LahirMouseClicked
 
     private void jdcTanggal_LahirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jdcTanggal_LahirMouseClicked
         // TODO add your handling code here:
-        btnSimpan.setEnabled(true);
-        btnBaru.setEnabled(true);
-        btnAttach.setEnabled(true);
-        btnCari.setEnabled(false);
+        btnSimpanPegawai.setEnabled(true);
+        btnBaruPegawi.setEnabled(true);
+        btnAttachPegawai.setEnabled(true);
+        btnCariPegawai.setEnabled(false);
     }//GEN-LAST:event_jdcTanggal_LahirMouseClicked
 
     private void txtAlamat_KotaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAlamat_KotaMouseClicked
         // TODO add your handling code here:
-        btnSimpan.setEnabled(true);
-        btnBaru.setEnabled(true);
-        btnAttach.setEnabled(true);
-        btnCari.setEnabled(false);
+        btnSimpanPegawai.setEnabled(true);
+        btnBaruPegawi.setEnabled(true);
+        btnAttachPegawai.setEnabled(true);
+        btnCariPegawai.setEnabled(false);
     }//GEN-LAST:event_txtAlamat_KotaMouseClicked
 
     private void cmbJabatanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbJabatanMouseClicked
         // TODO add your handling code here:
-        btnSimpan.setEnabled(true);
-        btnBaru.setEnabled(true);
-        btnAttach.setEnabled(true);
-        btnCari.setEnabled(false);
+        btnSimpanPegawai.setEnabled(true);
+        btnBaruPegawi.setEnabled(true);
+        btnAttachPegawai.setEnabled(true);
+        btnCariPegawai.setEnabled(false);
     }//GEN-LAST:event_cmbJabatanMouseClicked
 
     private void txtNo_TeleponMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNo_TeleponMouseClicked
         // TODO add your handling code here:
-        btnSimpan.setEnabled(true);
-        btnBaru.setEnabled(true);
-        btnAttach.setEnabled(true);
-        btnCari.setEnabled(false);
+        btnSimpanPegawai.setEnabled(true);
+        btnBaruPegawi.setEnabled(true);
+        btnAttachPegawai.setEnabled(true);
+        btnCariPegawai.setEnabled(false);
     }//GEN-LAST:event_txtNo_TeleponMouseClicked
 
     private void txtPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPasswordMouseClicked
         // TODO add your handling code here:
-        btnSimpan.setEnabled(true);
-        btnBaru.setEnabled(true);
-        btnAttach.setEnabled(true);
-        btnCari.setEnabled(false);
+        btnSimpanPegawai.setEnabled(true);
+        btnBaruPegawi.setEnabled(true);
+        btnAttachPegawai.setEnabled(true);
+        btnCariPegawai.setEnabled(false);
+        lblPasswoard.setText("");
     }//GEN-LAST:event_txtPasswordMouseClicked
 
     private void txtID_PegawaiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtID_PegawaiMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_txtID_PegawaiMouseEntered
 
-    public void showTable() {
+    private void cmbJabatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbJabatanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbJabatanActionPerformed
+
+    private void txtFotoPegawiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFotoPegawiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFotoPegawiActionPerformed
+
+    private void txtAlamat_KotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlamat_KotaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAlamat_KotaActionPerformed
+
+    private void txtNo_TeleponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNo_TeleponActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNo_TeleponActionPerformed
+
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void txtTempat_LahirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTempat_LahirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTempat_LahirActionPerformed
+
+    private void txtNama_PegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNama_PegawaiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNama_PegawaiActionPerformed
+
+    private void txtCarimenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCarimenuMouseClicked
+        // TODO add your handling code here:
+        btnCariMenu.setEnabled(true);
+        btnSimpanMenu.setEnabled(false);
+        txtCarimenu.setText("");
+        txtCarimenu.setForeground(Color.BLACK);
+
+    }//GEN-LAST:event_txtCarimenuMouseClicked
+
+// -------------------------------------   codingan menu   ----------------------------------------------------    
+
+    private void btnCariMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariMenuActionPerformed
+        // TODO add your handling code here:
+        String menu = txtCarimenu.getText();
+        try {
+            com.mysql.jdbc.Statement statement = (com.mysql.jdbc.Statement) conn.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM menu where menu='" + menu + "'");
+            DefaultTableModel tbl = new DefaultTableModel();
+            tbl.addColumn("ID Menu");
+            tbl.addColumn("Menu");
+            tbl.addColumn("ID Jenis");
+            tbl.addColumn("Detail");
+            tbl.addColumn("Harga");
+
+            tblMenu.setModel(tbl);
+
+            while (rs.next()) {
+                tbl.addRow(new Object[]{
+                    rs.getString("id_menu"),
+                    rs.getString("menu"),
+                    rs.getString("id_jenis"),
+                    rs.getString("detail"),
+                    rs.getString("harga")});
+                tblMenu.setModel(tbl);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Data Yang Anda Cari Tidak Sesuai");
+        }
+        txtCarimenu.setText("");
+    }//GEN-LAST:event_btnCariMenuActionPerformed
+
+    private void txtID_MenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtID_MenuMouseClicked
+        // TODO add your handling code here:
+        clearmenu();
+        btnSimpanPegawai.setEnabled(true);
+        btnBaruPegawi.setEnabled(true);
+        btnCariPegawai.setEnabled(false);
+    }//GEN-LAST:event_txtID_MenuMouseClicked
+
+    private void btnSimpanMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanMenuActionPerformed
+        // TODO add your handling code here:
+        String id_menu, menu, id_jenis, detail, nilai;
+        int harga;
+        id_menu = txtID_Menu.getText();
+        menu = txtMenu.getText();
+        id_jenis = (String) cmbJenis.getSelectedItem();
+        nilai = txtHarga.getText();
+        detail = txtDetail.getText();
+        harga = Integer.parseInt(nilai);
+        try {
+            if (txtID_Menu.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "ID Menu Tidak Boleh Kosong");
+            } else if (txtMenu.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Menu Tidak Boleh Kosong");
+            } else if (cmbJenis.getSelectedItem().equals("")) {
+                JOptionPane.showMessageDialog(null, "ID Jenis Tidak Boleh Kosong");
+                //} else if (txtJenis.getText().equals("")) {
+                //  JOptionPane.showMessageDialog(null, "Jenis Tidak Boleh Kosong");
+            } else if (txtDetail.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Detail Tidak Boleh Kosong");
+            } else if (txtHarga.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Harga Tidak Boleh Kosong");
+            } else {
+                int opsi = JOptionPane.showConfirmDialog(null, "Apakah anda ingin menyimpan data ini ?", "Simpan Data", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                switch (opsi) {
+                    case JOptionPane.YES_OPTION:
+                        insertMenu(id_menu, menu, id_jenis, detail, harga);
+
+                        JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
+                        break;
+                    case JOptionPane.NO_OPTION:
+                        JOptionPane.showMessageDialog(null, "Data tidak disimpan");
+                        break;
+                }
+            }
+        } catch (Exception t) {
+            JOptionPane.showMessageDialog(null, "Data Gagal Disimpan!");
+        }
+        showTableMenu();
+
+        clearmenu();
+
+
+    }//GEN-LAST:event_btnSimpanMenuActionPerformed
+
+    private void btnHapusMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHapusMenuMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHapusMenuMouseClicked
+
+    private void btnHapusMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusMenuActionPerformed
+        // TODO add your handling code here:
+        String idMenu;
+        idMenu = txtID_Menu.getText();
+        int opsi = JOptionPane.showConfirmDialog(null, "Apakah anda ingin menghapus data ini ?", "Hapus Data", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        switch (opsi) {
+            case JOptionPane.YES_OPTION:
+                deleteMenu(idMenu);
+                JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
+                break;
+            case JOptionPane.NO_OPTION:
+                JOptionPane.showMessageDialog(null, "Data tidak dihapus");
+                break;
+        }
+        showTableMenu();
+        clearmenu();
+
+    }//GEN-LAST:event_btnHapusMenuActionPerformed
+
+    private void btnRubahMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRubahMenuActionPerformed
+        // TODO add your handling code here:
+        String id_menu, menu, id_jenis, jenis, detail;
+        int harga = 0;
+        id_menu = txtID_Menu.getText();
+        menu = txtMenu.getText();
+        id_jenis = (String) cmbJenis.getSelectedItem();
+        //jenis = txtJenis.getText();
+        detail = txtDetail.getText();
+        //        harga = txtHarga.getText();
+
+        try {
+            if (txtID_Menu.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "ID Menu Tidak Boleh Kosong");
+            } else if (txtMenu.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Menu Tidak Boleh Kosong");
+            } else if (cmbJenis.getSelectedItem().equals("")) {
+                JOptionPane.showMessageDialog(null, "ID Jenis Tidak Boleh Kosong");
+                //} else if (txtJenis.getText().equals("")) {
+                //  JOptionPane.showMessageDialog(null, "Jenis Tidak Boleh Kosong");
+            } else if (txtDetail.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Detail Tidak Boleh Kosong");
+            } else if (txtHarga.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Harga Tidak Boleh Kosong");
+            } else {
+                int opsi = JOptionPane.showConfirmDialog(null, "Apakah anda ingin merubah data ini ?", "Rubah Data", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                switch (opsi) {
+                    case JOptionPane.YES_OPTION:
+                        updateMenu(id_menu, menu, id_jenis, detail, harga);
+
+                        JOptionPane.showMessageDialog(null, "Data berhasil dirubah");
+                        break;
+                    case JOptionPane.NO_OPTION:
+                        JOptionPane.showMessageDialog(null, "Data tidak dirubah");
+                        break;
+                }
+            }
+        } catch (Exception t) {
+            JOptionPane.showMessageDialog(null, "Data Gagal Dirubah!");
+        }
+        showTableMenu();
+        clearmenu();
+    }//GEN-LAST:event_btnRubahMenuActionPerformed
+
+    private void btnBaruMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaruMenuActionPerformed
+        // TODO add your handling code here:
+        clearmenu();
+    }//GEN-LAST:event_btnBaruMenuActionPerformed
+
+    private void btnPrintMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintMenuActionPerformed
+        // TODO add your handling code here:
+        //      Connections.Koneksi.print();
+    }//GEN-LAST:event_btnPrintMenuActionPerformed
+
+    private void tblMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMenuMouseClicked
+        // TODO add your handling code here:
+        ChangeForegroundMenu();
+        int row = tblMenu.getSelectedRow();
+        txtID_Menu.setText(tblMenu.getValueAt(row, 0).toString());
+        txtMenu.setText(tblMenu.getValueAt(row, 1).toString());
+        cmbJenis.setSelectedItem(tblMenu.getValueAt(row, 2).toString());
+        //        txtJenis.setText(tblMenu.getValueAt(row, ).toString());
+        txtDetail.setText(tblMenu.getValueAt(row, 3).toString());
+        txtHarga.setText(tblMenu.getValueAt(row, 4).toString());
+        btnRubahMenu.setEnabled(true);
+        btnHapusMenu.setEnabled(true);
+        btnSimpanMenu.setEnabled(false);
+        btnBaruMenu.setEnabled(true);
+        btnCariMenu.setEnabled(false);
+        showTableMenu();
+    }//GEN-LAST:event_tblMenuMouseClicked
+
+    public void ChangeForegroundPegawai() {
+        txtnama.setForeground(Color.BLACK);
+        txtNama_Pegawai.setForeground(Color.BLACK);
+        txtID_Pegawai.setForeground(Color.BLACK);
+        txtPassword.setForeground(Color.BLACK);
+        txtTempat_Lahir.setForeground(Color.BLACK);
+        txtAlamat_Kota.setForeground(Color.BLACK);
+        txtNo_Telepon.setForeground(Color.BLACK);
+
+    }
+
+//    --------- code btn yang ada pada BackMenu -------
+
+    private void txtID_MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID_MenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtID_MenuActionPerformed
+
+    private void btnPegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPegawaiActionPerformed
+        // TODO add your handling code here:
+        setBack(btnPegawai);
+        resetBackground(btnMenu);
+        resetBackground(btnPemesanan);
+        resetBackground(btnPembayaran);
+        resetBackground(btnJenisMenu);
+        resetBackground(btnLaporan);
+
+        BackFieldPegawai.setVisible(true);
+        BackFieldMenu.setVisible(false);
+        BackFieldJenisMenu.setVisible(false);
+    }//GEN-LAST:event_btnPegawaiActionPerformed
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        // TODO add your handling code here:
+        setBack(btnMenu);
+        resetBackground(btnPegawai);
+        resetBackground(btnPemesanan);
+        resetBackground(btnPembayaran);
+        resetBackground(btnJenisMenu);
+        resetBackground(btnLaporan);
+
+        BackFieldPegawai.setVisible(false);
+        BackFieldMenu.setVisible(true);
+        BackFieldJenisMenu.setVisible(false);
+    }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void btnPemesananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPemesananActionPerformed
+        // TODO add your handling code here:
+        setBack(btnPemesanan);
+        resetBackground(btnPegawai);
+        resetBackground(btnMenu);
+        resetBackground(btnPembayaran);
+        resetBackground(btnJenisMenu);
+        resetBackground(btnLaporan);
+
+
+    }//GEN-LAST:event_btnPemesananActionPerformed
+
+    private void btnJenisMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJenisMenuActionPerformed
+        // TODO add your handling code here:
+        setBack(btnJenisMenu);
+        resetBackground(btnPegawai);
+        resetBackground(btnPemesanan);
+        resetBackground(btnPembayaran);
+        resetBackground(btnMenu);
+        resetBackground(btnLaporan);
+
+        BackFieldPegawai.setVisible(false);
+        BackFieldMenu.setVisible(false);
+        BackFieldJenisMenu.setVisible(true);
+    }//GEN-LAST:event_btnJenisMenuActionPerformed
+
+    private void btnPembayaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPembayaranActionPerformed
+        // TODO add your handling code here:
+        setBack(btnPembayaran);
+        resetBackground(btnPegawai);
+        resetBackground(btnPemesanan);
+        resetBackground(btnMenu);
+        resetBackground(btnJenisMenu);
+        resetBackground(btnLaporan);
+
+    }//GEN-LAST:event_btnPembayaranActionPerformed
+
+    private void btnLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaporanActionPerformed
+        // TODO add your handling code here:
+        setBack(btnLaporan);
+        resetBackground(btnPegawai);
+        resetBackground(btnMenu);
+        resetBackground(btnPembayaran);
+        resetBackground(btnJenisMenu);
+        resetBackground(btnPemesanan);
+
+    }//GEN-LAST:event_btnLaporanActionPerformed
+
+    private void txtHargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHargaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHargaActionPerformed
+
+    private void txtMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMenuMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtMenuMouseClicked
+
+    private void txtjenisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtjenisMouseClicked
+        // TODO add your handling code here:
+        btnCariJenisMenu.setEnabled(true);
+        btnSimpanJenisMenu.setEnabled(false);
+        clearJenisMenu();
+    }//GEN-LAST:event_txtjenisMouseClicked
+
+    private void txtjenisInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtjenisInputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtjenisInputMethodTextChanged
+
+    private void txtjenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtjenisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtjenisActionPerformed
+
+//----------- code form jenis menu --------------
+    
+    private void btnCariJenisMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariJenisMenuActionPerformed
+        // TODO add your handling code here:
+        String Jenis = txtjenis.getText();
+        try {
+            com.mysql.jdbc.Statement statement = (com.mysql.jdbc.Statement) conn.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM jenis_menu where jenis ='" + Jenis + "'");
+            DefaultTableModel tbl = new DefaultTableModel();
+            tbl.addColumn("ID Jenis");
+            tbl.addColumn("Jenis");
+            tbl.addColumn("Detail Jenis");
+
+            tblJenisMenu.setModel(tbl);
+
+            while (rs.next()) {
+                tbl.addRow(new Object[]{
+                    rs.getString("id_jenis"),
+                    rs.getString("jenis"),
+                    rs.getString("detail_jenis")});
+                tblJenisMenu.setModel(tbl);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Data Yang Anda Cari Tidak Sesuai");
+        }
+        txtjenis.setText("");
+    }//GEN-LAST:event_btnCariJenisMenuActionPerformed
+
+    private void txtID_JenisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtID_JenisMouseClicked
+        // TODO add your handling code here:
+        btnSimpanJenisMenu.setEnabled(true);
+        btnBaruJenisMenu.setEnabled(true);
+        btnCariJenisMenu.setEnabled(false);
+    }//GEN-LAST:event_txtID_JenisMouseClicked
+
+    private void tblJenisMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblJenisMenuMouseClicked
+        // TODO add your handling code here:
+        ChangeforegroundJenisMenu();
+        int row = tblJenisMenu.getSelectedRow();
+        txtID_Jenis.setText(tblJenisMenu.getValueAt(row, 0).toString());
+        txtNamaJenis.setText(tblJenisMenu.getValueAt(row, 1).toString());
+        txtDetail_Jenis.setText(tblJenisMenu.getValueAt(row, 2).toString());
+        btnRubahJenisMenu.setEnabled(true);
+        btnHapusJenisMenu.setEnabled(true);
+        btnSimpanJenisMenu.setEnabled(false);
+        btnBaruJenisMenu.setEnabled(true);
+        btnCariJenisMenu.setEnabled(false);
+        showTableJenisMenu();
+    }//GEN-LAST:event_tblJenisMenuMouseClicked
+
+    private void btnBaruJenisMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaruJenisMenuActionPerformed
+        // TODO add your handling code here:
+        clearJenisMenu();
+    }//GEN-LAST:event_btnBaruJenisMenuActionPerformed
+
+    private void btnSimpanJenisMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanJenisMenuActionPerformed
+        // TODO add your handling code here:
+        String id_jenis, jenis, detail_jenis;
+        id_jenis = txtID_Jenis.getText();
+        jenis = txtNamaJenis.getText();
+        detail_jenis = txtDetail_Jenis.getText();
+
+        try {
+            if (txtID_Jenis.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "ID Jenis Tidak Boleh Kosong");
+            } else if (txtNamaJenis.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Jenis Tidak Boleh Kosong");
+            } else if (txtDetail_Jenis.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Detail Jenis Tidak Boleh Kosong");
+            } else {
+                int opsi = JOptionPane.showConfirmDialog(null, "Apakah anda ingin menyimpan data ini ?", "Simpan Data", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                switch (opsi) {
+                    case JOptionPane.YES_OPTION:
+                        insertJenisMenu(id_jenis, jenis, detail_jenis);
+                        JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
+                        break;
+                    case JOptionPane.NO_OPTION:
+                        JOptionPane.showMessageDialog(null, "Data tidak disimpan");
+                        break;
+                }
+            }
+        } catch (Exception t) {
+            JOptionPane.showMessageDialog(null, "Data Gagal Disimpan!");
+        }
+        showTableJenisMenu();
+        clearJenisMenu();
+    }//GEN-LAST:event_btnSimpanJenisMenuActionPerformed
+
+    private void btnHapusJenisMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHapusJenisMenuMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHapusJenisMenuMouseClicked
+
+    private void btnHapusJenisMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusJenisMenuActionPerformed
+        // TODO add your handling code here:
+        String idJenisMenu;
+        idJenisMenu = txtID_Jenis.getText();
+        int opsi = JOptionPane.showConfirmDialog(null, "Apakah anda ingin menghapus data ini ?", "Hapus Data", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        switch (opsi) {
+            case JOptionPane.YES_OPTION:
+                deleteJenisMenu(idJenisMenu);
+                JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
+                break;
+            case JOptionPane.NO_OPTION:
+                JOptionPane.showMessageDialog(null, "Data tidak dihapus");
+                break;
+        }
+        showTableJenisMenu();
+        clearJenisMenu();
+    }//GEN-LAST:event_btnHapusJenisMenuActionPerformed
+
+    private void btnRubahJenisMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRubahJenisMenuActionPerformed
+        // TODO add your handling code here:
+        String id_jenis, jenis, detail_jenis;
+
+        id_jenis = txtID_Jenis.getText();
+        jenis = txtNamaJenis.getText();
+        detail_jenis = txtDetail_Jenis.getText();
+
+        try {
+            if (txtID_Jenis.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "ID Jenis Tidak Boleh Kosong");
+            } else if (txtNamaJenis.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Jenis Tidak Boleh Kosong");
+            } else if (txtDetail_Jenis.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Detail Jenis Tidak Boleh Kosong");
+            } else {
+                int opsi = JOptionPane.showConfirmDialog(null, "Apakah anda ingin merubah data ini ?", "Rubah Data", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                switch (opsi) {
+                    case JOptionPane.YES_OPTION:
+                        updateJenisMenu(id_jenis, jenis, detail_jenis);
+                        JOptionPane.showMessageDialog(null, "Data berhasil dirubah");
+                        break;
+                    case JOptionPane.NO_OPTION:
+                        JOptionPane.showMessageDialog(null, "Data tidak dirubah");
+                        break;
+                }
+            }
+        } catch (Exception t) {
+            JOptionPane.showMessageDialog(null, "Data Gagal Dirubah!");
+        }
+        showTableJenisMenu();
+        clearJenisMenu();
+    }//GEN-LAST:event_btnRubahJenisMenuActionPerformed
+
+    private void btnPrintJenisMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintJenisMenuActionPerformed
+        // TODO add your handling code here:
+        //        Connections.Koneksi.print();
+    }//GEN-LAST:event_btnPrintJenisMenuActionPerformed
+
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnLogOutActionPerformed
+
+//    ------- codingan form menu --------
+    public void showTablePegawai() {
         try {
             tbmPegawai = new DefaultTableModel(new String[]{"ID Pegawai", "Nama Pegawai", "Jenis Kelamin", "Tempat Lahir", "Tanggal Lahir", "Alamat (Kota)", "Jabatan", "No Telepon", "Password", "Foto"}, 0);
-            ResultSet rs;
             rs = selectPegawai();
             while (rs.next()) {
                 tbmPegawai.addRow(new Object[]{
@@ -1013,6 +1885,211 @@ public class Pegawai extends javax.swing.JFrame {
             Logger.getLogger(Pegawai.class.getName()).log(Level.SEVERE, null, ex);
         }
         tblPegawai.setModel(tbmPegawai);
+    }
+
+    public void updateMenu(String id_menu, String menu, String id_jenis, String detail, int harga) {
+        try {
+            String sql = "UPDATE menu SET menu=?, id_jenis=?, detail=?, detail=?, harga=? WHERE id_menu=?";
+            pst = conn.prepareStatement(sql);
+            pst.setString(5, id_menu);
+            pst.setString(1, menu);
+            pst.setString(2, id_jenis);
+            pst.setString(3, detail);
+            pst.setInt(4, harga);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+    }
+
+    public void deleteMenu(String idMenu) {
+        try {
+            String sql = "DELETE FROM menu WHERE id_menu =?";
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, idMenu);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void insertMenu(String id_menu, String menu, String id_jenis, String detail, int harga) {
+        try {
+            String sql = "INSERT INTO menu (id_menu, menu, id_jenis, detail, harga) VALUES (?,?,?,?,?)";
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, id_menu);
+            pst.setString(2, menu);
+            pst.setString(3, id_jenis);
+            pst.setString(4, detail);
+            pst.setInt(5, harga);
+//            pst.setString(2, menu);
+            pst.execute();
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+    }
+
+    public void showTableMenu() {
+        try {
+            tbmMenu = new DefaultTableModel(new String[]{"ID Menu", "Menu", "ID Jenis", "Detail", "Harga"}, 0);
+            ResultSet rs;
+            rs = selectMenu();
+            while (rs.next()) {
+                tbmMenu.addRow(new Object[]{
+                    rs.getString("id_menu"),
+                    rs.getString("menu"),
+                    rs.getString("id_jenis"),
+                    rs.getString("detail"),
+                    rs.getString("harga")});
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tblMenu.setModel(tbmMenu);
+    }
+
+    public void tampil_combo() throws SQLException {
+        try {
+            String query = "SELECT * FROM jenis_menu";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                cmbJenis.addItem(rs.getString("id_jenis"));
+            }
+            rs.last();
+            int jumlahdata = rs.getRow();
+            rs.first();
+        } catch (SQLException ex) {
+            Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void clearmenu() {
+        txtID_Menu.setText("");
+        txtMenu.setText("");
+        cmbJenis.setSelectedItem("");
+        txtCarimenu.setText("");
+        //txtJenis.setText("");
+        txtDetail.setText("");
+        txtHarga.setText("");
+        btnRubahMenu.setEnabled(false);
+        btnHapusMenu.setEnabled(false);
+        btnSimpanMenu.setEnabled(true);
+        ChangeForegroundMenu();
+    }
+
+    public void ChangeForegroundMenu() {
+        txtMenu.setForeground(Color.BLACK);
+        txtID_Menu.setForeground(Color.BLACK);
+        txtDetail.setForeground(Color.BLACK);
+        txtCarimenu.setForeground(Color.BLACK);
+        txtHarga.setForeground(Color.BLACK);
+
+    }
+
+    public ResultSet selectMenu() {
+        try {
+            String sql = "SELECT * FROM menu";
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rs;
+    }
+    
+//    ------ code jenis menu ------------
+    
+      public void clearJenisMenu() {
+        txtID_Jenis.setText("");
+        txtNamaJenis.setText("");
+        txtjenis.setText("");
+        txtDetail_Jenis.setText("");
+        ChangeforegroundJenisMenu();
+        btnRubahJenisMenu.setEnabled(false);
+        btnHapusJenisMenu.setEnabled(false);
+        btnSimpanJenisMenu.setEnabled(true);
+    }
+    
+    public void showTableJenisMenu() {
+        try {
+            tbmJenisMenu = new DefaultTableModel(new String[]{"ID Jenis", "Jenis", "Detail Jenis"}, 0);
+            ResultSet rs;
+            rs = selectJenisMenu();
+            while (rs.next()) {
+                tbmJenisMenu.addRow(new Object[]{
+                    rs.getString("id_jenis"),
+                    rs.getString("jenis"),
+                    rs.getString("detail_jenis")});
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JenisMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tblJenisMenu.setModel(tbmJenisMenu);
+    }  
+    
+    public void deleteJenisMenu(String idJenisMenu) {
+        try {
+            String sql = "DELETE FROM jenis_menu WHERE id_jenis =?";
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, idJenisMenu);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(JenisMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void insertJenisMenu(String id_jenis, String jenis, String detail_jenis) {
+        try {
+            String sql = "INSERT INTO jenis_menu (id_jenis, jenis, detail_jenis) VALUES (?,?,?)";
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, id_jenis);
+            pst.setString(2, jenis);
+            pst.setString(3, detail_jenis);
+            pst.execute();
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+    }
+
+    public ResultSet selectJenisMenu() {
+        try {
+            String sql = "SELECT * FROM jenis_menu";
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rs;
+    }
+
+    public void updateJenisMenu(String id_jenis, String jenis, String detail_jenis) {
+        try {
+            String sql = "UPDATE jenis_menu SET jenis=?, detail_jenis=? WHERE id_jenis=?";
+            pst = conn.prepareStatement(sql);
+            pst.setString(3, id_jenis);
+            pst.setString(1, jenis);
+            pst.setString(2, detail_jenis);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+    }
+    public void ChangeforegroundJenisMenu(){
+        txtjenis.setForeground(Color.BLACK);
+        txtID_Jenis.setForeground(Color.BLACK);
+        txtNamaJenis.setForeground(Color.BLACK);
+        txtDetail_Jenis.setForeground(Color.BLACK);
+    }
+      
+    public void setBack(JButton sb) {
+        sb.setBackground(new java.awt.Color(0, 179, 216, 80));
+        sb.setForeground(new java.awt.Color(153, 153, 153));
+    }
+
+    public void resetBackground(JButton rb) {
+        rb.setBackground(new java.awt.Color(153, 153, 153));
+        rb.setForeground(Color.WHITE);
     }
 
     /**
@@ -1051,47 +2128,78 @@ public class Pegawai extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Bacground;
+    private javax.swing.JPanel BackFieldJenisMenu;
+    private javax.swing.JPanel BackFieldMenu;
+    private javax.swing.JPanel BackFieldPegawai;
+    private javax.swing.JPanel BackMenu;
+    private javax.swing.JPanel Constructor;
+    private javax.swing.JLabel LogoMenu;
+    private javax.swing.JLabel PenampungFoto;
     private javax.swing.ButtonGroup RbtnJenis_Kelamin;
     private javax.swing.JRadioButton RbtnLaki_Laki;
     private javax.swing.JRadioButton RbtnPerempuan;
-    private javax.swing.JButton btnAttach;
-    private javax.swing.JButton btnBaru;
-    private javax.swing.JButton btnCari;
-    private javax.swing.JButton btnHapus;
-    private javax.swing.JButton btnJenis_Menu;
+    private javax.swing.JPanel UiBack;
+    private javax.swing.JButton btnAttachPegawai;
+    private javax.swing.JButton btnBaruJenisMenu;
+    private javax.swing.JButton btnBaruMenu;
+    private javax.swing.JButton btnBaruPegawi;
+    private javax.swing.JButton btnCariJenisMenu;
+    private javax.swing.JButton btnCariMenu;
+    private javax.swing.JButton btnCariPegawai;
+    private javax.swing.JButton btnHapusJenisMenu;
+    private javax.swing.JButton btnHapusMenu;
+    private javax.swing.JButton btnHapusPegawai;
+    private javax.swing.JButton btnJenisMenu;
     private javax.swing.JButton btnLaporan;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnPegawai;
     private javax.swing.JButton btnPembayaran;
     private javax.swing.JButton btnPemesanan;
-    private javax.swing.JButton btnRubah;
-    private javax.swing.JButton btnSimpan;
+    private javax.swing.JButton btnPrintJenisMenu;
+    private javax.swing.JButton btnPrintMenu;
+    private javax.swing.JButton btnRubahJenisMenu;
+    private javax.swing.JButton btnRubahMenu;
+    private javax.swing.JButton btnRubahPegawai;
+    private javax.swing.JButton btnSimpanJenisMenu;
+    private javax.swing.JButton btnSimpanMenu;
+    private javax.swing.JButton btnSimpanPegawai;
     private javax.swing.JComboBox<String> cmbJabatan;
+    private javax.swing.JComboBox<String> cmbJenis;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private com.toedter.calendar.JDateChooser jdcTanggal_Lahir;
-    private javax.swing.JLabel lblFoto;
+    private javax.swing.JLabel lblPasswoard;
+    private javax.swing.JLabel lblTanggal;
+    private javax.swing.JTable tblJenisMenu;
+    private javax.swing.JTable tblMenu;
     private javax.swing.JTable tblPegawai;
     private javax.swing.JTextField txtAlamat_Kota;
-    private javax.swing.JTextField txtFoto;
+    private javax.swing.JTextField txtCarimenu;
+    private javax.swing.JTextArea txtDetail;
+    private javax.swing.JTextArea txtDetail_Jenis;
+    private javax.swing.JTextField txtFotoPegawi;
+    private javax.swing.JTextField txtHarga;
+    private javax.swing.JTextField txtID_Jenis;
+    private javax.swing.JTextField txtID_Menu;
     private javax.swing.JTextField txtID_Pegawai;
+    private javax.swing.JTextField txtMenu;
+    private javax.swing.JTextField txtNamaJenis;
     private javax.swing.JTextField txtNama_Pegawai;
     private javax.swing.JTextField txtNo_Telepon;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtTempat_Lahir;
+    private javax.swing.JTextField txtjenis;
     private javax.swing.JTextField txtnama;
     // End of variables declaration//GEN-END:variables
 }
