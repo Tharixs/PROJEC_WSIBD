@@ -161,7 +161,6 @@ public class Pegawai extends javax.swing.JFrame {
         btnMenu = new javax.swing.JButton();
         btnLaporan = new javax.swing.JButton();
         btnJenisMenu = new javax.swing.JButton();
-        btnPemesanan = new javax.swing.JButton();
         btnPembayaran = new javax.swing.JButton();
         BackFieldMenu = new javax.swing.JPanel();
         txtCarimenu = new javax.swing.JTextField();
@@ -461,10 +460,10 @@ public class Pegawai extends javax.swing.JFrame {
             }
         });
         txtnama.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txtnamaInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         txtnama.addActionListener(new java.awt.event.ActionListener() {
@@ -535,7 +534,7 @@ public class Pegawai extends javax.swing.JFrame {
                 btnLaporanActionPerformed(evt);
             }
         });
-        BackMenu.add(btnLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 314, 46));
+        BackMenu.add(btnLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 314, 46));
 
         btnJenisMenu.setBackground(new java.awt.Color(153, 153, 153));
         btnJenisMenu.setFont(new java.awt.Font("Garamond", 0, 30)); // NOI18N
@@ -548,17 +547,6 @@ public class Pegawai extends javax.swing.JFrame {
         });
         BackMenu.add(btnJenisMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 314, 46));
 
-        btnPemesanan.setBackground(new java.awt.Color(153, 153, 153));
-        btnPemesanan.setFont(new java.awt.Font("Garamond", 0, 30)); // NOI18N
-        btnPemesanan.setForeground(new java.awt.Color(255, 255, 255));
-        btnPemesanan.setText("Pemesanan");
-        btnPemesanan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPemesananActionPerformed(evt);
-            }
-        });
-        BackMenu.add(btnPemesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 314, 46));
-
         btnPembayaran.setBackground(new java.awt.Color(153, 153, 153));
         btnPembayaran.setFont(new java.awt.Font("Garamond", 0, 30)); // NOI18N
         btnPembayaran.setForeground(new java.awt.Color(255, 255, 255));
@@ -568,7 +556,7 @@ public class Pegawai extends javax.swing.JFrame {
                 btnPembayaranActionPerformed(evt);
             }
         });
-        BackMenu.add(btnPembayaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 314, 46));
+        BackMenu.add(btnPembayaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 314, 46));
 
         Constructor.add(BackMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 32, 372, 705));
 
@@ -743,10 +731,10 @@ public class Pegawai extends javax.swing.JFrame {
             }
         });
         txtjenis.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txtjenisInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         txtjenis.addActionListener(new java.awt.event.ActionListener() {
@@ -924,6 +912,31 @@ public class Pegawai extends javax.swing.JFrame {
         clearPegawai();
     }//GEN-LAST:event_btnHapusPegawaiActionPerformed
 
+    private void autoNumber(JTextField f1) {
+        String id_pegawai = "A0";
+        int i = 0;
+        try {
+//            conn = Connections.Koneksi.cekKoneksi();
+            String sql = "SELECT * FROM pegawai";
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+//            ResultSet rs = conn.(id_pegawai);
+
+            while (rs.next()) {
+                id_pegawai = rs.getString("id_pegawai");
+            }
+            id_pegawai = id_pegawai.substring(1);
+            i = Integer.parseInt(id_pegawai) + 1;
+            id_pegawai = "00" + i;
+            id_pegawai = "A0" + id_pegawai.substring(id_pegawai.length() - 2);
+            f1.setText(id_pegawai);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Error pada ID Pegawai");
+            System.out.println(e.getMessage());
+        }
+    }
+    
     public void deletePegawai(String idPegawai) {
         try {
             String sql = "DELETE FROM pegawai WHERE id_pegawai =?";
@@ -1294,6 +1307,7 @@ public class Pegawai extends javax.swing.JFrame {
         btnAttachPegawai.setEnabled(true);
         btnCariPegawai.setEnabled(false);
         clearPegawai();
+        autoNumber(txtID_Pegawai);
         lblTanggal.setText("");
         lblPasswoard.setText("");
         jLabel10.setText("");
@@ -1613,7 +1627,6 @@ public class Pegawai extends javax.swing.JFrame {
         // TODO add your handling code here:
         setBack(btnPegawai);
         resetBackground(btnMenu);
-        resetBackground(btnPemesanan);
         resetBackground(btnPembayaran);
         resetBackground(btnJenisMenu);
         resetBackground(btnLaporan);
@@ -1627,7 +1640,6 @@ public class Pegawai extends javax.swing.JFrame {
         // TODO add your handling code here:
         setBack(btnMenu);
         resetBackground(btnPegawai);
-        resetBackground(btnPemesanan);
         resetBackground(btnPembayaran);
         resetBackground(btnJenisMenu);
         resetBackground(btnLaporan);
@@ -1637,23 +1649,10 @@ public class Pegawai extends javax.swing.JFrame {
         BackFieldJenisMenu.setVisible(false);
     }//GEN-LAST:event_btnMenuActionPerformed
 
-    private void btnPemesananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPemesananActionPerformed
-        // TODO add your handling code here:
-        setBack(btnPemesanan);
-        resetBackground(btnPegawai);
-        resetBackground(btnMenu);
-        resetBackground(btnPembayaran);
-        resetBackground(btnJenisMenu);
-        resetBackground(btnLaporan);
-
-
-    }//GEN-LAST:event_btnPemesananActionPerformed
-
     private void btnJenisMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJenisMenuActionPerformed
         // TODO add your handling code here:
         setBack(btnJenisMenu);
         resetBackground(btnPegawai);
-        resetBackground(btnPemesanan);
         resetBackground(btnPembayaran);
         resetBackground(btnMenu);
         resetBackground(btnLaporan);
@@ -1667,7 +1666,6 @@ public class Pegawai extends javax.swing.JFrame {
         // TODO add your handling code here:
         setBack(btnPembayaran);
         resetBackground(btnPegawai);
-        resetBackground(btnPemesanan);
         resetBackground(btnMenu);
         resetBackground(btnJenisMenu);
         resetBackground(btnLaporan);
@@ -1681,8 +1679,7 @@ public class Pegawai extends javax.swing.JFrame {
         resetBackground(btnMenu);
         resetBackground(btnPembayaran);
         resetBackground(btnJenisMenu);
-        resetBackground(btnPemesanan);
-
+        
     }//GEN-LAST:event_btnLaporanActionPerformed
 
     private void txtHargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHargaActionPerformed
@@ -2156,7 +2153,6 @@ public class Pegawai extends javax.swing.JFrame {
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnPegawai;
     private javax.swing.JButton btnPembayaran;
-    private javax.swing.JButton btnPemesanan;
     private javax.swing.JButton btnPrintJenisMenu;
     private javax.swing.JButton btnPrintMenu;
     private javax.swing.JButton btnRubahJenisMenu;
