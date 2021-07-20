@@ -144,7 +144,7 @@ public class Laporan extends javax.swing.JFrame {
             }
            
            //Sesuai kan dengan tempat laptop anda
-           String file = "D:\\PROJEC_WSIBD\\MieGacoanJember\\src\\Report\\ReportPegawai.jrxml"; 
+           String file = "C:\\Users\\kelvin\\Documents\\GitHub Desktop\\project\\PROJEC_WSIBD\\MieGacoanJember\\src\\Report\\ReportPegawai.jrxml"; 
            
         try {
             JasperReport jr = JasperCompileManager.compileReport(file);
