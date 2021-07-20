@@ -9,7 +9,9 @@ import Connections.Koneksi;
 import com.mysql.jdbc.Connection;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -106,7 +108,7 @@ public class Pegawai extends javax.swing.JFrame {
         btnRubahMenu.setEnabled(false);
         btnBaruMenu.setEnabled(false);
         btnPrintMenu.setEnabled(true);
-        
+
 //------------------------------code jenis menu -----------------------        
         btnCariJenisMenu.setEnabled(true);
         btnSimpanJenisMenu.setEnabled(false);
@@ -116,6 +118,8 @@ public class Pegawai extends javax.swing.JFrame {
         btnPrintJenisMenu.setEnabled(true);
 
     }
+
+    int deff = 0; // ---------- digunakan untuk clik ------------
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -143,13 +147,12 @@ public class Pegawai extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPegawai = new javax.swing.JTable();
+        panelFoto = new javax.swing.JPanel();
+        PenampungFoto = new javax.swing.JLabel();
         btnBaruPegawi = new javax.swing.JButton();
         btnSimpanPegawai = new javax.swing.JButton();
         btnHapusPegawai = new javax.swing.JButton();
         btnRubahPegawai = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        PenampungFoto = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         txtFotoPegawi = new javax.swing.JTextField();
         btnAttachPegawai = new javax.swing.JButton();
         txtnama = new javax.swing.JTextField();
@@ -221,14 +224,6 @@ public class Pegawai extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtID_PegawaiMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtID_PegawaiMouseEntered(evt);
-            }
-        });
-        txtID_Pegawai.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtID_PegawaiActionPerformed(evt);
-            }
         });
         BackFieldPegawai.add(txtID_Pegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 524, 33));
 
@@ -279,6 +274,11 @@ public class Pegawai extends javax.swing.JFrame {
         RbtnPerempuan.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         RbtnPerempuan.setForeground(new java.awt.Color(153, 153, 153));
         RbtnPerempuan.setText("Perempuan");
+        RbtnPerempuan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RbtnPerempuanActionPerformed(evt);
+            }
+        });
         BackFieldPegawai.add(RbtnPerempuan, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
 
         RbtnJenis_Kelamin.add(RbtnLaki_Laki);
@@ -370,7 +370,15 @@ public class Pegawai extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblPegawai);
 
-        BackFieldPegawai.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 890, 280));
+        BackFieldPegawai.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 890, 250));
+
+        panelFoto.setLayout(new java.awt.GridLayout(1, 0));
+
+        PenampungFoto.setBackground(new java.awt.Color(153, 153, 153));
+        PenampungFoto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        panelFoto.add(PenampungFoto);
+
+        BackFieldPegawai.add(panelFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, 160, 150));
 
         btnBaruPegawi.setBackground(new java.awt.Color(236, 0, 141));
         btnBaruPegawi.setFont(new java.awt.Font("Garamond", 1, 15)); // NOI18N
@@ -421,19 +429,9 @@ public class Pegawai extends javax.swing.JFrame {
         });
         BackFieldPegawai.add(btnRubahPegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 330, 187, 33));
 
-        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255,30));
-
-        PenampungFoto.setBackground(new java.awt.Color(255, 255, 255,180));
-        PenampungFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jScrollPane2.setViewportView(PenampungFoto);
-
-        BackFieldPegawai.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, 160, 150));
-
-        jLabel10.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel10.setText("Foto");
-        BackFieldPegawai.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(611, 170, 60, 30));
-
+        txtFotoPegawi.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        txtFotoPegawi.setForeground(new java.awt.Color(153, 153, 153));
+        txtFotoPegawi.setText("Masukkan Foto Anda");
         txtFotoPegawi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFotoPegawiActionPerformed(evt);
@@ -457,18 +455,6 @@ public class Pegawai extends javax.swing.JFrame {
         txtnama.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtnamaMouseClicked(evt);
-            }
-        });
-        txtnama.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                txtnamaInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-        });
-        txtnama.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnamaActionPerformed(evt);
             }
         });
         BackFieldPegawai.add(txtnama, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 450, 33));
@@ -731,10 +717,10 @@ public class Pegawai extends javax.swing.JFrame {
             }
         });
         txtjenis.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txtjenisInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         txtjenis.addActionListener(new java.awt.event.ActionListener() {
@@ -936,7 +922,7 @@ public class Pegawai extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }
-    
+
     public void deletePegawai(String idPegawai) {
         try {
             String sql = "DELETE FROM pegawai WHERE id_pegawai =?";
@@ -1047,6 +1033,7 @@ public class Pegawai extends javax.swing.JFrame {
         // TODO add your handling code here:
 //        ChangeForegroundPegawai();
         clearPegawai();
+        PenampungFoto.setText("");
         int row = tblPegawai.getSelectedRow();
         String jenis_kelamin = tbmPegawai.getValueAt(row, 2).toString();
         txtID_Pegawai.setText(tblPegawai.getValueAt(row, 0).toString());
@@ -1081,14 +1068,15 @@ public class Pegawai extends javax.swing.JFrame {
                 Blob Gambar = rs.getBlob("foto");
                 int ukuran = (int) Gambar.length();
                 icon = new ImageIcon(Gambar.getBytes(1, ukuran));
-                PenampungFoto.setIcon(icon);
+                ImageIcon in = new ImageIcon(Resize(PenampungFoto.getWidth(), PenampungFoto.getHeight(), icon.getImage()));
+                PenampungFoto.setIcon(in);
             }
         } catch (SQLException e) {
             System.out.println("Gambar tidak tampil " + e);
         }
 
         showTablePegawai();
-        PenampungFoto.setVisible(true);
+//        PenampungFoto.setVisible(true);
     }//GEN-LAST:event_tblPegawaiMouseClicked
 
     public ResultSet selectPegawai() {
@@ -1203,6 +1191,7 @@ public class Pegawai extends javax.swing.JFrame {
 
     private void btnAttachPegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttachPegawaiActionPerformed
         // TODO add your handling code here:
+        clearPegawai(txtFotoPegawi);
         JFileChooser chooser = new JFileChooser(System.getProperty("user.home"));
         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         chooser.setFileFilter(new FileNameExtensionFilter("jpg|png|bmp", "jpg", "png", "bmp"));
@@ -1213,7 +1202,7 @@ public class Pegawai extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(rootPane, "Gambar terlalu besar", "Max 64mb", JOptionPane.WARNING_MESSAGE);
                 } else {
                     image = ImageIO.read(file);
-                    icon = new ImageIcon(image);
+                    ImageIcon icon = new ImageIcon(Resize(PenampungFoto.getWidth(), PenampungFoto.getHeight(), image));
                     PenampungFoto.setIcon(icon);
                     path = file.getAbsolutePath();
                     PenampungFoto.setVisible(true);
@@ -1225,22 +1214,58 @@ public class Pegawai extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAttachPegawaiActionPerformed
 
+    private Image Resize(int w, int h, Image img) {
+        BufferedImage bufImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+        Graphics2D dimensi = bufImg.createGraphics();
+        dimensi.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        dimensi.drawImage(img, 0, 0, w, h, null);
+        dimensi.dispose();
+        return bufImg;
+    }
+
     public void clearPegawai() {
         txtID_Pegawai.setText("");
         txtNama_Pegawai.setText("");
         RbtnJenis_Kelamin.clearSelection();
         txtTempat_Lahir.setText("");
         jdcTanggal_Lahir.setCalendar(null);
+        lblTanggal.setText("");
+        txtnama.setText("");
         txtAlamat_Kota.setText("");
         cmbJabatan.setSelectedItem("");
         txtNo_Telepon.setText("");
         lblPasswoard.setText("");
         txtFotoPegawi.setText("");
+        txtFotoPegawi.setText("");
         ChangeForegroundPegawai();
-        PenampungFoto.setVisible(false);
+//        PenampungFoto.setVisible(false);
         btnRubahPegawai.setEnabled(false);
         btnHapusPegawai.setEnabled(false);
         btnSimpanPegawai.setEnabled(true);
+    }
+
+    public void clearPegawai(JTextField f) {
+        f.setText("");
+    }
+
+    public void backTitle() {
+        txtID_Pegawai.setText("Id_pegawai");
+        txtNama_Pegawai.setText("Nama Lengkap");
+//        RbtnJenis_Kelamin.clearSelection();
+        txtTempat_Lahir.setText("Tempat Lahir");
+//        jdcTanggal_Lahir.setCalendar(null);
+        lblTanggal.setText("Tanggal Lahir");
+        txtnama.setText("Masukkan Nama");
+        txtAlamat_Kota.setText("Alamat");
+//        cmbJabatan.setSelectedItem("");
+        txtNo_Telepon.setText("No Telepon");
+        lblPasswoard.setText("Passwoard");
+        txtFotoPegawi.setText("Masukkan Foto Anda");
+        BackForegroundPegawai();
+    }
+
+    public void backTitle(JTextField f, String title) {
+        f.setText(title);
     }
     private void btnBaruPegawiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaruPegawiActionPerformed
         // TODO add your handling code here:
@@ -1292,13 +1317,16 @@ public class Pegawai extends javax.swing.JFrame {
         // TODO add your handling code here:
         btnCariPegawai.setEnabled(true);
         btnSimpanPegawai.setEnabled(false);
-        txtnama.setText("");
-        clearPegawai();
-    }//GEN-LAST:event_txtnamaMouseClicked
 
-    private void txtnamaInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtnamaInputMethodTextChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnamaInputMethodTextChanged
+        clik(deff, "Masukkan Nama", txtnama);
+        if (deff == 0) {
+            clearPegawai();
+
+        } else {
+            backTitle();
+        }
+
+    }//GEN-LAST:event_txtnamaMouseClicked
 
     private void txtID_PegawaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtID_PegawaiMouseClicked
         // TODO add your handling code here:
@@ -1306,29 +1334,26 @@ public class Pegawai extends javax.swing.JFrame {
         btnBaruPegawi.setEnabled(true);
         btnAttachPegawai.setEnabled(true);
         btnCariPegawai.setEnabled(false);
-        clearPegawai();
-        autoNumber(txtID_Pegawai);
-        lblTanggal.setText("");
-        lblPasswoard.setText("");
-        jLabel10.setText("");
-        txtnama.setText("");
-    }//GEN-LAST:event_txtID_PegawaiMouseClicked
+        clik(deff, "Id pegawai", txtID_Pegawai);
+        if (deff == 1) {
+            autoNumber(txtID_Pegawai);
+        } else {
+//            clearPegawai(txtID_Pegawai);
+            backTitle(txtID_Pegawai, "Id pegawai");
+        }
 
-    private void txtnamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnamaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnamaActionPerformed
+
+    }//GEN-LAST:event_txtID_PegawaiMouseClicked
 
     private void ConstructorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConstructorMouseClicked
         // TODO add your handling code here:
-        PenampungFoto.setVisible(false);
+//        PenampungFoto.setVisible(false);
     }//GEN-LAST:event_ConstructorMouseClicked
-
-    private void txtID_PegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID_PegawaiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtID_PegawaiActionPerformed
 
     private void txtNama_PegawaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNama_PegawaiMouseClicked
         // TODO add your handling code here:
+        clik(deff, "Nama Lengkap", txtNama_Pegawai);
+
         btnSimpanPegawai.setEnabled(true);
         btnBaruPegawi.setEnabled(true);
         btnAttachPegawai.setEnabled(true);
@@ -1341,6 +1366,7 @@ public class Pegawai extends javax.swing.JFrame {
         btnBaruPegawi.setEnabled(true);
         btnAttachPegawai.setEnabled(true);
         btnCariPegawai.setEnabled(false);
+        txtTempat_Lahir.setText("");
     }//GEN-LAST:event_txtTempat_LahirMouseClicked
 
     private void jdcTanggal_LahirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jdcTanggal_LahirMouseClicked
@@ -1384,10 +1410,6 @@ public class Pegawai extends javax.swing.JFrame {
         lblPasswoard.setText("");
     }//GEN-LAST:event_txtPasswordMouseClicked
 
-    private void txtID_PegawaiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtID_PegawaiMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtID_PegawaiMouseEntered
-
     private void cmbJabatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbJabatanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbJabatanActionPerformed
@@ -1424,6 +1446,21 @@ public class Pegawai extends javax.swing.JFrame {
         txtCarimenu.setForeground(Color.BLACK);
 
     }//GEN-LAST:event_txtCarimenuMouseClicked
+// ---- ini belum beres -------
+    public void clik(int def, String title, JTextField f) {
+        deff++;
+        if (def == 0) {
+            ChangeForegroundPegawai(f);
+            clearPegawai(f);
+        } else if (def == 1) {
+            clearPegawai(f);
+            BackForegroundPegawai(f);
+            backTitle(f, title);
+            
+            deff = 0;
+        }
+//        System.out.println(def);
+    }
 
 // -------------------------------------   codingan menu   ----------------------------------------------------    
 
@@ -1614,7 +1651,26 @@ public class Pegawai extends javax.swing.JFrame {
         txtTempat_Lahir.setForeground(Color.BLACK);
         txtAlamat_Kota.setForeground(Color.BLACK);
         txtNo_Telepon.setForeground(Color.BLACK);
+        txtFotoPegawi.setForeground(Color.BLACK);
+    }
 
+    public void ChangeForegroundPegawai(JTextField t) {
+        t.setForeground(Color.BLACK);
+    }
+
+    public void BackForegroundPegawai() {
+        txtnama.setForeground(new Color(153, 153, 153));
+        txtNama_Pegawai.setForeground(new Color(153, 153, 153));
+        txtID_Pegawai.setForeground(new Color(153, 153, 153));
+        txtPassword.setForeground(new Color(153, 153, 153));
+        txtTempat_Lahir.setForeground(new Color(153, 153, 153));
+        txtAlamat_Kota.setForeground(new Color(153, 153, 153));
+        txtNo_Telepon.setForeground(new Color(153, 153, 153));
+        txtFotoPegawi.setForeground(new Color(153, 153, 153));
+    }
+
+    public void BackForegroundPegawai(JTextField f) {
+        setForeground(new Color(153, 153, 153));
     }
 
 //    --------- code btn yang ada pada BackMenu -------
@@ -1679,7 +1735,7 @@ public class Pegawai extends javax.swing.JFrame {
         resetBackground(btnMenu);
         resetBackground(btnPembayaran);
         resetBackground(btnJenisMenu);
-        
+
     }//GEN-LAST:event_btnLaporanActionPerformed
 
     private void txtHargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHargaActionPerformed
@@ -1707,7 +1763,7 @@ public class Pegawai extends javax.swing.JFrame {
     }//GEN-LAST:event_txtjenisActionPerformed
 
 //----------- code form jenis menu --------------
-    
+
     private void btnCariJenisMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariJenisMenuActionPerformed
         // TODO add your handling code here:
         String Jenis = txtjenis.getText();
@@ -1860,6 +1916,10 @@ public class Pegawai extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnLogOutActionPerformed
 
+    private void RbtnPerempuanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RbtnPerempuanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RbtnPerempuanActionPerformed
+
 //    ------- codingan form menu --------
     public void showTablePegawai() {
         try {
@@ -1994,10 +2054,9 @@ public class Pegawai extends javax.swing.JFrame {
         }
         return rs;
     }
-    
+
 //    ------ code jenis menu ------------
-    
-      public void clearJenisMenu() {
+    public void clearJenisMenu() {
         txtID_Jenis.setText("");
         txtNamaJenis.setText("");
         txtjenis.setText("");
@@ -2007,7 +2066,7 @@ public class Pegawai extends javax.swing.JFrame {
         btnHapusJenisMenu.setEnabled(false);
         btnSimpanJenisMenu.setEnabled(true);
     }
-    
+
     public void showTableJenisMenu() {
         try {
             tbmJenisMenu = new DefaultTableModel(new String[]{"ID Jenis", "Jenis", "Detail Jenis"}, 0);
@@ -2023,8 +2082,8 @@ public class Pegawai extends javax.swing.JFrame {
             Logger.getLogger(JenisMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
         tblJenisMenu.setModel(tbmJenisMenu);
-    }  
-    
+    }
+
     public void deleteJenisMenu(String idJenisMenu) {
         try {
             String sql = "DELETE FROM jenis_menu WHERE id_jenis =?";
@@ -2072,13 +2131,14 @@ public class Pegawai extends javax.swing.JFrame {
             System.err.println(ex);
         }
     }
-    public void ChangeforegroundJenisMenu(){
+
+    public void ChangeforegroundJenisMenu() {
         txtjenis.setForeground(Color.BLACK);
         txtID_Jenis.setForeground(Color.BLACK);
         txtNamaJenis.setForeground(Color.BLACK);
         txtDetail_Jenis.setForeground(Color.BLACK);
     }
-      
+
     public void setBack(JButton sb) {
         sb.setBackground(new java.awt.Color(0, 179, 216, 80));
         sb.setForeground(new java.awt.Color(153, 153, 153));
@@ -2164,12 +2224,10 @@ public class Pegawai extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbJabatan;
     private javax.swing.JComboBox<String> cmbJenis;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -2177,6 +2235,7 @@ public class Pegawai extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jdcTanggal_Lahir;
     private javax.swing.JLabel lblPasswoard;
     private javax.swing.JLabel lblTanggal;
+    private javax.swing.JPanel panelFoto;
     private javax.swing.JTable tblJenisMenu;
     private javax.swing.JTable tblMenu;
     private javax.swing.JTable tblPegawai;
