@@ -33,7 +33,7 @@ import sun.java2d.pipe.SpanShapeRenderer;
 
 /**
  *
- * @author Nabiyla Hamestuti
+ * @author Khoirul
  */
 public class Daftar extends javax.swing.JFrame {
 
@@ -62,6 +62,7 @@ public class Daftar extends javax.swing.JFrame {
     public Daftar() {
         initComponents();
         conn = Connections.Koneksi.cekKoneksi();
+        autoNumber(txtID_Pegawai);
     }
 
     /**
@@ -517,7 +518,6 @@ public class Daftar extends javax.swing.JFrame {
 
     private void txtID_PegawaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtID_PegawaiMouseClicked
         // TODO add your handling code here:
-        txtID_Pegawai.setText("");
         txtID_Pegawai.setForeground(Color.BLACK);
     }//GEN-LAST:event_txtID_PegawaiMouseClicked
 
@@ -582,6 +582,31 @@ public class Daftar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAlamat_KotaActionPerformed
 
+    private void autoNumber(JTextField f1) {
+        String id_pegawai = "A0";
+        int i = 0;
+        try {
+//            conn = Connections.Koneksi.cekKoneksi();
+            String sql = "SELECT * FROM pegawai";
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+//            ResultSet rs = conn.(id_pegawai);
+
+            while (rs.next()) {
+                id_pegawai = rs.getString("id_pegawai");
+            }
+            id_pegawai = id_pegawai.substring(1);
+            i = Integer.parseInt(id_pegawai) + 1;
+            id_pegawai = "00" + i;
+            id_pegawai = "A0" + id_pegawai.substring(id_pegawai.length() - 2);
+            f1.setText(id_pegawai);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Error pada ID Pegawai");
+            System.out.println(e.getMessage());
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
