@@ -5,6 +5,7 @@
  */
 package Gacoan;
 
+import Connections.Koneksi;
 import com.barcodelib.barcode.Linear;
 import java.io.File;
 import java.sql.Connection;
@@ -12,7 +13,6 @@ import java.sql.PreparedStatement;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
-import Connections.Koneksi;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -26,13 +26,15 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author Nabiyla Hamestuti
  */
 public class barcode extends javax.swing.JFrame {
-    public final Connection conn = (Connection) new Koneksi();
+    public final com.mysql.jdbc.Connection conn = Connections.Koneksi.cekKoneksi();
     
     JasperReport JasRep;
     JasperPrint JasPri;
     Map param = new HashMap();
     JasperDesign JasDes;
-    
+    /**
+     * Creates new form barcode
+     */
     public barcode() {
         initComponents();
     }
@@ -46,85 +48,71 @@ public class barcode extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        txtID = new javax.swing.JTextField();
-        btnCetak = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         txtNama = new javax.swing.JTextField();
+        btnCetak = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Background Pemesanan.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("ID Pemesanan");
+        jLabel1.setFont(new java.awt.Font("Garamond", 1, 50)); // NOI18N
+        jLabel1.setText("Mie Gacoan Jember");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 460, 50));
 
-        txtID.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtNama.setFont(new java.awt.Font("Garamond", 0, 14)); // NOI18N
+        getContentPane().add(txtNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, 300, 30));
 
-        btnCetak.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnCetak.setBackground(new java.awt.Color(153, 153, 153));
+        btnCetak.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
         btnCetak.setText("Cetak Barcode");
         btnCetak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCetakActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 360, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Nama Pembeli");
+        jLabel3.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
+        jLabel3.setText("Nama pembeli:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 300, 160, 30));
 
-        txtNama.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Garamond", 3, 16)); // NOI18N
+        jLabel4.setText("Jl. Sumatra No.82, Tegal Boto Lor, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, -1, 20));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(btnCetak, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtID, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNama, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtID, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtNama, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                .addComponent(btnCetak, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87))
-        );
+        jLabel5.setFont(new java.awt.Font("Garamond", 1, 50)); // NOI18N
+        jLabel5.setText("Cetak Barcode Pembayaran");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 600, 50));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Report/logoGacoan.png"))); // NOI18N
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 190, 140));
+
+        jLabel8.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
+        jLabel8.setText("ID Pemesanan:");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 160, 30));
+
+        txtID.setFont(new java.awt.Font("Garamond", 0, 14)); // NOI18N
+        getContentPane().add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 240, 300, 30));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ii MIE SETAN2.jpg"))); // NOI18N
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 540));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed
+        // TODO add your handling code here:
         String sql ="insert into barcode values (?,?)";
         try{
             PreparedStatement stat = conn.prepareStatement(sql);
@@ -139,7 +127,7 @@ public class barcode extends javax.swing.JFrame {
             String fname = txtID.getText();
             barcode.renderBarcode("src/image/" + fname + ".png");
             
-            File file = new File("src/report/cetakBarcode.jrxml");
+            File file = new File("src/Report/CetakBarcode.jrxml");
             JasDes = JRXmlLoader.load(file);
             param.put("id_pemesanan", txtID.getText());
             param.put("realPath", "src/image/"+txtID.getText()+".png");
@@ -164,7 +152,7 @@ public class barcode extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -179,7 +167,6 @@ public class barcode extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(barcode.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -193,7 +180,12 @@ public class barcode extends javax.swing.JFrame {
     private javax.swing.JButton btnCetak;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNama;
     // End of variables declaration//GEN-END:variables
