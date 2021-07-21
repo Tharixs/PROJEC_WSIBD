@@ -121,10 +121,6 @@ public class Pesanan extends javax.swing.JFrame {
         txtSub_Total = new javax.swing.JTextField();
         t6 = new javax.swing.JLabel();
         t7 = new javax.swing.JLabel();
-        t8 = new javax.swing.JLabel();
-        t9 = new javax.swing.JLabel();
-        txtKembalian = new javax.swing.JTextField();
-        txtBayar = new javax.swing.JTextField();
         txtTotal_Bayar = new javax.swing.JTextField();
         txtNama_Pembeli = new javax.swing.JTextField();
         t10 = new javax.swing.JLabel();
@@ -467,28 +463,6 @@ public class Pesanan extends javax.swing.JFrame {
         t7.setText("Total Bayar");
         Input.add(t7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, -1, -1));
 
-        t8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        t8.setText("Bayar");
-        Input.add(t8, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, -1, -1));
-
-        t9.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        t9.setText("Kembalian");
-        Input.add(t9, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 230, -1, -1));
-
-        txtKembalian.setBackground(new java.awt.Color(204, 204, 255));
-        txtKembalian.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
-        txtKembalian.setForeground(new java.awt.Color(255, 0, 51));
-        Input.add(txtKembalian, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 225, 180, 70));
-
-        txtBayar.setBackground(new java.awt.Color(0, 255, 255));
-        txtBayar.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        txtBayar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBayarActionPerformed(evt);
-            }
-        });
-        Input.add(txtBayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 185, 180, 30));
-
         txtTotal_Bayar.setBackground(new java.awt.Color(204, 204, 255));
         txtTotal_Bayar.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         txtTotal_Bayar.setForeground(new java.awt.Color(255, 0, 51));
@@ -653,14 +627,6 @@ public class Pesanan extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtQtyActionPerformed
 
-    private void txtBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBayarActionPerformed
-        // TODO add your handling code here:
-        int bayar = Integer.parseInt(txtBayar.getText());
-        int total_bayar = Integer.parseInt(txtTotal_Bayar.getText());
-        int kembalian = bayar - total_bayar;
-        txtKembalian.setText(String.valueOf(kembalian));
-    }//GEN-LAST:event_txtBayarActionPerformed
-
     private void MI1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI1ActionPerformed
         // TODO add your handling code here:
         cmbMenu.setSelectedItem("Mie Iblis Level 1-4");
@@ -696,9 +662,7 @@ public class Pesanan extends javax.swing.JFrame {
         autoNumber(txtID_Pemesanan);
         pemesanan();
         txtSub_Total.setText("");
-        txtBayar.setText("");
         txtTotal_Bayar.setText("");
-        txtKembalian.setText("");
         tbmPemesanan.setRowCount(0);
     }//GEN-LAST:event_btnSimpanActionPerformed
 
@@ -876,16 +840,12 @@ public class Pesanan extends javax.swing.JFrame {
             String nama_pembeli = txtNama_Pembeli.getText();
             Date tanggal_pemesanan = jdcTanggal_Pemesanan.getDate();
             int total_bayar = Integer.parseInt(txtTotal_Bayar.getText());
-            int bayar = Integer.parseInt(txtBayar.getText());
-            int kembalian = Integer.parseInt(txtKembalian.getText());
-            String query = "INSERT INTO pemesanan(id_pemesanan, nama_pembeli, tanggal_pemesanan, total_bayar, bayar, kembalian)values(?,?,?,?,?,?)";
+            String query = "INSERT INTO pemesanan(id_pemesanan, nama_pembeli, tanggal_pemesanan, total_bayar)values(?,?,?,?)";
             pst = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pst.setString(1, id_pemesanan);
             pst.setString(2, nama_pembeli);
             pst.setString(3, ((JTextField) jdcTanggal_Pemesanan.getDateEditor().getUiComponent()).getText());
             pst.setInt(4, total_bayar);
-            pst.setInt(5, bayar);
-            pst.setInt(6, kembalian);
             pst.executeUpdate();
             ResultSet generatekey = pst.getGeneratedKeys();
             if (generatekey.next()) {
@@ -907,8 +867,8 @@ public class Pesanan extends javax.swing.JFrame {
                 pst1.setString(3, id_menu);
                 pst1.setInt(4, qty);
                 pst1.setInt(5, sub_total);
+                pst1.executeUpdate();
             }
-            pst1.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Pesanan.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1008,16 +968,12 @@ public class Pesanan extends javax.swing.JFrame {
     private javax.swing.JLabel t5;
     private javax.swing.JLabel t6;
     private javax.swing.JLabel t7;
-    private javax.swing.JLabel t8;
-    private javax.swing.JLabel t9;
     private javax.swing.JPanel table;
     private javax.swing.JTable tblPemesanan;
-    private javax.swing.JTextField txtBayar;
     private javax.swing.JTextField txtHarga;
     private javax.swing.JTextField txtID_Jenis;
     private javax.swing.JTextField txtID_Menu;
     private javax.swing.JTextField txtID_Pemesanan;
-    private javax.swing.JTextField txtKembalian;
     private javax.swing.JTextField txtNama_Pembeli;
     private javax.swing.JTextField txtQty;
     private javax.swing.JTextField txtSub_Total;
