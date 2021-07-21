@@ -65,10 +65,27 @@ public class Laporan extends javax.swing.JFrame {
         btnLogOut = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+<<<<<<< HEAD
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+=======
+>>>>>>> 9603d2d1ffa274f9fa6d66d67ce693fa791bbdf3
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+<<<<<<< HEAD
+        Laporan.setBackground(new java.awt.Color(255, 255, 255,170));
+        Laporan.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+=======
         BtnCtkPegawai.setBackground(new java.awt.Color(153, 153, 153));
         BtnCtkPegawai.setIcon(new javax.swing.ImageIcon("C:\\Users\\ACER\\Downloads\\icon\\lap denda.png")); // NOI18N
         BtnCtkPegawai.addActionListener(new java.awt.event.ActionListener() {
@@ -152,6 +169,7 @@ public class Laporan extends javax.swing.JFrame {
         btbMenu.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
         btbMenu.setText("Menu");
         getContentPane().add(btbMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 260, 30));
+>>>>>>> 9603d2d1ffa274f9fa6d66d67ce693fa791bbdf3
 
         btnJenisMenu.setBackground(new java.awt.Color(153, 153, 153));
         btnJenisMenu.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
@@ -218,6 +236,27 @@ public class Laporan extends javax.swing.JFrame {
         });
         getContentPane().add(btnctkdetailpemesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 490, -1, -1));
 
+<<<<<<< HEAD
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LaporanImg/rsz_pegawai.png"))); // NOI18N
+        Laporan.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, -1, -1));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LaporanImg/rsz_menu-removebg-preview.png"))); // NOI18N
+        Laporan.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, -1, -1));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LaporanImg/JenisMenu.png"))); // NOI18N
+        Laporan.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 220, -1, -1));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LaporanImg/rsz_pemesanan-removebg-preview.png"))); // NOI18N
+        Laporan.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, -1, -1));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LaporanImg/detilePemesanan.png"))); // NOI18N
+        Laporan.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 460, -1, -1));
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LaporanImg/Pembayaran.png"))); // NOI18N
+        Laporan.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 450, -1, -1));
+
+        getContentPane().add(Laporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 924, 705));
+=======
         btnctkpembayaran.setBackground(new java.awt.Color(153, 153, 153));
         btnctkpembayaran.setFont(new java.awt.Font("Garamond", 1, 14)); // NOI18N
         btnctkpembayaran.setText("Pembayaran");
@@ -241,6 +280,7 @@ public class Laporan extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Bacground.jpg"))); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1080, 550));
+>>>>>>> 9603d2d1ffa274f9fa6d66d67ce693fa791bbdf3
 
         pack();
         setLocationRelativeTo(null);
@@ -606,10 +646,22 @@ public class Laporan extends javax.swing.JFrame {
     private javax.swing.JButton btnctkpembayaran;
     private javax.swing.JButton btnctkpemesanan;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+<<<<<<< HEAD
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+=======
     private javax.swing.JPanel jPanel1;
+>>>>>>> 9603d2d1ffa274f9fa6d66d67ce693fa791bbdf3
     // End of variables declaration//GEN-END:variables
 }

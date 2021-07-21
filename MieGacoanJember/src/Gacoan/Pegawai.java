@@ -43,12 +43,12 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
-//import net.sf.jasperreports.engine.JRException;
-//import net.sf.jasperreports.engine.JasperCompileManager;
-//import net.sf.jasperreports.engine.JasperFillManager;
-//import net.sf.jasperreports.engine.JasperPrint;
-//import net.sf.jasperreports.engine.JasperReport;
-//import net.sf.jasperreports.view.JasperViewer;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 import sun.rmi.server.Activation;
 import sun.security.pkcs11.Secmod;
 
@@ -96,6 +96,7 @@ public class Pegawai extends javax.swing.JFrame {
         BackFieldMenu.setVisible(false);
         BackFieldJenisMenu.setVisible(false);
         Pembyaran.setVisible(false);
+        Laporan.setVisible(false);
 //        btnPrint.setEnabled(true);
 
         setBack(btnPegawai);
@@ -213,6 +214,9 @@ public class Pegawai extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         txtDetail_Jenis = new javax.swing.JTextArea();
         Pembyaran = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         t1 = new javax.swing.JLabel();
         txtID_Pemesanan = new javax.swing.JTextField();
         t6 = new javax.swing.JLabel();
@@ -234,6 +238,21 @@ public class Pegawai extends javax.swing.JFrame {
         t30 = new javax.swing.JLabel();
         t10 = new javax.swing.JLabel();
         jdcTanggal_Pemesanan = new com.toedter.calendar.JDateChooser();
+        Laporan = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         UiBack = new javax.swing.JPanel();
         Bacground = new javax.swing.JLabel();
 
@@ -890,115 +909,216 @@ public class Pegawai extends javax.swing.JFrame {
 
         Constructor.add(BackFieldJenisMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 32, 924, 705));
 
-        Pembyaran.setBackground(new java.awt.Color(0, 204, 204));
+        Pembyaran.setBackground(new java.awt.Color(255, 255, 255,170));
         Pembyaran.setForeground(new java.awt.Color(153, 255, 255));
         Pembyaran.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255,1));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(236, 0, 141)));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel19.setFont(new java.awt.Font("Garamond", 1, 19)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel19.setText("NOTED!");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, -1, -1));
+
+        jLabel20.setFont(new java.awt.Font("Garamond", 1, 19)); // NOI18N
+        jLabel20.setText("Halaman ini hanya diperuntukkan kepada pegawai Mie Gacoan, Terimakasih");
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
+
+        Pembyaran.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 720, 50));
+
         t1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         t1.setText("ID Pemesanan");
-        Pembyaran.add(t1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, -1, -1));
+        Pembyaran.add(t1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, -1, 33));
 
-        txtID_Pemesanan.setBackground(new java.awt.Color(0, 255, 255));
         txtID_Pemesanan.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        txtID_Pemesanan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         txtID_Pemesanan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtID_PemesananActionPerformed(evt);
             }
         });
-        Pembyaran.add(txtID_Pemesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 400, 30));
+        Pembyaran.add(txtID_Pemesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 524, 33));
 
         t6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         t6.setText("Waktu");
-        Pembyaran.add(t6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, -1, -1));
+        Pembyaran.add(t6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 470, -1, 33));
 
         t7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         t7.setText("Total Bayar");
-        Pembyaran.add(t7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, -1, -1));
+        Pembyaran.add(t7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, -1, 33));
 
         t8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         t8.setText("Bayar");
-        Pembyaran.add(t8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 480, -1, -1));
+        Pembyaran.add(t8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 520, -1, 33));
 
         t9.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         t9.setText("Kembalian");
-        Pembyaran.add(t9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 520, -1, -1));
+        Pembyaran.add(t9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 570, -1, 33));
 
-        txtKembalian.setBackground(new java.awt.Color(204, 204, 255));
         txtKembalian.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         txtKembalian.setForeground(new java.awt.Color(255, 0, 51));
-        Pembyaran.add(txtKembalian, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 520, 400, 70));
+        txtKembalian.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        Pembyaran.add(txtKembalian, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 570, 524, 33));
 
-        txtBayar.setBackground(new java.awt.Color(0, 255, 255));
         txtBayar.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        txtBayar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         txtBayar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBayarActionPerformed(evt);
             }
         });
-        Pembyaran.add(txtBayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 480, 400, 30));
+        Pembyaran.add(txtBayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 520, 524, 33));
 
-        txtTotal_Bayar.setBackground(new java.awt.Color(204, 204, 255));
         txtTotal_Bayar.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         txtTotal_Bayar.setForeground(new java.awt.Color(255, 0, 51));
-        Pembyaran.add(txtTotal_Bayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 400, 70));
+        txtTotal_Bayar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        Pembyaran.add(txtTotal_Bayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 420, 524, 33));
 
-        txtNama_PembeliPemesanan.setBackground(new java.awt.Color(0, 255, 255));
         txtNama_PembeliPemesanan.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        Pembyaran.add(txtNama_PembeliPemesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 400, 30));
+        txtNama_PembeliPemesanan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        Pembyaran.add(txtNama_PembeliPemesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 524, 33));
 
-        jdcTanggal_Pembayaran.setBackground(new java.awt.Color(0, 255, 255));
         jdcTanggal_Pembayaran.setDateFormatString("yyyy-MM-dd");
-        Pembyaran.add(jdcTanggal_Pembayaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 430, 400, 30));
+        Pembyaran.add(jdcTanggal_Pembayaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 470, 524, 33));
 
         t13.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         t13.setText("Nama Pembeli");
-        Pembyaran.add(t13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
+        Pembyaran.add(t13, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, -1, 33));
 
-        btnSimpan.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnSimpan.setBackground(new java.awt.Color(236, 0, 141));
+        btnSimpan.setFont(new java.awt.Font("Garamond", 1, 19)); // NOI18N
+        btnSimpan.setForeground(new java.awt.Color(255, 255, 255));
         btnSimpan.setText("Simpan");
         btnSimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSimpanActionPerformed(evt);
             }
         });
-        Pembyaran.add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 600, 170, 60));
+        Pembyaran.add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 620, 145, 33));
 
         t28.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         t28.setText("Nama Pegawai");
-        Pembyaran.add(t28, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
+        Pembyaran.add(t28, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, -1, 33));
 
-        txtID_PegawaiPembayaran.setBackground(new java.awt.Color(0, 255, 255));
         txtID_PegawaiPembayaran.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        Pembyaran.add(txtID_PegawaiPembayaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 400, 30));
+        txtID_PegawaiPembayaran.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        Pembyaran.add(txtID_PegawaiPembayaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 524, 33));
 
-        txtID_Pembayaran.setBackground(new java.awt.Color(0, 255, 255));
         txtID_Pembayaran.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        Pembyaran.add(txtID_Pembayaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 400, 30));
+        txtID_Pembayaran.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        Pembyaran.add(txtID_Pembayaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 524, 33));
 
         t29.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         t29.setText("ID Pembayaran");
-        Pembyaran.add(t29, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
+        Pembyaran.add(t29, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, 33));
 
+        cmbPegawaiPemesanan.setBackground(new java.awt.Color(240, 240, 240));
         cmbPegawaiPemesanan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbPegawaiPemesananActionPerformed(evt);
             }
         });
-        Pembyaran.add(cmbPegawaiPemesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 400, 30));
+        Pembyaran.add(cmbPegawaiPemesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 524, 33));
 
         t30.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         t30.setText("ID Pegawai");
-        Pembyaran.add(t30, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
+        Pembyaran.add(t30, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, 33));
 
         t10.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         t10.setText("Tanggal Pemesanan");
-        Pembyaran.add(t10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, -1, -1));
+        Pembyaran.add(t10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, -1, 33));
 
-        jdcTanggal_Pemesanan.setBackground(new java.awt.Color(0, 255, 255));
         jdcTanggal_Pemesanan.setDateFormatString("yyyy-MM-dd");
-        Pembyaran.add(jdcTanggal_Pemesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 400, 30));
+        Pembyaran.add(jdcTanggal_Pemesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 524, 33));
 
-        Constructor.add(Pembyaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(495, 20, 810, 700));
+        Constructor.add(Pembyaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 32, 924, 705));
+
+        Laporan.setBackground(new java.awt.Color(255, 255, 255,180));
+        Laporan.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setFont(new java.awt.Font("Bookman Old Style", 0, 36)); // NOI18N
+        jLabel5.setText("Laporan Mie Gacoan Jember");
+        Laporan.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Garamond", 1, 28)); // NOI18N
+        jLabel6.setText("Pemesanan");
+        Laporan.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 550, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Garamond", 1, 28)); // NOI18N
+        jLabel7.setText("Pegawai");
+        Laporan.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Garamond", 1, 28)); // NOI18N
+        jLabel8.setText("Menu");
+        Laporan.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Garamond", 1, 28)); // NOI18N
+        jLabel9.setText("Jenis Menu");
+        Laporan.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 310, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Garamond", 1, 28)); // NOI18N
+        jLabel10.setText("Pembayaran");
+        Laporan.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 550, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Garamond", 1, 28)); // NOI18N
+        jLabel11.setText("Pemesanan");
+        Laporan.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 580, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Garamond", 1, 28)); // NOI18N
+        jLabel12.setText("Detail");
+        Laporan.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 550, -1, -1));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LaporanImg/rsz_pegawai.png"))); // NOI18N
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel13MouseClicked(evt);
+            }
+        });
+        Laporan.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, -1, -1));
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LaporanImg/rsz_menu-removebg-preview.png"))); // NOI18N
+        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel14MouseClicked(evt);
+            }
+        });
+        Laporan.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, -1, -1));
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LaporanImg/JenisMenu.png"))); // NOI18N
+        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel15MouseClicked(evt);
+            }
+        });
+        Laporan.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 170, -1, -1));
+
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LaporanImg/rsz_pemesanan-removebg-preview.png"))); // NOI18N
+        jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel16MouseClicked(evt);
+            }
+        });
+        Laporan.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 410, -1, -1));
+
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LaporanImg/detilePemesanan.png"))); // NOI18N
+        jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel17MouseClicked(evt);
+            }
+        });
+        Laporan.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 410, -1, -1));
+
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LaporanImg/Pembayaran.png"))); // NOI18N
+        jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel18MouseClicked(evt);
+            }
+        });
+        Laporan.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 400, -1, -1));
+
+        Constructor.add(Laporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 32, 924, 705));
 
         UiBack.setBackground(new java.awt.Color(0, 179, 216, 80));
 
@@ -1844,6 +1964,7 @@ public class Pegawai extends javax.swing.JFrame {
         BackFieldMenu.setVisible(false);
         BackFieldJenisMenu.setVisible(false);
         Pembyaran.setVisible(false);
+        Laporan.setVisible(false);
     }//GEN-LAST:event_btnPegawaiActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
@@ -1858,6 +1979,7 @@ public class Pegawai extends javax.swing.JFrame {
         BackFieldMenu.setVisible(true);
         BackFieldJenisMenu.setVisible(false);
         Pembyaran.setVisible(false);
+        Laporan.setVisible(false);
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void btnJenisMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJenisMenuActionPerformed
@@ -1872,6 +1994,7 @@ public class Pegawai extends javax.swing.JFrame {
         BackFieldMenu.setVisible(false);
         BackFieldJenisMenu.setVisible(true);
         Pembyaran.setVisible(false);
+        Laporan.setVisible(false);
     }//GEN-LAST:event_btnJenisMenuActionPerformed
 
     private void btnPembayaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPembayaranActionPerformed
@@ -1882,10 +2005,12 @@ public class Pegawai extends javax.swing.JFrame {
         resetBackground(btnMenu);
         resetBackground(btnJenisMenu);
         resetBackground(btnLaporan);
+        
         Pembyaran.setVisible(true);
         BackFieldPegawai.setVisible(false);
         BackFieldMenu.setVisible(false);
         BackFieldJenisMenu.setVisible(false);
+        Laporan.setVisible(false);
 
     }//GEN-LAST:event_btnPembayaranActionPerformed
 
@@ -1897,6 +2022,11 @@ public class Pegawai extends javax.swing.JFrame {
         resetBackground(btnPembayaran);
         resetBackground(btnJenisMenu);
 
+        Laporan.setVisible(true);
+        Pembyaran.setVisible(false);
+        BackFieldPegawai.setVisible(false);
+        BackFieldMenu.setVisible(false);
+        BackFieldJenisMenu.setVisible(false);
     }//GEN-LAST:event_btnLaporanActionPerformed
 
     private void txtHargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHargaActionPerformed
@@ -2115,6 +2245,91 @@ public class Pegawai extends javax.swing.JFrame {
             Logger.getLogger(Pesanan.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_cmbPegawaiPemesananActionPerformed
+
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+        // TODO add your handling code here:
+
+        String file = "C:\\Users\\kelvin\\Documents\\GitHub Desktop\\project\\ProjectTorik\\PROJEC_WSIBD\\MieGacoanJember\\src\\Report\\ReportPegawai.jrxml";
+
+        try {
+            JasperReport jr = JasperCompileManager.compileReport(file);
+            JasperPrint jp = JasperFillManager.fillReport(jr, null, conn);
+            JasperViewer.viewReport(jp);
+
+        } catch (JRException ex) {
+            Logger.getLogger(Laporan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLabel13MouseClicked
+
+    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
+        // TODO add your handling code here:
+        String file = "C:\\Users\\kelvin\\Documents\\GitHub Desktop\\project\\ProjectTorik\\PROJEC_WSIBD\\MieGacoanJember\\src\\Report\\ReportMenu.jrxml";
+
+        try {
+            JasperReport jr = JasperCompileManager.compileReport(file);
+            JasperPrint jp = JasperFillManager.fillReport(jr, null, conn);
+            JasperViewer.viewReport(jp);
+
+        } catch (JRException ex) {
+            Logger.getLogger(Laporan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLabel14MouseClicked
+
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+        // TODO add your handling code here:
+        String file = "C:\\Users\\kelvin\\Documents\\GitHub Desktop\\project\\ProjectTorik\\PROJEC_WSIBD\\MieGacoanJember\\src\\Report\\ReportJenisMenu.jrxml";
+
+        try {
+            JasperReport jr = JasperCompileManager.compileReport(file);
+            JasperPrint jp = JasperFillManager.fillReport(jr, null, conn);
+            JasperViewer.viewReport(jp);
+
+        } catch (JRException ex) {
+            Logger.getLogger(Laporan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLabel15MouseClicked
+
+    private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
+        // TODO add your handling code here:
+        String file = "C:\\Users\\kelvin\\Documents\\GitHub Desktop\\project\\ProjectTorik\\PROJEC_WSIBD\\MieGacoanJember\\src\\Report\\ReportPemesanan.jrxml";
+
+        try {
+            JasperReport jr = JasperCompileManager.compileReport(file);
+            JasperPrint jp = JasperFillManager.fillReport(jr, null, conn);
+            JasperViewer.viewReport(jp);
+
+        } catch (JRException ex) {
+            Logger.getLogger(Laporan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLabel16MouseClicked
+
+    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
+        // TODO add your handling code here:
+        String file = "C:\\Users\\kelvin\\Documents\\GitHub Desktop\\project\\ProjectTorik\\PROJEC_WSIBD\\MieGacoanJember\\src\\Report\\ReportDetailPemesanan.jrxml";
+
+        try {
+            JasperReport jr = JasperCompileManager.compileReport(file);
+            JasperPrint jp = JasperFillManager.fillReport(jr, null, conn);
+            JasperViewer.viewReport(jp);
+
+        } catch (JRException ex) {
+            Logger.getLogger(Laporan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLabel17MouseClicked
+
+    private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
+        // TODO add your handling code here:
+        String file = "C:\\Users\\kelvin\\Documents\\GitHub Desktop\\project\\ProjectTorik\\PROJEC_WSIBD\\MieGacoanJember\\src\\Report\\ReportPembayaran.jrxml";
+
+        try {
+            JasperReport jr = JasperCompileManager.compileReport(file);
+            JasperPrint jp = JasperFillManager.fillReport(jr, null, conn);
+            JasperViewer.viewReport(jp);
+
+        } catch (JRException ex) {
+            Logger.getLogger(Laporan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLabel18MouseClicked
 
 //    ------- codingan form menu --------
     public void showTablePegawai() {
@@ -2476,6 +2691,7 @@ public class Pegawai extends javax.swing.JFrame {
     private javax.swing.JPanel BackFieldPegawai;
     private javax.swing.JPanel BackMenu;
     private javax.swing.JPanel Constructor;
+    private javax.swing.JPanel Laporan;
     private javax.swing.JLabel LogoMenu;
     private javax.swing.JPanel Pembyaran;
     private javax.swing.JLabel PenampungFoto;
@@ -2512,9 +2728,26 @@ public class Pegawai extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbJenis;
     private javax.swing.JComboBox<String> cmbPegawaiPemesanan;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
