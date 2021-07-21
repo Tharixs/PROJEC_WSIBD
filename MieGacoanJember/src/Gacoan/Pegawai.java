@@ -96,6 +96,8 @@ public class Pegawai extends javax.swing.JFrame {
         BackFieldMenu.setVisible(false);
         BackFieldJenisMenu.setVisible(false);
 //        btnPrint.setEnabled(true);
+        
+        setBack(btnPegawai);
 
         try {
             tampil_combo();
@@ -1913,7 +1915,8 @@ public class Pegawai extends javax.swing.JFrame {
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
-        dispose();
+        this.setVisible(false);
+        new Pesanan().setVisible(true);
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void RbtnPerempuanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RbtnPerempuanActionPerformed
