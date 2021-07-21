@@ -49,97 +49,72 @@ public class barcode extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        txtNama = new javax.swing.JTextField();
-        btnCetak = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        txtID = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        barcode = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        txtNama1 = new javax.swing.JTextField();
+        btnCetak1 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        txtID1 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Background Pemesanan.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Garamond", 1, 50)); // NOI18N
-        jLabel1.setText("Mie Gacoan Jember");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 460, 50));
+        barcode.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtNama.setFont(new java.awt.Font("Garamond", 0, 14)); // NOI18N
-        getContentPane().add(txtNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, 300, 30));
+        jLabel9.setFont(new java.awt.Font("Garamond", 1, 50)); // NOI18N
+        jLabel9.setText("Mie Gacoan Jember");
+        barcode.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 460, 50));
 
-        btnCetak.setBackground(new java.awt.Color(153, 153, 153));
-        btnCetak.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
-        btnCetak.setText("Cetak Barcode");
-        btnCetak.addActionListener(new java.awt.event.ActionListener() {
+        txtNama1.setFont(new java.awt.Font("Garamond", 0, 14)); // NOI18N
+        barcode.add(txtNama1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 300, 30));
+
+        btnCetak1.setBackground(new java.awt.Color(153, 153, 153));
+        btnCetak1.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
+        btnCetak1.setText("Cetak Barcode");
+        btnCetak1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCetakActionPerformed(evt);
+                btnCetak1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 360, -1, -1));
+        barcode.add(btnCetak1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 390, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
-        jLabel3.setText("Nama pembeli:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 300, 160, 30));
+        jLabel10.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
+        jLabel10.setText("Nama pembeli:");
+        barcode.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, 160, 30));
 
-        jLabel4.setFont(new java.awt.Font("Garamond", 3, 16)); // NOI18N
-        jLabel4.setText("Jl. Sumatra No.82, Tegal Boto Lor, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, -1, 20));
+        jLabel11.setFont(new java.awt.Font("Garamond", 3, 16)); // NOI18N
+        jLabel11.setText("Jl. Sumatra No.82, Tegal Boto Lor, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121");
+        barcode.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, 20));
 
-        jLabel5.setFont(new java.awt.Font("Garamond", 1, 50)); // NOI18N
-        jLabel5.setText("Cetak Barcode Pembayaran");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 600, 50));
+        jLabel12.setFont(new java.awt.Font("Garamond", 1, 50)); // NOI18N
+        jLabel12.setText("Cetak Barcode Pembayaran");
+        barcode.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 600, 50));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Report/logoGacoan.png"))); // NOI18N
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 190, 140));
+        jLabel14.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
+        jLabel14.setText("ID Pemesanan:");
+        barcode.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, 160, 30));
 
-        jLabel8.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
-        jLabel8.setText("ID Pemesanan:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 160, 30));
+        txtID1.setFont(new java.awt.Font("Garamond", 0, 14)); // NOI18N
+        barcode.add(txtID1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 300, 30));
 
-        txtID.setFont(new java.awt.Font("Garamond", 0, 14)); // NOI18N
-        getContentPane().add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 240, 300, 30));
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ii MIE SETAN2.jpg"))); // NOI18N
+        barcode.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 540));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ii MIE SETAN2.jpg"))); // NOI18N
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 540));
+        getContentPane().add(barcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 4, 3530, 1110));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed
+    private void btnCetak1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetak1ActionPerformed
         // TODO add your handling code here:
-        String sql ="insert into barcode values (?,?)";
-        try{
-            PreparedStatement stat = conn.prepareStatement(sql);
-            stat.setString(1, txtID.getText());
-            stat.setString(2, txtNama.getText());
-            stat.executeUpdate();
-            
-            Linear barcode = new Linear();
-            barcode.setType(Linear.CODE128B);
-            barcode.setData(txtID.getText());
-            barcode.setI(11.0f);
-            String fname = txtID.getText();
-            barcode.renderBarcode("src/image/" + fname + ".png");
-            
-            File file = new File("src/Report/CetakBarcode.jrxml");
-            JasDes = JRXmlLoader.load(file);
-            param.put("id_pemesanan", txtID.getText());
-            param.put("realPath", "src/image/"+txtID.getText()+".png");
-            JasRep = JasperCompileManager.compileReport(JasDes);
-            JasPri = JasperFillManager.fillReport(JasRep, param, conn);
-            JasperViewer jasperviewer = new JasperViewer(JasPri, false);
-            jasperviewer.setExtendedState(jasperviewer.getExtendedState() | javax.swing.JFrame.MAXIMIZED_BOTH);
-            jasperviewer.setVisible(true);
-        } catch (Exception e){
-            JOptionPane.showMessageDialog(null, "Gagal mencetak barcode" + e);
-        }
-    }//GEN-LAST:event_btnCetakActionPerformed
+    }//GEN-LAST:event_btnCetak1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,16 +152,16 @@ public class barcode extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCetak;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel barcode;
+    private javax.swing.JButton btnCetak1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtNama;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField txtID1;
+    private javax.swing.JTextField txtNama1;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,22 +6,33 @@
 package Gacoan;
 
 import Connections.Koneksi;
+import com.barcodelib.barcode.Linear;
 import com.mysql.jdbc.Connection;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -39,6 +50,11 @@ public class Pesanan extends javax.swing.JFrame {
     ResultSet rs;
     Statement st;
     Date tanggal_pemesanan;
+    //---------------------------------------milik barcode
+    JasperReport JasRep;
+    JasperPrint JasPri;
+    Map param = new HashMap();
+    JasperDesign JasDes;
 
     public Pesanan() {
         conn = Connections.Koneksi.cekKoneksi();
@@ -58,6 +74,9 @@ public class Pesanan extends javax.swing.JFrame {
         Noodle.setVisible(true);
         Beverage.setVisible(false);
         Dimsum.setVisible(false);
+        Input.setVisible(true);
+        table.setVisible(true);
+        barcode.setVisible(false);
     }
 
     /**
@@ -136,6 +155,20 @@ public class Pesanan extends javax.swing.JFrame {
         tblPemesanan = new javax.swing.JTable();
         btnDelete = new javax.swing.JButton();
         btnSimpan = new javax.swing.JButton();
+        barcode = new javax.swing.JPanel();
+        jdctanggal = new com.toedter.calendar.JDateChooser();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        txttotalbayar = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtNama = new javax.swing.JTextField();
+        btnCetak = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -557,6 +590,63 @@ public class Pesanan extends javax.swing.JFrame {
 
         Background.add(table, new org.netbeans.lib.awtextra.AbsoluteConstraints(495, 350, 810, 370));
 
+        barcode.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jdctanggal.setDateFormatString("yyyy-MM-dd");
+        barcode.add(jdctanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 300, 30));
+
+        jLabel16.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
+        jLabel16.setText("Tanggal Pemesanan");
+        barcode.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 160, 30));
+
+        jLabel13.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
+        jLabel13.setText("Total Bayar");
+        barcode.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 160, 30));
+
+        txttotalbayar.setFont(new java.awt.Font("Garamond", 0, 14)); // NOI18N
+        barcode.add(txttotalbayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 300, 30));
+
+        jLabel9.setFont(new java.awt.Font("Garamond", 1, 50)); // NOI18N
+        jLabel9.setText("Mie Gacoan Jember");
+        barcode.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 460, 50));
+
+        txtNama.setFont(new java.awt.Font("Garamond", 0, 14)); // NOI18N
+        barcode.add(txtNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 300, 30));
+
+        btnCetak.setBackground(new java.awt.Color(153, 153, 153));
+        btnCetak.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
+        btnCetak.setText("Cetak Barcode");
+        btnCetak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCetakActionPerformed(evt);
+            }
+        });
+        barcode.add(btnCetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
+        jLabel10.setText("Nama pembeli:");
+        barcode.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 160, 30));
+
+        jLabel11.setFont(new java.awt.Font("Garamond", 3, 16)); // NOI18N
+        jLabel11.setText("Jl. Sumatra No.82, Tegal Boto Lor, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121");
+        barcode.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, 20));
+
+        jLabel12.setFont(new java.awt.Font("Garamond", 1, 50)); // NOI18N
+        jLabel12.setText("Cetak Barcode Pembayaran");
+        barcode.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 600, 50));
+
+        jLabel14.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
+        jLabel14.setText("ID Pemesanan:");
+        barcode.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 160, 30));
+
+        txtID.setFont(new java.awt.Font("Garamond", 0, 14)); // NOI18N
+        barcode.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 300, 30));
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ii MIE SETAN2.jpg"))); // NOI18N
+        barcode.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 540));
+
+        Background.add(barcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 3530, 1110));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Background Pemesanan.png"))); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(1366, 768));
         Background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, 768));
@@ -660,10 +750,20 @@ public class Pesanan extends javax.swing.JFrame {
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
         autoNumber(txtID_Pemesanan);
-        pemesanan();
-        txtSub_Total.setText("");
-        txtTotal_Bayar.setText("");
         tbmPemesanan.setRowCount(0);
+        Noodle.setVisible(false);
+        Beverage.setVisible(false);
+        Dimsum.setVisible(false);
+        barcode.setVisible(true);
+        String id = txtID_Pemesanan.getText();
+        String nama = txtNama_Pembeli.getText();
+        Date tanggal = jdcTanggal_Pemesanan.getDate();
+        int total = Integer.parseInt(txtTotal_Bayar.getText());
+        txtID.setText(id.trim());
+        txtNama.setText(nama.trim());
+        jdctanggal.setDate(tanggal);
+        txttotalbayar.setText(String.valueOf(total).trim());
+        
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void txtID_JenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID_JenisActionPerformed
@@ -757,6 +857,16 @@ public class Pesanan extends javax.swing.JFrame {
         cmbMenu.setSelectedItem("Siomay");
     }//GEN-LAST:event_SActionPerformed
 
+    private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed
+        autoNumber(txtID_Pemesanan);
+        try {
+            // TODO add your handling code here:
+            pemesanan();
+        } catch (Exception ex) {
+            Logger.getLogger(Pesanan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnCetakActionPerformed
+
     public void setbackground(JButton p) {
         p.setBackground(new Color(255, 51, 255));
     }
@@ -833,20 +943,37 @@ public class Pesanan extends javax.swing.JFrame {
 //        }
 //    }
 
-    public void pemesanan() {
+    public void pemesanan() throws Exception {
         try {
             int lastinsertid = 0;
-            String id_pemesanan = txtID_Pemesanan.getText();
-            String nama_pembeli = txtNama_Pembeli.getText();
-            Date tanggal_pemesanan = jdcTanggal_Pemesanan.getDate();
-            int total_bayar = Integer.parseInt(txtTotal_Bayar.getText());
-            String query = "INSERT INTO pemesanan(id_pemesanan, nama_pembeli, tanggal_pemesanan, total_bayar)values(?,?,?,?)";
+            String id_pemesanan = txtID.getText();
+            String nama_pembeli = txtNama.getText();
+            Date tanggal_pemesanan = jdctanggal.getDate();
+            int total_bayar = Integer.parseInt(txttotalbayar.getText());
+            String query = "INSERT INTO pemesanan values(?,?,?,?)";
             pst = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pst.setString(1, id_pemesanan);
             pst.setString(2, nama_pembeli);
-            pst.setString(3, ((JTextField) jdcTanggal_Pemesanan.getDateEditor().getUiComponent()).getText());
+            pst.setString(3, ((JTextField) jdctanggal.getDateEditor().getUiComponent()).getText());
             pst.setInt(4, total_bayar);
             pst.executeUpdate();
+            
+            Linear barcode = new Linear();
+            barcode.setType(Linear.CODE128B);
+            barcode.setData(txtID.getText());
+            barcode.setI(11.0f);
+            String fname = txtID.getText();
+            barcode.renderBarcode("src/image/" + fname + ".png");
+            
+            File file = new File("src/Report/CetakBarcode.jrxml");
+            JasDes = JRXmlLoader.load(file);
+            param.put("id_pemesanan", txtID.getText());
+            param.put("realPath", "src/image/"+txtID.getText()+".png");
+            JasRep = JasperCompileManager.compileReport(JasDes);
+            JasPri = JasperFillManager.fillReport(JasRep, param, conn);
+            JasperViewer jasperviewer = new JasperViewer(JasPri, false);
+            jasperviewer.setExtendedState(jasperviewer.getExtendedState() | javax.swing.JFrame.MAXIMIZED_BOTH);
+            jasperviewer.setVisible(true);
             ResultSet generatekey = pst.getGeneratedKeys();
             if (generatekey.next()) {
                 lastinsertid = generatekey.getInt(1);
@@ -869,6 +996,7 @@ public class Pesanan extends javax.swing.JFrame {
                 pst1.setInt(5, sub_total);
                 pst1.executeUpdate();
             }
+            
         } catch (SQLException ex) {
             Logger.getLogger(Pesanan.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -885,7 +1013,7 @@ public class Pesanan extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -933,16 +1061,27 @@ public class Pesanan extends javax.swing.JFrame {
     private javax.swing.JButton S;
     private javax.swing.JButton UK;
     private javax.swing.JButton UR;
+    private javax.swing.JPanel barcode;
+    private javax.swing.JButton btnCetak;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnMA;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JComboBox<String> cmbMenu;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private com.toedter.calendar.JDateChooser jdcTanggal_Pemesanan;
+    private com.toedter.calendar.JDateChooser jdctanggal;
     private javax.swing.JLabel t1;
     private javax.swing.JLabel t10;
     private javax.swing.JLabel t11;
@@ -971,12 +1110,15 @@ public class Pesanan extends javax.swing.JFrame {
     private javax.swing.JPanel table;
     private javax.swing.JTable tblPemesanan;
     private javax.swing.JTextField txtHarga;
+    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtID_Jenis;
     private javax.swing.JTextField txtID_Menu;
     private javax.swing.JTextField txtID_Pemesanan;
+    private javax.swing.JTextField txtNama;
     private javax.swing.JTextField txtNama_Pembeli;
     private javax.swing.JTextField txtQty;
     private javax.swing.JTextField txtSub_Total;
     private javax.swing.JTextField txtTotal_Bayar;
+    private javax.swing.JTextField txttotalbayar;
     // End of variables declaration//GEN-END:variables
 }

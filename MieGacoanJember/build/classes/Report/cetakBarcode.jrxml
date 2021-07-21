@@ -6,7 +6,7 @@
 	<parameter name="id_pemesanan" class="java.lang.String"/>
 	<parameter name="realPath" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT * FROM barcode WHERE id_pemesanan = $P{id_pemesanan}]]>
+		<![CDATA[SELECT * FROM pemesanan WHERE id_pemesanan = $P{id_pemesanan}]]>
 	</queryString>
 	<field name="id_pemesanan" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -14,8 +14,14 @@
 	<field name="nama_pembeli" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="tanggal_pemesanan" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total_bayar" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<title>
-		<band height="50" splitType="Stretch">
+		<band height="100" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="10" width="100" height="20" uuid="9a0321a0-afb6-412e-aa90-b6734ae7c59a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -43,6 +49,34 @@
 					<font fontName="Garamond" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nama Pembeli:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="50" width="100" height="20" uuid="e4caac83-725d-4c5b-baa4-96c03858ee81"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Garamond" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="50" width="157" height="20" uuid="e92cf928-a644-4c43-9b73-76d3d3f96799"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Garamond" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tanggal_pemesanan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="70" width="157" height="20" uuid="bfcfb99a-d794-4611-b414-b740d13b5335"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Garamond" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_bayar}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="70" width="100" height="20" uuid="a85412d5-a0a3-4b0f-8275-f1dbc3fa3b70"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Garamond" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
 			</staticText>
 		</band>
 	</title>
