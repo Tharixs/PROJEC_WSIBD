@@ -51,8 +51,8 @@ FROM
 				<text><![CDATA[Data Jenis Menu]]></text>
 			</staticText>
 			<image>
-				<reportElement x="1" y="0" width="150" height="97" uuid="361f0b3a-b612-45b7-be43-fac69af48a46"/>
-				<imageExpression><![CDATA["D:\\PROJEC_WSIBD\\MieGacoanJember\\src\\Report\\logoGacoan.png"]]></imageExpression>
+				<reportElement x="1" y="0" width="137" height="84" uuid="65ccfea8-1d18-4179-bd44-83edc8832e0d"/>
+				<imageExpression><![CDATA["C:\\Users\\ACER\\Desktop\\PROJEC_WSIBD\\MieGacoanJember\\src\\Report\\logoGacoan.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
