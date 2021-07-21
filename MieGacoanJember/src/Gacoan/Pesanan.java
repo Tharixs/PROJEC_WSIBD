@@ -68,15 +68,19 @@ public class Pesanan extends javax.swing.JFrame {
 //        auto_numberDetailPemesanan();
 //        auto_numberPemesanan();
         jdcTanggal_Pemesanan.setDate(new Date());
-        String nama_pembeli = JOptionPane.showInputDialog(null, "Siapa nama anda?", "Masukkan nama anda!", JOptionPane.PLAIN_MESSAGE);
-        JOptionPane.showMessageDialog(null, "Halo " + nama_pembeli + ":)", "Selamat Datang di Mie Gacoan Jember", JOptionPane.PLAIN_MESSAGE);
-        txtNama_Pembeli.setText(nama_pembeli);
+        
         Noodle.setVisible(true);
         Beverage.setVisible(false);
         Dimsum.setVisible(false);
         Input.setVisible(true);
         table.setVisible(true);
         barcode.setVisible(false);
+        
+        setbackground(PNoodle);
+        resetbackground(PDimsum);
+        resetbackground(PBeverage);
+        
+        
     }
 
     /**
@@ -125,10 +129,6 @@ public class Pesanan extends javax.swing.JFrame {
         t22 = new javax.swing.JLabel();
         t23 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        Pilihan = new javax.swing.JPanel();
-        PDimsum = new javax.swing.JButton();
-        PNoodle = new javax.swing.JButton();
-        PBeverage = new javax.swing.JButton();
         Input = new javax.swing.JPanel();
         t1 = new javax.swing.JLabel();
         t3 = new javax.swing.JLabel();
@@ -160,15 +160,18 @@ public class Pesanan extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         txttotalbayar = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         txtNama = new javax.swing.JTextField();
         btnCetak = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
+        Pilihan = new javax.swing.JPanel();
+        PDimsum = new javax.swing.JButton();
+        PNoodle = new javax.swing.JButton();
+        PBeverage = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -176,252 +179,462 @@ public class Pesanan extends javax.swing.JFrame {
 
         Background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Noodle.setBackground(new java.awt.Color(255, 255, 255,170
+        ));
         Noodle.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnMA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/MA.PNG"))); // NOI18N
+        btnMA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resize gambar/mie/rsz_ma.png"))); // NOI18N
         btnMA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMAActionPerformed(evt);
             }
         });
-        Noodle.add(btnMA, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 150, 150));
+        Noodle.add(btnMA, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 130, 130));
 
-        MI1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/MI.PNG"))); // NOI18N
+        MI1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resize gambar/mie/rsz_mi.png"))); // NOI18N
         MI1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MI1ActionPerformed(evt);
             }
         });
-        Noodle.add(MI1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 150, 150));
+        Noodle.add(MI1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 130, 130));
 
-        MS1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/MS.PNG"))); // NOI18N
+        MS1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resize gambar/mie/rsz_ms.png"))); // NOI18N
         MS1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MS1ActionPerformed(evt);
             }
         });
-        Noodle.add(MS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 150, 150));
+        Noodle.add(MS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 130, 130));
 
-        MS2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/MS.PNG"))); // NOI18N
+        MS2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resize gambar/mie/rsz_ms.png"))); // NOI18N
         MS2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MS2ActionPerformed(evt);
             }
         });
-        Noodle.add(MS2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 440, 150, 150));
+        Noodle.add(MS2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 130, 130));
 
-        MI2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/MI.PNG"))); // NOI18N
+        MI2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resize gambar/mie/rsz_mi.png"))); // NOI18N
         MI2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MI2ActionPerformed(evt);
             }
         });
-        Noodle.add(MI2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 150, 150));
+        Noodle.add(MI2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 130, 130));
 
         t2.setBackground(new java.awt.Color(0, 51, 255));
-        t2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        t2.setForeground(new java.awt.Color(0, 0, 153));
+        t2.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        t2.setForeground(new java.awt.Color(0, 102, 255));
         t2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t2.setText("MIE IBLIS LV 1-4");
-        Noodle.add(t2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 150, -1));
+        Noodle.add(t2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 170, -1));
 
         t14.setBackground(new java.awt.Color(0, 51, 255));
-        t14.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        t14.setForeground(new java.awt.Color(0, 0, 153));
+        t14.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        t14.setForeground(new java.awt.Color(0, 102, 255));
         t14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t14.setText("MIE IBLIS LV 6-8");
-        Noodle.add(t14, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, 150, -1));
+        Noodle.add(t14, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 170, -1));
 
         t15.setBackground(new java.awt.Color(0, 51, 255));
-        t15.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        t15.setForeground(new java.awt.Color(0, 0, 153));
+        t15.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        t15.setForeground(new java.awt.Color(0, 102, 255));
         t15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t15.setText("MIE SETAN LV 1-4");
-        Noodle.add(t15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 590, 170, -1));
+        Noodle.add(t15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 170, -1));
 
         t16.setBackground(new java.awt.Color(0, 51, 255));
-        t16.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        t16.setForeground(new java.awt.Color(0, 0, 153));
+        t16.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        t16.setForeground(new java.awt.Color(0, 102, 255));
         t16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t16.setText("MIE SETAN LV 6-8");
-        Noodle.add(t16, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 590, 170, -1));
+        Noodle.add(t16, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 460, 170, -1));
 
         t17.setBackground(new java.awt.Color(0, 51, 255));
-        t17.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        t17.setForeground(new java.awt.Color(0, 0, 153));
+        t17.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        t17.setForeground(new java.awt.Color(0, 102, 255));
         t17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t17.setText("MIE ANGEL");
-        Noodle.add(t17, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 150, -1));
+        Noodle.add(t17, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 550, 150, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Noodle.PNG"))); // NOI18N
-        Noodle.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 650));
+        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 46)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(245, 38, 169));
+        jLabel2.setText("Pilih Mie");
+        Noodle.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
 
-        Background.add(Noodle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 470, 650));
+        Background.add(Noodle, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 23, 470, 650));
 
+        Beverage.setBackground(new java.awt.Color(255, 255, 255,170));
+        Beverage.setMinimumSize(new java.awt.Dimension(432, 616));
+        Beverage.setPreferredSize(new java.awt.Dimension(432, 616));
         Beverage.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ESG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ESG.PNG"))); // NOI18N
+        ESG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resize gambar/es/rsz_esg.png"))); // NOI18N
         ESG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ESGActionPerformed(evt);
             }
         });
-        Beverage.add(ESG, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 200, 200));
+        Beverage.add(ESG, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 180, -1));
 
-        ESP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ESP.PNG"))); // NOI18N
+        ESP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resize gambar/es/rsz_esp.png"))); // NOI18N
         ESP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ESPActionPerformed(evt);
             }
         });
-        Beverage.add(ESP, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 200, 200));
+        Beverage.add(ESP, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 180, 110));
 
-        ESSB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ESSB.PNG"))); // NOI18N
+        ESSB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resize gambar/es/rsz_essb.png"))); // NOI18N
         ESSB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ESSBActionPerformed(evt);
             }
         });
-        Beverage.add(ESSB, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 350, 200, 200));
+        Beverage.add(ESSB, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 180, 120));
 
-        EST.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/EST.PNG"))); // NOI18N
+        EST.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resize gambar/es/rsz_est.png"))); // NOI18N
         EST.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ESTActionPerformed(evt);
             }
         });
-        Beverage.add(EST, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 200, 200));
+        Beverage.add(EST, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 180, 120));
 
         t24.setBackground(new java.awt.Color(0, 51, 255));
-        t24.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        t24.setForeground(new java.awt.Color(0, 0, 153));
+        t24.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        t24.setForeground(new java.awt.Color(0, 102, 255));
         t24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t24.setText("ES TUYUL");
-        Beverage.add(t24, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, 200, 30));
+        Beverage.add(t24, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 200, 30));
 
         t25.setBackground(new java.awt.Color(0, 51, 255));
-        t25.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        t25.setForeground(new java.awt.Color(0, 0, 153));
+        t25.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        t25.setForeground(new java.awt.Color(0, 102, 255));
         t25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t25.setText("ES POCONG");
-        Beverage.add(t25, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, 200, 30));
+        Beverage.add(t25, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 200, 30));
 
         t26.setBackground(new java.awt.Color(0, 51, 255));
-        t26.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        t26.setForeground(new java.awt.Color(0, 0, 153));
+        t26.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        t26.setForeground(new java.awt.Color(0, 102, 255));
         t26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t26.setText("ES SUNDEL BOLONG");
-        Beverage.add(t26, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 550, 200, 30));
+        Beverage.add(t26, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 420, 200, 30));
 
         t27.setBackground(new java.awt.Color(0, 51, 255));
-        t27.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        t27.setForeground(new java.awt.Color(0, 0, 153));
+        t27.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        t27.setForeground(new java.awt.Color(0, 102, 255));
         t27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t27.setText("ES GENDERUWO");
-        Beverage.add(t27, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 200, 30));
+        Beverage.add(t27, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 200, 30));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Beverage.PNG"))); // NOI18N
-        Beverage.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 650));
+        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 39)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(245, 38, 169));
+        jLabel3.setText("Pilih Desert ");
+        Beverage.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, -1));
 
-        Background.add(Beverage, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 470, 650));
+        Background.add(Beverage, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 23, 470, 650));
 
+        Dimsum.setBackground(new java.awt.Color(255, 255, 255,170));
+        Dimsum.setMinimumSize(new java.awt.Dimension(432, 616));
+        Dimsum.setPreferredSize(new java.awt.Dimension(432, 616));
         Dimsum.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        PG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PG.PNG"))); // NOI18N
+        PG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resize gambar/dessert/rsz_pg.png"))); // NOI18N
         PG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PGActionPerformed(evt);
             }
         });
-        Dimsum.add(PG, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 150, 150));
+        Dimsum.add(PG, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 150, 120));
 
-        UK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UK.PNG"))); // NOI18N
+        UK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resize gambar/dessert/rsz_uk.png"))); // NOI18N
         UK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UKActionPerformed(evt);
             }
         });
-        Dimsum.add(UK, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 150, 150));
+        Dimsum.add(UK, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 150, 120));
 
-        C.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/C.PNG"))); // NOI18N
+        C.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resize gambar/dessert/rsz_c.png"))); // NOI18N
         C.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CActionPerformed(evt);
             }
         });
-        Dimsum.add(C, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 150, 150));
+        Dimsum.add(C, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 150, 120));
 
-        LU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LU.PNG"))); // NOI18N
+        LU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resize gambar/dessert/rsz_lu.png"))); // NOI18N
         LU.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LUActionPerformed(evt);
             }
         });
-        Dimsum.add(LU, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 440, 150, 150));
+        Dimsum.add(LU, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 450, 150, 120));
 
-        UR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/UR.PNG"))); // NOI18N
+        UR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resize gambar/dessert/rsz_ur.png"))); // NOI18N
         UR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 URActionPerformed(evt);
             }
         });
-        Dimsum.add(UR, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 150, 150));
+        Dimsum.add(UR, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 150, 120));
 
-        S.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/S.PNG"))); // NOI18N
+        S.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resize gambar/dessert/rsz_s.png"))); // NOI18N
         S.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SActionPerformed(evt);
             }
         });
-        Dimsum.add(S, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 150, 150));
+        Dimsum.add(S, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 150, 120));
 
         t18.setBackground(new java.awt.Color(0, 51, 255));
-        t18.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        t18.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         t18.setForeground(new java.awt.Color(0, 0, 153));
         t18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t18.setText("PANGSIT GORENG");
-        Dimsum.add(t18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 170, -1));
+        Dimsum.add(t18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 170, -1));
 
         t19.setBackground(new java.awt.Color(0, 51, 255));
-        t19.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        t19.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         t19.setForeground(new java.awt.Color(0, 0, 153));
         t19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t19.setText("SIOMAY");
-        Dimsum.add(t19, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 150, -1));
+        Dimsum.add(t19, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 150, -1));
 
         t20.setBackground(new java.awt.Color(0, 51, 255));
-        t20.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        t20.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         t20.setForeground(new java.awt.Color(0, 0, 153));
         t20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t20.setText("UDANG RAMBUTAN");
-        Dimsum.add(t20, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, 190, -1));
+        Dimsum.add(t20, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, 190, -1));
 
         t21.setBackground(new java.awt.Color(0, 51, 255));
-        t21.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        t21.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         t21.setForeground(new java.awt.Color(0, 0, 153));
         t21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        t21.setText("MIE IBLIS LV 1-4");
-        Dimsum.add(t21, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 150, -1));
+        t21.setText("CEKER");
+        Dimsum.add(t21, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 580, 150, -1));
 
         t22.setBackground(new java.awt.Color(0, 51, 255));
-        t22.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        t22.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         t22.setForeground(new java.awt.Color(0, 0, 153));
         t22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t22.setText("LUMPIA UDANG");
-        Dimsum.add(t22, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 590, 150, -1));
+        Dimsum.add(t22, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 580, 150, -1));
 
         t23.setBackground(new java.awt.Color(0, 51, 255));
-        t23.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        t23.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         t23.setForeground(new java.awt.Color(0, 0, 153));
         t23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         t23.setText("UDANG KEJU");
-        Dimsum.add(t23, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 150, -1));
+        Dimsum.add(t23, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 150, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Dimsum.PNG"))); // NOI18N
-        Dimsum.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 650));
+        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 39)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 51, 204));
+        jLabel4.setText("Pilih Dimsum");
+        Dimsum.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, -1, -1));
 
-        Background.add(Dimsum, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 470, 650));
+        Background.add(Dimsum, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 23, 470, 650));
 
+        Input.setBackground(new java.awt.Color(255, 255, 255,170));
+        Input.setForeground(new java.awt.Color(255, 255, 255));
+        Input.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        t1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        t1.setText("ID Pemesanan");
+        Input.add(t1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+
+        t3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        t3.setText("ID Menu");
+        Input.add(t3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
+
+        t4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        t4.setText("Qty");
+        Input.add(t4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, -1, -1));
+
+        t5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        t5.setText("Sub Total");
+        Input.add(t5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 70, -1, -1));
+
+        txtID_Pemesanan.setFont(new java.awt.Font("Garamond", 0, 18)); // NOI18N
+        Input.add(txtID_Pemesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 25, 300, 30));
+
+        txtID_Menu.setFont(new java.awt.Font("Garamond", 0, 18)); // NOI18N
+        Input.add(txtID_Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 145, 300, 30));
+
+        txtQty.setFont(new java.awt.Font("Garamond", 0, 18)); // NOI18N
+        txtQty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQtyActionPerformed(evt);
+            }
+        });
+        Input.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 25, 180, 30));
+
+        txtSub_Total.setFont(new java.awt.Font("Garamond", 0, 18)); // NOI18N
+        Input.add(txtSub_Total, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 65, 180, 30));
+
+        t6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        t6.setText("Tanggal");
+        Input.add(t6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+
+        t7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        t7.setText("Total Bayar");
+        Input.add(t7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, -1, -1));
+
+        txtTotal_Bayar.setFont(new java.awt.Font("Garamond", 0, 18)); // NOI18N
+        txtTotal_Bayar.setForeground(new java.awt.Color(255, 0, 51));
+        Input.add(txtTotal_Bayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 105, 180, 30));
+
+        txtNama_Pembeli.setFont(new java.awt.Font("Garamond", 0, 18)); // NOI18N
+        Input.add(txtNama_Pembeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 65, 300, 30));
+
+        t10.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        t10.setText("Menu");
+        Input.add(t10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+
+        cmbMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbMenuActionPerformed(evt);
+            }
+        });
+        Input.add(cmbMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 185, 300, 30));
+
+        t11.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        t11.setText("ID Jenis");
+        Input.add(t11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
+
+        t12.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        t12.setText("Harga");
+        Input.add(t12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
+
+        txtHarga.setFont(new java.awt.Font("Garamond", 0, 18)); // NOI18N
+        txtHarga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtHargaActionPerformed(evt);
+            }
+        });
+        Input.add(txtHarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 265, 300, 30));
+
+        jdcTanggal_Pemesanan.setBackground(new java.awt.Color(255, 255, 255));
+        jdcTanggal_Pemesanan.setDateFormatString("yyyy-MM-dd");
+        Input.add(jdcTanggal_Pemesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 105, 300, 30));
+
+        txtID_Jenis.setFont(new java.awt.Font("Garamond", 0, 18)); // NOI18N
+        txtID_Jenis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtID_JenisActionPerformed(evt);
+            }
+        });
+        Input.add(txtID_Jenis, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 225, 300, 30));
+
+        t13.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        t13.setText("Nama Pembeli");
+        Input.add(t13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
+
+        Background.add(Input, new org.netbeans.lib.awtextra.AbsoluteConstraints(495, 20, 810, 320));
+
+        table.setBackground(new java.awt.Color(255, 255, 255,170));
+        table.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblPemesanan.setBackground(new java.awt.Color(153, 255, 255));
+        tblPemesanan.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        tblPemesanan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID Menu", "Menu", "Harga", "Qty", "Sub Total"
+            }
+        ));
+        jScrollPane1.setViewportView(tblPemesanan);
+
+        table.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 770, 250));
+
+        btnDelete.setBackground(new java.awt.Color(236, 0, 141));
+        btnDelete.setFont(new java.awt.Font("Garamond", 1, 18)); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
+        btnDelete.setText("Delete");
+        btnDelete.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+        table.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 290, 108, 33));
+
+        btnSimpan.setBackground(new java.awt.Color(236, 0, 141));
+        btnSimpan.setFont(new java.awt.Font("Garamond", 1, 18)); // NOI18N
+        btnSimpan.setForeground(new java.awt.Color(255, 255, 255));
+        btnSimpan.setText("Simpan");
+        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanActionPerformed(evt);
+            }
+        });
+        table.add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 290, 108, 33));
+
+        Background.add(table, new org.netbeans.lib.awtextra.AbsoluteConstraints(495, 350, 810, 370));
+
+        barcode.setBackground(new java.awt.Color(255, 255, 255,170));
+        barcode.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jdctanggal.setDateFormatString("yyyy-MM-dd");
+        barcode.add(jdctanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 220, 30));
+
+        jLabel16.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
+        jLabel16.setText("Tanggal Pemesanan");
+        barcode.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 160, 30));
+
+        jLabel13.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
+        jLabel13.setText("Total Bayar");
+        barcode.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 160, 30));
+
+        txttotalbayar.setFont(new java.awt.Font("Garamond", 0, 14)); // NOI18N
+        barcode.add(txttotalbayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 220, 30));
+
+        txtNama.setFont(new java.awt.Font("Garamond", 0, 14)); // NOI18N
+        barcode.add(txtNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 220, 30));
+
+        btnCetak.setBackground(new java.awt.Color(236, 0, 141));
+        btnCetak.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
+        btnCetak.setForeground(new java.awt.Color(255, 255, 255));
+        btnCetak.setText("Cetak Barcode");
+        btnCetak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCetakActionPerformed(evt);
+            }
+        });
+        barcode.add(btnCetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
+        jLabel10.setText("Nama pembeli:");
+        barcode.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 160, 30));
+
+        jLabel12.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel12.setFont(new java.awt.Font("Garamond", 1, 50)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(236, 0, 141));
+        jLabel12.setText("Barcode Pembayaran");
+        barcode.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 470, 50));
+
+        jLabel14.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
+        jLabel14.setText("ID Pemesanan:");
+        barcode.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 160, 30));
+
+        txtID.setFont(new java.awt.Font("Garamond", 0, 14)); // NOI18N
+        barcode.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 220, 30));
+
+        jLabel15.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel15.setFont(new java.awt.Font("Garamond", 1, 50)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(236, 0, 141));
+        jLabel15.setText("Cetak ");
+        barcode.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 150, 50));
+
+        Background.add(barcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 23, 470, 650));
+
+        Pilihan.setBackground(new java.awt.Color(255, 255, 255,1));
         Pilihan.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         PDimsum.addActionListener(new java.awt.event.ActionListener() {
@@ -445,215 +658,24 @@ public class Pesanan extends javax.swing.JFrame {
         });
         Pilihan.add(PBeverage, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 15, 20, 20));
 
-        Background.add(Pilihan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 670, 470, 50));
+        Background.add(Pilihan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 670, 480, 50));
 
-        Input.setBackground(new java.awt.Color(0, 204, 204));
-        Input.setForeground(new java.awt.Color(153, 255, 255));
-        Input.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        t1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        t1.setText("ID Pemesanan");
-        Input.add(t1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
-
-        t3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        t3.setText("ID Menu");
-        Input.add(t3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
-
-        t4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        t4.setText("Qty");
-        Input.add(t4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, -1, -1));
-
-        t5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        t5.setText("Sub Total");
-        Input.add(t5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 70, -1, -1));
-
-        txtID_Pemesanan.setBackground(new java.awt.Color(0, 255, 255));
-        txtID_Pemesanan.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        Input.add(txtID_Pemesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 25, 300, 30));
-
-        txtID_Menu.setBackground(new java.awt.Color(0, 255, 255));
-        txtID_Menu.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        Input.add(txtID_Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 145, 300, 30));
-
-        txtQty.setBackground(new java.awt.Color(0, 255, 255));
-        txtQty.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        txtQty.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtQtyActionPerformed(evt);
+        jPanel1.setBackground(new java.awt.Color(0, 179, 216, 80));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
             }
         });
-        Input.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 25, 180, 30));
+        Background.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, 768));
 
-        txtSub_Total.setBackground(new java.awt.Color(0, 255, 255));
-        txtSub_Total.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        Input.add(txtSub_Total, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 65, 180, 30));
-
-        t6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        t6.setText("Tanggal");
-        Input.add(t6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
-
-        t7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        t7.setText("Total Bayar");
-        Input.add(t7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, -1, -1));
-
-        txtTotal_Bayar.setBackground(new java.awt.Color(204, 204, 255));
-        txtTotal_Bayar.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
-        txtTotal_Bayar.setForeground(new java.awt.Color(255, 0, 51));
-        Input.add(txtTotal_Bayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 105, 180, 70));
-
-        txtNama_Pembeli.setBackground(new java.awt.Color(0, 255, 255));
-        txtNama_Pembeli.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        Input.add(txtNama_Pembeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 65, 300, 30));
-
-        t10.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        t10.setText("Menu");
-        Input.add(t10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
-
-        cmbMenu.setBackground(new java.awt.Color(0, 255, 255));
-        cmbMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbMenuActionPerformed(evt);
-            }
-        });
-        Input.add(cmbMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 185, 300, 30));
-
-        t11.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        t11.setText("ID Jenis");
-        Input.add(t11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
-
-        t12.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        t12.setText("Harga");
-        Input.add(t12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
-
-        txtHarga.setBackground(new java.awt.Color(0, 255, 255));
-        txtHarga.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        txtHarga.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtHargaActionPerformed(evt);
-            }
-        });
-        Input.add(txtHarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 265, 300, 30));
-
-        jdcTanggal_Pemesanan.setBackground(new java.awt.Color(0, 255, 255));
-        jdcTanggal_Pemesanan.setDateFormatString("yyyy-MM-dd");
-        Input.add(jdcTanggal_Pemesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 105, 300, 30));
-
-        txtID_Jenis.setBackground(new java.awt.Color(0, 255, 255));
-        txtID_Jenis.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        txtID_Jenis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtID_JenisActionPerformed(evt);
-            }
-        });
-        Input.add(txtID_Jenis, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 225, 300, 30));
-
-        t13.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        t13.setText("Nama Pembeli");
-        Input.add(t13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
-
-        Background.add(Input, new org.netbeans.lib.awtextra.AbsoluteConstraints(495, 20, 810, 320));
-
-        table.setBackground(new java.awt.Color(0, 204, 204));
-        table.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        tblPemesanan.setBackground(new java.awt.Color(153, 255, 255));
-        tblPemesanan.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        tblPemesanan.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID Menu", "Menu", "Harga", "Qty", "Sub Total"
-            }
-        ));
-        jScrollPane1.setViewportView(tblPemesanan);
-
-        table.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 770, 250));
-
-        btnDelete.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-        table.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 280, 150, 70));
-
-        btnSimpan.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        btnSimpan.setText("Simpan");
-        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSimpanActionPerformed(evt);
-            }
-        });
-        table.add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 280, 200, 70));
-
-        Background.add(table, new org.netbeans.lib.awtextra.AbsoluteConstraints(495, 350, 810, 370));
-
-        barcode.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jdctanggal.setDateFormatString("yyyy-MM-dd");
-        barcode.add(jdctanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 300, 30));
-
-        jLabel16.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
-        jLabel16.setText("Tanggal Pemesanan");
-        barcode.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 160, 30));
-
-        jLabel13.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
-        jLabel13.setText("Total Bayar");
-        barcode.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 160, 30));
-
-        txttotalbayar.setFont(new java.awt.Font("Garamond", 0, 14)); // NOI18N
-        barcode.add(txttotalbayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 300, 30));
-
-        jLabel9.setFont(new java.awt.Font("Garamond", 1, 50)); // NOI18N
-        jLabel9.setText("Mie Gacoan Jember");
-        barcode.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 460, 50));
-
-        txtNama.setFont(new java.awt.Font("Garamond", 0, 14)); // NOI18N
-        barcode.add(txtNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 300, 30));
-
-        btnCetak.setBackground(new java.awt.Color(153, 153, 153));
-        btnCetak.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
-        btnCetak.setText("Cetak Barcode");
-        btnCetak.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCetakActionPerformed(evt);
-            }
-        });
-        barcode.add(btnCetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, -1, -1));
-
-        jLabel10.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
-        jLabel10.setText("Nama pembeli:");
-        barcode.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 160, 30));
-
-        jLabel11.setFont(new java.awt.Font("Garamond", 3, 16)); // NOI18N
-        jLabel11.setText("Jl. Sumatra No.82, Tegal Boto Lor, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121");
-        barcode.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, 20));
-
-        jLabel12.setFont(new java.awt.Font("Garamond", 1, 50)); // NOI18N
-        jLabel12.setText("Cetak Barcode Pembayaran");
-        barcode.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 600, 50));
-
-        jLabel14.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
-        jLabel14.setText("ID Pemesanan:");
-        barcode.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 160, 30));
-
-        txtID.setFont(new java.awt.Font("Garamond", 0, 14)); // NOI18N
-        barcode.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 300, 30));
-
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ii MIE SETAN2.jpg"))); // NOI18N
-        barcode.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 540));
-
-        Background.add(barcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 3530, 1110));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Background Pemesanan.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/background admin_Resize.jpg"))); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(1366, 768));
         Background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, 768));
 
         getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, 768));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMenuActionPerformed
@@ -749,8 +771,11 @@ public class Pesanan extends javax.swing.JFrame {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        autoNumber(txtID_Pemesanan);
-        tbmPemesanan.setRowCount(0);
+        
+        if (txtTotal_Bayar.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Anda belum memasukkan Quantity !");
+        }else{
+        
         Noodle.setVisible(false);
         Beverage.setVisible(false);
         Dimsum.setVisible(false);
@@ -763,7 +788,7 @@ public class Pesanan extends javax.swing.JFrame {
         txtNama.setText(nama.trim());
         jdctanggal.setDate(tanggal);
         txttotalbayar.setText(String.valueOf(total).trim());
-        
+        }
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void txtID_JenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID_JenisActionPerformed
@@ -858,14 +883,32 @@ public class Pesanan extends javax.swing.JFrame {
     }//GEN-LAST:event_SActionPerformed
 
     private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed
-        autoNumber(txtID_Pemesanan);
         try {
             // TODO add your handling code here:
             pemesanan();
         } catch (Exception ex) {
             Logger.getLogger(Pesanan.class.getName()).log(Level.SEVERE, null, ex);
         }
+        autoNumber(txtID_Pemesanan);
+        txtSub_Total.setText("");
+        txtTotal_Bayar.setText("");
+        tbmPemesanan.setRowCount(0);
+        txtNama_Pembeli.setText("");
+        cmbMenu.setSelectedItem(null);
+        txtID_Jenis.setText("");
+        txtHarga.setText("");
+        txtQty.setText("");
+        txtSub_Total.setText("");
+        Noodle.setVisible(true);
+        barcode.setVisible(false);
     }//GEN-LAST:event_btnCetakActionPerformed
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        // TODO add your handling code here:
+        String nama_pembeli = JOptionPane.showInputDialog(null, "Siapa nama anda?", "Masukkan nama anda!", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Halo " + nama_pembeli + ":)", "Selamat Datang di Mie Gacoan Jember", JOptionPane.PLAIN_MESSAGE);
+        txtNama_Pembeli.setText(nama_pembeli);
+    }//GEN-LAST:event_jPanel1MouseClicked
 
     public void setbackground(JButton p) {
         p.setBackground(new Color(255, 51, 255));
@@ -896,7 +939,7 @@ public class Pesanan extends javax.swing.JFrame {
         int i = 0;
         try {
 //            conn = Connections.Koneksi.cekKoneksi();
-            String sql = "SELECT * FROM detail_pemesanan";
+            String sql = "SELECT * FROM pemesanan";
             st = conn.createStatement();
             rs = st.executeQuery(sql);
 //            ResultSet rs = conn.(id_pemesanan);
@@ -915,6 +958,7 @@ public class Pesanan extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }
+
 
 //    public void auto_numberPemesanan() {
 //        try {
@@ -946,15 +990,15 @@ public class Pesanan extends javax.swing.JFrame {
     public void pemesanan() throws Exception {
         try {
             int lastinsertid = 0;
-            String id_pemesanan = txtID.getText();
-            String nama_pembeli = txtNama.getText();
-            Date tanggal_pemesanan = jdctanggal.getDate();
-            int total_bayar = Integer.parseInt(txttotalbayar.getText());
+            String id_pemesanan = txtID_Pemesanan.getText();
+            String nama_pembeli = txtNama_Pembeli.getText();
+            Date tanggal_pemesanan = jdcTanggal_Pemesanan.getDate();
+            int total_bayar = Integer.parseInt(txtTotal_Bayar.getText());
             String query = "INSERT INTO pemesanan values(?,?,?,?)";
             pst = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pst.setString(1, id_pemesanan);
             pst.setString(2, nama_pembeli);
-            pst.setString(3, ((JTextField) jdctanggal.getDateEditor().getUiComponent()).getText());
+            pst.setString(3, ((JTextField) jdcTanggal_Pemesanan.getDateEditor().getUiComponent()).getText());
             pst.setInt(4, total_bayar);
             pst.executeUpdate();
             
@@ -1013,7 +1057,7 @@ public class Pesanan extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -1069,7 +1113,6 @@ public class Pesanan extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -1078,7 +1121,7 @@ public class Pesanan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private com.toedter.calendar.JDateChooser jdcTanggal_Pemesanan;
     private com.toedter.calendar.JDateChooser jdctanggal;

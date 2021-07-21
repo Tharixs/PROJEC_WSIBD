@@ -2249,7 +2249,7 @@ public class Pegawai extends javax.swing.JFrame {
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
         // TODO add your handling code here:
 
-        String file = "C:\\Users\\kelvin\\Documents\\GitHub Desktop\\project\\ProjectTorik\\PROJEC_WSIBD\\MieGacoanJember\\src\\Report\\ReportPegawai.jrxml";
+        String file = "D:\\KULIAH\\tugas kuliah\\Semester 2\\Workshop SI Berbasis Dekstop\\Project\\PROJEC_WSIBD\\MieGacoanJember\\src\\Report\\ReportPegawai.jrxml";
 
         try {
             JasperReport jr = JasperCompileManager.compileReport(file);

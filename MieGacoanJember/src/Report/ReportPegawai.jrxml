@@ -63,8 +63,8 @@ FROM
 				<text><![CDATA[Jl. Sumatra No.82, Tegal Boto Lor, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121]]></text>
 			</staticText>
 			<image>
-				<reportElement x="3" y="5" width="123" height="79" uuid="81393671-7ad6-4be9-aed4-3ebd8038569c"/>
-				<imageExpression><![CDATA["C:\\Users\\ACER\\Desktop\\PROJEC_WSIBD\\MieGacoanJember\\src\\Report\\logoGacoan.png"]]></imageExpression>
+				<reportElement x="-6" y="0" width="184" height="125" uuid="0f206db2-e886-4015-a817-57dfbb5e6b6d"/>
+				<imageExpression><![CDATA["D:\\KULIAH\\tugas kuliah\\Semester 2\\Workshop SI Berbasis Dekstop\\Project\\PROJEC_WSIBD\\MieGacoanJember\\src\\Report\\logoGacoan.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
