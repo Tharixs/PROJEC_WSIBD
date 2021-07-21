@@ -48,7 +48,7 @@ public class Pembayaran extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-//        autoNumber(txtID_Pemesanan);
+        autoNumber(txtID_Pembayaran);
 //        auto_numberDetailPemesanan();
 //        auto_numberPemesanan();
         jdcTanggal_Pembayaran.setDate(new Date());
@@ -97,6 +97,8 @@ public class Pembayaran extends javax.swing.JFrame {
         t29 = new javax.swing.JLabel();
         cmbPegawai = new javax.swing.JComboBox<>();
         t30 = new javax.swing.JLabel();
+        t10 = new javax.swing.JLabel();
+        jdcTanggal_Pemesanan = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -164,7 +166,7 @@ public class Pembayaran extends javax.swing.JFrame {
 
         t6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         t6.setText("Waktu");
-        Input.add(t6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, -1, -1));
+        Input.add(t6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, -1, -1));
 
         t7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         t7.setText("Total Bayar");
@@ -172,16 +174,16 @@ public class Pembayaran extends javax.swing.JFrame {
 
         t8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         t8.setText("Bayar");
-        Input.add(t8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, -1, -1));
+        Input.add(t8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 480, -1, -1));
 
         t9.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         t9.setText("Kembalian");
-        Input.add(t9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 470, -1, -1));
+        Input.add(t9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 520, -1, -1));
 
         txtKembalian.setBackground(new java.awt.Color(204, 204, 255));
         txtKembalian.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         txtKembalian.setForeground(new java.awt.Color(255, 0, 51));
-        Input.add(txtKembalian, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 470, 400, 70));
+        Input.add(txtKembalian, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 520, 400, 70));
 
         txtBayar.setBackground(new java.awt.Color(0, 255, 255));
         txtBayar.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -190,7 +192,7 @@ public class Pembayaran extends javax.swing.JFrame {
                 txtBayarActionPerformed(evt);
             }
         });
-        Input.add(txtBayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 430, 400, 30));
+        Input.add(txtBayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 480, 400, 30));
 
         txtTotal_Bayar.setBackground(new java.awt.Color(204, 204, 255));
         txtTotal_Bayar.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
@@ -203,7 +205,7 @@ public class Pembayaran extends javax.swing.JFrame {
 
         jdcTanggal_Pembayaran.setBackground(new java.awt.Color(0, 255, 255));
         jdcTanggal_Pembayaran.setDateFormatString("yyyy-MM-dd");
-        Input.add(jdcTanggal_Pembayaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 400, 30));
+        Input.add(jdcTanggal_Pembayaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 430, 400, 30));
 
         t13.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         t13.setText("Nama Pembeli");
@@ -234,11 +236,24 @@ public class Pembayaran extends javax.swing.JFrame {
         t29.setText("ID Pembayaran");
         Input.add(t29, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
 
+        cmbPegawai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPegawaiActionPerformed(evt);
+            }
+        });
         Input.add(cmbPegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 400, 30));
 
         t30.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         t30.setText("ID Pegawai");
         Input.add(t30, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
+
+        t10.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        t10.setText("Tanggal Pemesanan");
+        Input.add(t10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, -1, -1));
+
+        jdcTanggal_Pemesanan.setBackground(new java.awt.Color(0, 255, 255));
+        jdcTanggal_Pemesanan.setDateFormatString("yyyy-MM-dd");
+        Input.add(jdcTanggal_Pemesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 400, 30));
 
         Background.add(Input, new org.netbeans.lib.awtextra.AbsoluteConstraints(495, 20, 810, 700));
 
@@ -261,13 +276,29 @@ public class Pembayaran extends javax.swing.JFrame {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-
+        pembayaran();
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void txtID_PemesananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID_PemesananActionPerformed
         // TODO add your handling code here:
         select();
     }//GEN-LAST:event_txtID_PemesananActionPerformed
+
+    private void cmbPegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPegawaiActionPerformed
+        // TODO add your handling code here:
+        String nama_pegawai = (String) cmbPegawai.getSelectedItem();
+        try {
+            pst = conn.prepareStatement("SELECT * FROM pegawai WHERE nama_pegawai = ?");
+            pst.setString(1, nama_pegawai);
+            rs = pst.executeQuery();
+            if (rs.next() == true) {
+                String id_pegawai = rs.getString("id_pegawai");
+                txtID_Pegawai.setText(id_pegawai.trim());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Pesanan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cmbPegawaiActionPerformed
 
     public void setbackground(JButton p) {
         p.setBackground(new Color(255, 51, 255));
@@ -293,17 +324,46 @@ public class Pembayaran extends javax.swing.JFrame {
         }
     }
 
+    public void pembayaran() {
+
+        try {
+            String id_pembayaran = txtID_Pembayaran.getText();
+            String id_pegawai = txtID_Pegawai.getText();
+            String id_pemesanan = txtID_Pemesanan.getText();
+            Date waktu = jdcTanggal_Pembayaran.getDate();
+            int bayar = Integer.parseInt(txtBayar.getText());
+            int kembalian = Integer.parseInt(txtKembalian.getText());
+            String query = "INSERT INTO pembayaran(id_pembayaran, id_pegawai, waktu, bayar, kembalian, id_pemesanan)values(?,?,?,?,?,?)";
+            pst = conn.prepareStatement(query);
+            pst.setString(1, id_pembayaran);
+            pst.setString(2, id_pegawai);
+            pst.setString(3, ((JTextField) jdcTanggal_Pembayaran.getDateEditor().getUiComponent()).getText());
+            pst.setInt(4, bayar);
+            pst.setInt(5, kembalian);
+            pst.setString(6, id_pemesanan);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Pembayaran.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
     public void select() {
         try {
-            String query2 = "SELECT pembayaran.id_pemesanan, pemesanan.nama_pembeli, pemesanan.total_bayar FROM pegawai INNER JOIN pembayaran ON pegawai.id_pegawai = pembayaran.id_pegawai, (jenis_menu INNER JOIN (detail_pemesanan INNER JOIN menu ON detail_pemesanan.id_menu = menu.id_menu) ON jenis_menu.id_jenis = menu.id_jenis) INNER JOIN pemesanan ON detail_pemesanan.id_pemesanan = pemesanan.id_pemesanan WHERE id_pemesanan='" + txtID_Pemesanan.getText() + "'";
+            String query2 = "SELECT * FROM pemesanan WHERE id_pemesanan='" + txtID_Pemesanan.getText() + "'";
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query2);
             if (rs.next()) {
-                if (txtID_Pemesanan.getText().equals(rs.getString("detail_pemesanan.id_pemesanan = pemesanan.id_pemesanan"))) {
+                if (txtID_Pemesanan.getText().equalsIgnoreCase(rs.getString("id_pemesanan"))) {
                     String nama_pembeli = rs.getString("nama_pembeli");
+                    Date tanggal_pegawai = rs.getDate("tanggal_pemesanan");
                     int total_bayar = rs.getInt("total_bayar");
                     txtNama_Pembeli.setText(nama_pembeli.trim());
+                    jdcTanggal_Pemesanan.setDate(tanggal_pegawai);
                     txtTotal_Bayar.setText(String.valueOf(total_bayar).trim());
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "ID Pemesanan tidak ada");
                 }
             }
         } catch (SQLException ex) {
@@ -312,26 +372,26 @@ public class Pembayaran extends javax.swing.JFrame {
     }
 
     private void autoNumber(JTextField f1) {
-        String id_pemesanan = "P0";
+        String id_pembayaran = "M0";
         int i = 0;
         try {
 //            conn = Connections.Koneksi.cekKoneksi();
-            String sql = "SELECT * FROM detail_pemesanan";
+            String sql = "SELECT * FROM pembayaran";
             st = conn.createStatement();
             rs = st.executeQuery(sql);
-//            ResultSet rs = conn.(id_pemesanan);
+//            ResultSet rs = conn.(id_pembayaran);
 
             while (rs.next()) {
-                id_pemesanan = rs.getString("id_pemesanan");
+                id_pembayaran = rs.getString("id_pembayaran");
             }
-            id_pemesanan = id_pemesanan.substring(1);
-            i = Integer.parseInt(id_pemesanan) + 1;
-            id_pemesanan = "00" + i;
-            id_pemesanan = "P0" + id_pemesanan.substring(id_pemesanan.length() - 2);
-            f1.setText(id_pemesanan);
+            id_pembayaran = id_pembayaran.substring(1);
+            i = Integer.parseInt(id_pembayaran) + 1;
+            id_pembayaran = "00" + i;
+            id_pembayaran = "M0" + id_pembayaran.substring(id_pembayaran.length() - 2);
+            f1.setText(id_pembayaran);
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, "Error pada ID Pemesanan");
+            JOptionPane.showMessageDialog(rootPane, "Error pada ID Pembayaran");
             System.out.println(e.getMessage());
         }
     }
@@ -458,8 +518,10 @@ public class Pembayaran extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private com.toedter.calendar.JDateChooser jdcTanggal_Pembayaran;
+    private com.toedter.calendar.JDateChooser jdcTanggal_Pemesanan;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel t1;
+    private javax.swing.JLabel t10;
     private javax.swing.JLabel t13;
     private javax.swing.JLabel t28;
     private javax.swing.JLabel t29;
