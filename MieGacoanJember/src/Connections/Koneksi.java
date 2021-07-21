@@ -56,7 +56,7 @@ public class Koneksi {
         //}
     //}
 
-    //public static void main(String[] args) {
-      //  cekKoneksi();
-    }
-//}
+//    public static void main(String[] args) {
+//        cekKoneksi();
+//    }
+}

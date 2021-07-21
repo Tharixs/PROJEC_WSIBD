@@ -95,8 +95,9 @@ public class Pegawai extends javax.swing.JFrame {
         BackFieldPegawai.setVisible(true);
         BackFieldMenu.setVisible(false);
         BackFieldJenisMenu.setVisible(false);
+        Pembyaran.setVisible(false);
 //        btnPrint.setEnabled(true);
-        
+
         setBack(btnPegawai);
 
         try {
@@ -118,6 +119,16 @@ public class Pegawai extends javax.swing.JFrame {
         btnRubahJenisMenu.setEnabled(false);
         btnBaruJenisMenu.setEnabled(false);
         btnPrintJenisMenu.setEnabled(true);
+//        conn = Connections.Koneksi.cekKoneksi();
+        try {
+            tampil_comboPegawai();
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        autoNumberPemesanan(txtID_Pembayaran);
+//        auto_numberDetailPemesanan();
+//        auto_numberPemesanan();
+        jdcTanggal_Pembayaran.setDate(new java.util.Date());
 
     }
 
@@ -201,6 +212,28 @@ public class Pegawai extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         txtDetail_Jenis = new javax.swing.JTextArea();
+        Pembyaran = new javax.swing.JPanel();
+        t1 = new javax.swing.JLabel();
+        txtID_Pemesanan = new javax.swing.JTextField();
+        t6 = new javax.swing.JLabel();
+        t7 = new javax.swing.JLabel();
+        t8 = new javax.swing.JLabel();
+        t9 = new javax.swing.JLabel();
+        txtKembalian = new javax.swing.JTextField();
+        txtBayar = new javax.swing.JTextField();
+        txtTotal_Bayar = new javax.swing.JTextField();
+        txtNama_PembeliPemesanan = new javax.swing.JTextField();
+        jdcTanggal_Pembayaran = new com.toedter.calendar.JDateChooser();
+        t13 = new javax.swing.JLabel();
+        btnSimpan = new javax.swing.JButton();
+        t28 = new javax.swing.JLabel();
+        txtID_PegawaiPembayaran = new javax.swing.JTextField();
+        txtID_Pembayaran = new javax.swing.JTextField();
+        t29 = new javax.swing.JLabel();
+        cmbPegawaiPemesanan = new javax.swing.JComboBox<>();
+        t30 = new javax.swing.JLabel();
+        t10 = new javax.swing.JLabel();
+        jdcTanggal_Pemesanan = new com.toedter.calendar.JDateChooser();
         UiBack = new javax.swing.JPanel();
         Bacground = new javax.swing.JLabel();
 
@@ -719,10 +752,10 @@ public class Pegawai extends javax.swing.JFrame {
             }
         });
         txtjenis.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txtjenisInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         txtjenis.addActionListener(new java.awt.event.ActionListener() {
@@ -856,6 +889,116 @@ public class Pegawai extends javax.swing.JFrame {
         BackFieldJenisMenu.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 590, 110));
 
         Constructor.add(BackFieldJenisMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 32, 924, 705));
+
+        Pembyaran.setBackground(new java.awt.Color(0, 204, 204));
+        Pembyaran.setForeground(new java.awt.Color(153, 255, 255));
+        Pembyaran.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        t1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        t1.setText("ID Pemesanan");
+        Pembyaran.add(t1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, -1, -1));
+
+        txtID_Pemesanan.setBackground(new java.awt.Color(0, 255, 255));
+        txtID_Pemesanan.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        txtID_Pemesanan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtID_PemesananActionPerformed(evt);
+            }
+        });
+        Pembyaran.add(txtID_Pemesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 400, 30));
+
+        t6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        t6.setText("Waktu");
+        Pembyaran.add(t6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, -1, -1));
+
+        t7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        t7.setText("Total Bayar");
+        Pembyaran.add(t7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, -1, -1));
+
+        t8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        t8.setText("Bayar");
+        Pembyaran.add(t8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 480, -1, -1));
+
+        t9.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        t9.setText("Kembalian");
+        Pembyaran.add(t9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 520, -1, -1));
+
+        txtKembalian.setBackground(new java.awt.Color(204, 204, 255));
+        txtKembalian.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        txtKembalian.setForeground(new java.awt.Color(255, 0, 51));
+        Pembyaran.add(txtKembalian, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 520, 400, 70));
+
+        txtBayar.setBackground(new java.awt.Color(0, 255, 255));
+        txtBayar.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        txtBayar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBayarActionPerformed(evt);
+            }
+        });
+        Pembyaran.add(txtBayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 480, 400, 30));
+
+        txtTotal_Bayar.setBackground(new java.awt.Color(204, 204, 255));
+        txtTotal_Bayar.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        txtTotal_Bayar.setForeground(new java.awt.Color(255, 0, 51));
+        Pembyaran.add(txtTotal_Bayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 400, 70));
+
+        txtNama_PembeliPemesanan.setBackground(new java.awt.Color(0, 255, 255));
+        txtNama_PembeliPemesanan.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        Pembyaran.add(txtNama_PembeliPemesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 400, 30));
+
+        jdcTanggal_Pembayaran.setBackground(new java.awt.Color(0, 255, 255));
+        jdcTanggal_Pembayaran.setDateFormatString("yyyy-MM-dd");
+        Pembyaran.add(jdcTanggal_Pembayaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 430, 400, 30));
+
+        t13.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        t13.setText("Nama Pembeli");
+        Pembyaran.add(t13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
+
+        btnSimpan.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnSimpan.setText("Simpan");
+        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanActionPerformed(evt);
+            }
+        });
+        Pembyaran.add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 600, 170, 60));
+
+        t28.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        t28.setText("Nama Pegawai");
+        Pembyaran.add(t28, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
+
+        txtID_PegawaiPembayaran.setBackground(new java.awt.Color(0, 255, 255));
+        txtID_PegawaiPembayaran.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        Pembyaran.add(txtID_PegawaiPembayaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 400, 30));
+
+        txtID_Pembayaran.setBackground(new java.awt.Color(0, 255, 255));
+        txtID_Pembayaran.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        Pembyaran.add(txtID_Pembayaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 400, 30));
+
+        t29.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        t29.setText("ID Pembayaran");
+        Pembyaran.add(t29, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
+
+        cmbPegawaiPemesanan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPegawaiPemesananActionPerformed(evt);
+            }
+        });
+        Pembyaran.add(cmbPegawaiPemesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 400, 30));
+
+        t30.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        t30.setText("ID Pegawai");
+        Pembyaran.add(t30, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
+
+        t10.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        t10.setText("Tanggal Pemesanan");
+        Pembyaran.add(t10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, -1, -1));
+
+        jdcTanggal_Pemesanan.setBackground(new java.awt.Color(0, 255, 255));
+        jdcTanggal_Pemesanan.setDateFormatString("yyyy-MM-dd");
+        Pembyaran.add(jdcTanggal_Pemesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 400, 30));
+
+        Constructor.add(Pembyaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(495, 20, 810, 700));
 
         UiBack.setBackground(new java.awt.Color(0, 179, 216, 80));
 
@@ -1237,7 +1380,8 @@ public class Pegawai extends javax.swing.JFrame {
         cmbJabatan.setSelectedItem("");
         txtNo_Telepon.setText("");
         lblPasswoard.setText("");
-        txtFotoPegawi.setText("");
+        txtPassword.setText("");
+        cmbJabatan.setSelectedItem(null);
         txtFotoPegawi.setText("");
         ChangeForegroundPegawai();
 //        PenampungFoto.setVisible(false);
@@ -1251,7 +1395,7 @@ public class Pegawai extends javax.swing.JFrame {
     }
 
     public void backTitle() {
-        txtID_Pegawai.setText("Id_pegawai");
+        txtID_Pegawai.setText("Id Pegawai");
         txtNama_Pegawai.setText("Nama Lengkap");
 //        RbtnJenis_Kelamin.clearSelection();
         txtTempat_Lahir.setText("Tempat Lahir");
@@ -1319,7 +1463,7 @@ public class Pegawai extends javax.swing.JFrame {
         // TODO add your handling code here:
         btnCariPegawai.setEnabled(true);
         btnSimpanPegawai.setEnabled(false);
-
+        txtPassword.setText("");
         clik(deff, "Masukkan Nama", txtnama);
         if (deff == 0) {
             clearPegawai();
@@ -1336,12 +1480,12 @@ public class Pegawai extends javax.swing.JFrame {
         btnBaruPegawi.setEnabled(true);
         btnAttachPegawai.setEnabled(true);
         btnCariPegawai.setEnabled(false);
-        clik(deff, "Id pegawai", txtID_Pegawai);
+        clik(deff, "Id Pegawai", txtID_Pegawai);
         if (deff == 1) {
             autoNumber(txtID_Pegawai);
         } else {
 //            clearPegawai(txtID_Pegawai);
-            backTitle(txtID_Pegawai, "Id pegawai");
+            backTitle(txtID_Pegawai, "Id Pegawai");
         }
 
 
@@ -1364,15 +1508,17 @@ public class Pegawai extends javax.swing.JFrame {
 
     private void txtTempat_LahirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTempat_LahirMouseClicked
         // TODO add your handling code here:
+        clik(deff, "Tempat Lahir", txtTempat_Lahir);
         btnSimpanPegawai.setEnabled(true);
         btnBaruPegawi.setEnabled(true);
         btnAttachPegawai.setEnabled(true);
         btnCariPegawai.setEnabled(false);
-        txtTempat_Lahir.setText("");
+
     }//GEN-LAST:event_txtTempat_LahirMouseClicked
 
     private void jdcTanggal_LahirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jdcTanggal_LahirMouseClicked
         // TODO add your handling code here:
+
         btnSimpanPegawai.setEnabled(true);
         btnBaruPegawi.setEnabled(true);
         btnAttachPegawai.setEnabled(true);
@@ -1381,6 +1527,7 @@ public class Pegawai extends javax.swing.JFrame {
 
     private void txtAlamat_KotaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAlamat_KotaMouseClicked
         // TODO add your handling code here:
+        clik(deff, "Alamat", txtAlamat_Kota);
         btnSimpanPegawai.setEnabled(true);
         btnBaruPegawi.setEnabled(true);
         btnAttachPegawai.setEnabled(true);
@@ -1397,6 +1544,7 @@ public class Pegawai extends javax.swing.JFrame {
 
     private void txtNo_TeleponMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNo_TeleponMouseClicked
         // TODO add your handling code here:
+        clik(deff, "No Telepon", txtNo_Telepon);
         btnSimpanPegawai.setEnabled(true);
         btnBaruPegawi.setEnabled(true);
         btnAttachPegawai.setEnabled(true);
@@ -1405,6 +1553,7 @@ public class Pegawai extends javax.swing.JFrame {
 
     private void txtPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPasswordMouseClicked
         // TODO add your handling code here:
+
         btnSimpanPegawai.setEnabled(true);
         btnBaruPegawi.setEnabled(true);
         btnAttachPegawai.setEnabled(true);
@@ -1449,16 +1598,16 @@ public class Pegawai extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtCarimenuMouseClicked
 // ---- ini belum beres -------
+
     public void clik(int def, String title, JTextField f) {
         deff++;
         if (def == 0) {
-            ChangeForegroundPegawai(f);
             clearPegawai(f);
+            ChangeForegroundPegawai(f);
         } else if (def == 1) {
             clearPegawai(f);
             BackForegroundPegawai(f);
             backTitle(f, title);
-            
             deff = 0;
         }
 //        System.out.println(def);
@@ -1672,7 +1821,7 @@ public class Pegawai extends javax.swing.JFrame {
     }
 
     public void BackForegroundPegawai(JTextField f) {
-        setForeground(new Color(153, 153, 153));
+        f.setForeground(new Color(153, 153, 153));
     }
 
 //    --------- code btn yang ada pada BackMenu -------
@@ -1683,6 +1832,8 @@ public class Pegawai extends javax.swing.JFrame {
 
     private void btnPegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPegawaiActionPerformed
         // TODO add your handling code here:
+        clearmenu();
+
         setBack(btnPegawai);
         resetBackground(btnMenu);
         resetBackground(btnPembayaran);
@@ -1692,6 +1843,7 @@ public class Pegawai extends javax.swing.JFrame {
         BackFieldPegawai.setVisible(true);
         BackFieldMenu.setVisible(false);
         BackFieldJenisMenu.setVisible(false);
+        Pembyaran.setVisible(false);
     }//GEN-LAST:event_btnPegawaiActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
@@ -1705,6 +1857,7 @@ public class Pegawai extends javax.swing.JFrame {
         BackFieldPegawai.setVisible(false);
         BackFieldMenu.setVisible(true);
         BackFieldJenisMenu.setVisible(false);
+        Pembyaran.setVisible(false);
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void btnJenisMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJenisMenuActionPerformed
@@ -1718,15 +1871,21 @@ public class Pegawai extends javax.swing.JFrame {
         BackFieldPegawai.setVisible(false);
         BackFieldMenu.setVisible(false);
         BackFieldJenisMenu.setVisible(true);
+        Pembyaran.setVisible(false);
     }//GEN-LAST:event_btnJenisMenuActionPerformed
 
     private void btnPembayaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPembayaranActionPerformed
         // TODO add your handling code here:
+
         setBack(btnPembayaran);
         resetBackground(btnPegawai);
         resetBackground(btnMenu);
         resetBackground(btnJenisMenu);
         resetBackground(btnLaporan);
+        Pembyaran.setVisible(true);
+        BackFieldPegawai.setVisible(false);
+        BackFieldMenu.setVisible(false);
+        BackFieldJenisMenu.setVisible(false);
 
     }//GEN-LAST:event_btnPembayaranActionPerformed
 
@@ -1922,6 +2081,40 @@ public class Pegawai extends javax.swing.JFrame {
     private void RbtnPerempuanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RbtnPerempuanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_RbtnPerempuanActionPerformed
+
+    private void txtID_PemesananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID_PemesananActionPerformed
+        // TODO add your handling code here:
+        selectPemesanan();
+    }//GEN-LAST:event_txtID_PemesananActionPerformed
+
+    private void txtBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBayarActionPerformed
+        // TODO add your handling code here:
+        int bayar = Integer.parseInt(txtBayar.getText());
+        int total_bayar = Integer.parseInt(txtTotal_Bayar.getText());
+        int kembalian = bayar - total_bayar;
+        txtKembalian.setText(String.valueOf(kembalian));
+    }//GEN-LAST:event_txtBayarActionPerformed
+
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+        // TODO add your handling code here:
+        pembayaran();
+    }//GEN-LAST:event_btnSimpanActionPerformed
+
+    private void cmbPegawaiPemesananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPegawaiPemesananActionPerformed
+        // TODO add your handling code here:
+        String nama_pegawai = (String) cmbPegawaiPemesanan.getSelectedItem();
+        try {
+            pst = conn.prepareStatement("SELECT * FROM pegawai WHERE nama_pegawai = ?");
+            pst.setString(1, nama_pegawai);
+            rs = pst.executeQuery();
+            if (rs.next() == true) {
+                String id_pegawai = rs.getString("id_pegawai");
+                txtID_PegawaiPembayaran.setText(id_pegawai.trim());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Pesanan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cmbPegawaiPemesananActionPerformed
 
 //    ------- codingan form menu --------
     public void showTablePegawai() {
@@ -2134,6 +2327,95 @@ public class Pegawai extends javax.swing.JFrame {
             System.err.println(ex);
         }
     }
+//    ----------------------- code pembayaran ---------------------------------------------
+
+    public void tampil_comboPegawai() throws SQLException {
+        try {
+            String query = "SELECT * FROM pegawai";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                cmbPegawaiPemesanan.addItem(rs.getString("nama_pegawai"));
+            }
+            rs.last();
+            int jumlahdata = rs.getRow();
+            rs.first();
+        } catch (SQLException ex) {
+            Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void pembayaran() {
+
+        try {
+            String id_pembayaran = txtID_Pembayaran.getText();
+            String id_pegawai = txtID_PegawaiPembayaran.getText();
+            String id_pemesanan = txtID_Pemesanan.getText();
+            java.util.Date waktu = jdcTanggal_Pembayaran.getDate();
+            int bayar = Integer.parseInt(txtBayar.getText());
+            int kembalian = Integer.parseInt(txtKembalian.getText());
+            String query = "INSERT INTO pembayaran(id_pembayaran, id_pegawai, waktu, bayar, kembalian, id_pemesanan)values(?,?,?,?,?,?)";
+            pst = conn.prepareStatement(query);
+            pst.setString(1, id_pembayaran);
+            pst.setString(2, id_pegawai);
+            pst.setString(3, ((JTextField) jdcTanggal_Pembayaran.getDateEditor().getUiComponent()).getText());
+            pst.setInt(4, bayar);
+            pst.setInt(5, kembalian);
+            pst.setString(6, id_pemesanan);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Pembayaran.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void selectPemesanan() {
+        try {
+            String query2 = "SELECT * FROM pemesanan WHERE id_pemesanan='" + txtID_Pemesanan.getText() + "'";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query2);
+            if (rs.next()) {
+                if (txtID_Pemesanan.getText().equalsIgnoreCase(rs.getString("id_pemesanan"))) {
+                    String nama_pembeli = rs.getString("nama_pembeli");
+                    java.util.Date tanggal_pegawai = rs.getDate("tanggal_pemesanan");
+                    int total_bayar = rs.getInt("total_bayar");
+                    txtNama_PembeliPemesanan.setText(nama_pembeli.trim());
+                    jdcTanggal_Pemesanan.setDate(tanggal_pegawai);
+                    txtTotal_Bayar.setText(String.valueOf(total_bayar).trim());
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "ID Pemesanan tidak ada");
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Pembayaran.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void autoNumberPemesanan(JTextField f1) {
+        String id_pembayaran = "M0";
+        int i = 0;
+        try {
+//            conn = Connections.Koneksi.cekKoneksi();
+            String sql = "SELECT * FROM pembayaran";
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+//            ResultSet rs = conn.(id_pembayaran);
+
+            while (rs.next()) {
+                id_pembayaran = rs.getString("id_pembayaran");
+            }
+            id_pembayaran = id_pembayaran.substring(1);
+            i = Integer.parseInt(id_pembayaran) + 1;
+            id_pembayaran = "00" + i;
+            id_pembayaran = "M0" + id_pembayaran.substring(id_pembayaran.length() - 2);
+            f1.setText(id_pembayaran);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Error pada ID Pembayaran");
+            System.out.println(e.getMessage());
+        }
+    }
 
     public void ChangeforegroundJenisMenu() {
         txtjenis.setForeground(Color.BLACK);
@@ -2195,6 +2477,7 @@ public class Pegawai extends javax.swing.JFrame {
     private javax.swing.JPanel BackMenu;
     private javax.swing.JPanel Constructor;
     private javax.swing.JLabel LogoMenu;
+    private javax.swing.JPanel Pembyaran;
     private javax.swing.JLabel PenampungFoto;
     private javax.swing.ButtonGroup RbtnJenis_Kelamin;
     private javax.swing.JRadioButton RbtnLaki_Laki;
@@ -2221,11 +2504,13 @@ public class Pegawai extends javax.swing.JFrame {
     private javax.swing.JButton btnRubahJenisMenu;
     private javax.swing.JButton btnRubahMenu;
     private javax.swing.JButton btnRubahPegawai;
+    private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btnSimpanJenisMenu;
     private javax.swing.JButton btnSimpanMenu;
     private javax.swing.JButton btnSimpanPegawai;
     private javax.swing.JComboBox<String> cmbJabatan;
     private javax.swing.JComboBox<String> cmbJenis;
+    private javax.swing.JComboBox<String> cmbPegawaiPemesanan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -2236,13 +2521,26 @@ public class Pegawai extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private com.toedter.calendar.JDateChooser jdcTanggal_Lahir;
+    private com.toedter.calendar.JDateChooser jdcTanggal_Pembayaran;
+    private com.toedter.calendar.JDateChooser jdcTanggal_Pemesanan;
     private javax.swing.JLabel lblPasswoard;
     private javax.swing.JLabel lblTanggal;
     private javax.swing.JPanel panelFoto;
+    private javax.swing.JLabel t1;
+    private javax.swing.JLabel t10;
+    private javax.swing.JLabel t13;
+    private javax.swing.JLabel t28;
+    private javax.swing.JLabel t29;
+    private javax.swing.JLabel t30;
+    private javax.swing.JLabel t6;
+    private javax.swing.JLabel t7;
+    private javax.swing.JLabel t8;
+    private javax.swing.JLabel t9;
     private javax.swing.JTable tblJenisMenu;
     private javax.swing.JTable tblMenu;
     private javax.swing.JTable tblPegawai;
     private javax.swing.JTextField txtAlamat_Kota;
+    private javax.swing.JTextField txtBayar;
     private javax.swing.JTextField txtCarimenu;
     private javax.swing.JTextArea txtDetail;
     private javax.swing.JTextArea txtDetail_Jenis;
@@ -2251,12 +2549,18 @@ public class Pegawai extends javax.swing.JFrame {
     private javax.swing.JTextField txtID_Jenis;
     private javax.swing.JTextField txtID_Menu;
     private javax.swing.JTextField txtID_Pegawai;
+    private javax.swing.JTextField txtID_PegawaiPembayaran;
+    private javax.swing.JTextField txtID_Pembayaran;
+    private javax.swing.JTextField txtID_Pemesanan;
+    private javax.swing.JTextField txtKembalian;
     private javax.swing.JTextField txtMenu;
     private javax.swing.JTextField txtNamaJenis;
     private javax.swing.JTextField txtNama_Pegawai;
+    private javax.swing.JTextField txtNama_PembeliPemesanan;
     private javax.swing.JTextField txtNo_Telepon;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtTempat_Lahir;
+    private javax.swing.JTextField txtTotal_Bayar;
     private javax.swing.JTextField txtjenis;
     private javax.swing.JTextField txtnama;
     // End of variables declaration//GEN-END:variables
