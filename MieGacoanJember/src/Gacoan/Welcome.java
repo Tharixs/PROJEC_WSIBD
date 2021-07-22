@@ -60,6 +60,7 @@ public class Welcome extends javax.swing.JFrame {
         Back.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 250, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 71)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 167, 197));
         jLabel2.setText("Selamat ");
         Back.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, -1, -1));
 
@@ -69,6 +70,7 @@ public class Welcome extends javax.swing.JFrame {
         Back.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 1, 71)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 167, 197));
         jLabel4.setText("Makan");
         Back.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, -1, -1));
 

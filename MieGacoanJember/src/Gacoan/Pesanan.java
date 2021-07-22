@@ -62,7 +62,8 @@ public class Pesanan extends javax.swing.JFrame {
         try {
             tampil_comboMenu();
         } catch (SQLException ex) {
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        System.out.println(ex);
         }
         autoNumber(txtID_Pemesanan);
 //        auto_numberDetailPemesanan();

@@ -79,7 +79,7 @@ public class Daftar extends javax.swing.JFrame {
         Countainer = new javax.swing.JPanel();
         Password = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
-        btnDaftar = new javax.swing.JButton();
+        btnPunyaAkun = new javax.swing.JButton();
         Notice = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         info = new javax.swing.JPanel();
@@ -102,11 +102,11 @@ public class Daftar extends javax.swing.JFrame {
         txtTempat_Lahir = new javax.swing.JTextField();
         txtNama_Pegawai = new javax.swing.JTextField();
         cmbJabatan = new javax.swing.JComboBox<>();
+        btnDaftar1 = new javax.swing.JButton();
         Bacground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1366, 768));
-        setPreferredSize(new java.awt.Dimension(1366, 768));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         fillback.setBackground(new java.awt.Color(0, 179, 216,70));
@@ -134,17 +134,17 @@ public class Daftar extends javax.swing.JFrame {
         });
         Countainer.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 230, 618, 34));
 
-        btnDaftar.setBackground(new java.awt.Color(255, 0, 152));
-        btnDaftar.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
-        btnDaftar.setForeground(new java.awt.Color(255, 255, 255));
-        btnDaftar.setText("Daftarkan");
-        btnDaftar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 153)));
-        btnDaftar.addActionListener(new java.awt.event.ActionListener() {
+        btnPunyaAkun.setBackground(new java.awt.Color(0, 167, 197));
+        btnPunyaAkun.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        btnPunyaAkun.setForeground(new java.awt.Color(255, 255, 255));
+        btnPunyaAkun.setText("Punya akun");
+        btnPunyaAkun.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 167, 197)));
+        btnPunyaAkun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDaftarActionPerformed(evt);
+                btnPunyaAkunActionPerformed(evt);
             }
         });
-        Countainer.add(btnDaftar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 520, 376, 34));
+        Countainer.add(btnPunyaAkun, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 570, 376, 34));
 
         Notice.setBackground(new java.awt.Color(6, 181, 217,58));
         Notice.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -336,6 +336,18 @@ public class Daftar extends javax.swing.JFrame {
         cmbJabatan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---PILIH---", "Manager", "Kasir", "Crew" }));
         Countainer.add(cmbJabatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, 618, 34));
 
+        btnDaftar1.setBackground(new java.awt.Color(255, 0, 152));
+        btnDaftar1.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
+        btnDaftar1.setForeground(new java.awt.Color(255, 255, 255));
+        btnDaftar1.setText("Daftarkan");
+        btnDaftar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 153)));
+        btnDaftar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDaftar1ActionPerformed(evt);
+            }
+        });
+        Countainer.add(btnDaftar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 520, 376, 34));
+
         javax.swing.GroupLayout fillbackLayout = new javax.swing.GroupLayout(fillback);
         fillback.setLayout(fillbackLayout);
         fillbackLayout.setHorizontalGroup(
@@ -365,81 +377,12 @@ public class Daftar extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnDaftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaftarActionPerformed
-
-        String id_pegawai, nama_pegawai, jenis_kelamin, tempat_lahir, alamat_kota, password, jabatan, no_telepon;
-        Date tanggal_lahir = null;
-        try {
-            id_pegawai = txtID_Pegawai.getText();
-            nama_pegawai = txtNama_Pegawai.getText();
-            jenis_kelamin = RbtnJenis_Kelamin.getSelection().getActionCommand();
-            RbtnLaki_Laki.setActionCommand("Laki - Laki");
-            RbtnPerempuan.setActionCommand("Perempuan");
-            if (RbtnLaki_Laki.isSelected()) {
-                jenis_kelamin = "Laki - Laki";
-            } else if (RbtnPerempuan.isSelected()) {
-                jenis_kelamin = "Perempuan";
-            }
-            tempat_lahir = txtTempat_Lahir.getText();
-            alamat_kota = txtTempat_Lahir.getText();
-            password = txtPassword.getText();
-            jabatan = (String) cmbJabatan.getSelectedItem();
-            no_telepon = txtNo_Telepon.getText();
-            if (!txtFoto.getText().equals("")) {
-                ObjectOutputStream objectOutputStream = null;
-                ByteArrayOutputStream output = new ByteArrayOutputStream();
-                File img = new File(path);
-                FileInputStream input = new FileInputStream(img);
-                try {
-                    byte[] buf = new byte[1024];
-                    for (int readbyte; (readbyte = input.read(buf)) != -1;) {
-                        output.write(buf, 0, readbyte);
-                    }
-                    byteArr = output.toByteArray();
-                    setFoto(byteArr);
-                } catch (IOException ex) {
-                    Logger.getLogger(Pegawai.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            try {
-                if (txtID_Pegawai.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "ID Tidak Boleh Kosong");
-                } else if (txtNama_Pegawai.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Nama Tidak Boleh Kosong");
-                } else if (txtTempat_Lahir.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Tempat Lahir Tidak Boleh Kosong");
-                } //            else if (jdcTanggal_Lahir.getDate().equals("")) {
-                //                JOptionPane.showMessageDialog(null, "Tanggal Lahir Tidak Boleh Kosong");
-                //            } 
-                else if (txtTempat_Lahir.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Alamat Tidak Boleh Kosong");
-                } else if (cmbJabatan.getSelectedItem().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Jabatan Tidak Boleh Kosong");
-                } else if (txtNo_Telepon.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "No Telepon Tidak Boleh Kosong");
-                } else if (txtPassword.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Password Tidak Boleh Kosong");
-                } else {
-                    int opsi = JOptionPane.showConfirmDialog(null, "Apakah anda ingin menyimpan data ini ?", "Simpan Data", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-                    switch (opsi) {
-                        case JOptionPane.YES_OPTION:
-                            insertPegawai(id_pegawai, nama_pegawai, jenis_kelamin, tempat_lahir, tanggal_lahir, alamat_kota, password, jabatan, no_telepon, foto);
-                            JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
-                            this.setVisible(false);
-                            new Login().setVisible(true);
-                            clear();
-                            break;
-                        case JOptionPane.NO_OPTION:
-                            JOptionPane.showMessageDialog(null, "Data tidak disimpan");
-                            break;
-                    }
-                }
-            } catch (Exception t) {
-                JOptionPane.showMessageDialog(null, "Data Gagal Disimpan!");
-            }
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_btnDaftarActionPerformed
+    private void btnPunyaAkunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPunyaAkunActionPerformed
+        
+        this.setVisible(false);
+        new Login().setVisible(true);
+       
+    }//GEN-LAST:event_btnPunyaAkunActionPerformed
 
     public void insertPegawai(String id_pegawai, String nama_pegawai, String jenis_kelamin, String tempat_lahir, Date tanggal_lahir, String alamat_kota, String password, String jabatan, String no_telepon, byte[] foto) {
         try {
@@ -582,6 +525,82 @@ public class Daftar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAlamat_KotaActionPerformed
 
+    private void btnDaftar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaftar1ActionPerformed
+        // TODO add your handling code here:
+         String id_pegawai, nama_pegawai, jenis_kelamin, tempat_lahir, alamat_kota, password, jabatan, no_telepon;
+        Date tanggal_lahir = null;
+        try {
+            id_pegawai = txtID_Pegawai.getText();
+            nama_pegawai = txtNama_Pegawai.getText();
+            jenis_kelamin = RbtnJenis_Kelamin.getSelection().getActionCommand();
+            RbtnLaki_Laki.setActionCommand("Laki - Laki");
+            RbtnPerempuan.setActionCommand("Perempuan");
+            if (RbtnLaki_Laki.isSelected()) {
+                jenis_kelamin = "Laki - Laki";
+            } else if (RbtnPerempuan.isSelected()) {
+                jenis_kelamin = "Perempuan";
+            }
+            tempat_lahir = txtTempat_Lahir.getText();
+            alamat_kota = txtTempat_Lahir.getText();
+            password = txtPassword.getText();
+            jabatan = (String) cmbJabatan.getSelectedItem();
+            no_telepon = txtNo_Telepon.getText();
+            if (!txtFoto.getText().equals("")) {
+                ObjectOutputStream objectOutputStream = null;
+                ByteArrayOutputStream output = new ByteArrayOutputStream();
+                File img = new File(path);
+                FileInputStream input = new FileInputStream(img);
+                try {
+                    byte[] buf = new byte[1024];
+                    for (int readbyte; (readbyte = input.read(buf)) != -1;) {
+                        output.write(buf, 0, readbyte);
+                    }
+                    byteArr = output.toByteArray();
+                    setFoto(byteArr);
+                } catch (IOException ex) {
+                    Logger.getLogger(Pegawai.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            try {
+                if (txtID_Pegawai.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "ID Tidak Boleh Kosong");
+                } else if (txtNama_Pegawai.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Nama Tidak Boleh Kosong");
+                } else if (txtTempat_Lahir.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Tempat Lahir Tidak Boleh Kosong");
+                } //            else if (jdcTanggal_Lahir.getDate().equals("")) {
+                //                JOptionPane.showMessageDialog(null, "Tanggal Lahir Tidak Boleh Kosong");
+                //            } 
+                else if (txtTempat_Lahir.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Alamat Tidak Boleh Kosong");
+                } else if (cmbJabatan.getSelectedItem().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Jabatan Tidak Boleh Kosong");
+                } else if (txtNo_Telepon.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "No Telepon Tidak Boleh Kosong");
+                } else if (txtPassword.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Password Tidak Boleh Kosong");
+                } else {
+                    int opsi = JOptionPane.showConfirmDialog(null, "Apakah anda ingin menyimpan data ini ?", "Simpan Data", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                    switch (opsi) {
+                        case JOptionPane.YES_OPTION:
+                            insertPegawai(id_pegawai, nama_pegawai, jenis_kelamin, tempat_lahir, tanggal_lahir, alamat_kota, password, jabatan, no_telepon, foto);
+                            JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
+                            this.setVisible(false);
+                            new Login().setVisible(true);
+                            clear();
+                            break;
+                        case JOptionPane.NO_OPTION:
+                            JOptionPane.showMessageDialog(null, "Data tidak disimpan");
+                            break;
+                    }
+                }
+            } catch (Exception t) {
+                JOptionPane.showMessageDialog(null, "Data Gagal Disimpan!");
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnDaftar1ActionPerformed
+
     private void autoNumber(JTextField f1) {
         String id_pegawai = "A0";
         int i = 0;
@@ -659,7 +678,8 @@ public class Daftar extends javax.swing.JFrame {
     private javax.swing.JRadioButton RbtnLaki_Laki;
     private javax.swing.JRadioButton RbtnPerempuan;
     private javax.swing.JButton btnAttach;
-    private javax.swing.JButton btnDaftar;
+    private javax.swing.JButton btnDaftar1;
+    private javax.swing.JButton btnPunyaAkun;
     private javax.swing.JComboBox<String> cmbJabatan;
     private javax.swing.JPanel fillback;
     private javax.swing.JPanel info;
