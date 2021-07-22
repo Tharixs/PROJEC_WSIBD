@@ -273,7 +273,7 @@ public class Pegawai extends javax.swing.JFrame {
 
         txtID_Pegawai.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         txtID_Pegawai.setForeground(new java.awt.Color(153, 153, 153));
-        txtID_Pegawai.setText("Id_pegawai");
+        txtID_Pegawai.setText("Id Pegawai");
         txtID_Pegawai.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtID_PegawaiMouseClicked(evt);
@@ -511,6 +511,11 @@ public class Pegawai extends javax.swing.JFrame {
                 txtnamaMouseClicked(evt);
             }
         });
+        txtnama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnamaActionPerformed(evt);
+            }
+        });
         BackFieldPegawai.add(txtnama, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 450, 33));
 
         btnCariPegawai.setBackground(new java.awt.Color(236, 0, 141));
@@ -714,6 +719,11 @@ public class Pegawai extends javax.swing.JFrame {
         txtHarga.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         txtHarga.setForeground(new java.awt.Color(153, 153, 153));
         txtHarga.setText("Harga");
+        txtHarga.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtHargaMouseClicked(evt);
+            }
+        });
         txtHarga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtHargaActionPerformed(evt);
@@ -752,6 +762,11 @@ public class Pegawai extends javax.swing.JFrame {
         txtDetail.setColumns(20);
         txtDetail.setRows(5);
         txtDetail.setText("Detail pemesanan ");
+        txtDetail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtDetailMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(txtDetail);
 
         BackFieldMenu.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 590, -1));
@@ -771,10 +786,10 @@ public class Pegawai extends javax.swing.JFrame {
             }
         });
         txtjenis.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txtjenisInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         txtjenis.addActionListener(new java.awt.event.ActionListener() {
@@ -808,6 +823,11 @@ public class Pegawai extends javax.swing.JFrame {
         txtNamaJenis.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         txtNamaJenis.setForeground(new java.awt.Color(153, 153, 153));
         txtNamaJenis.setText("Nama Jenis Menu");
+        txtNamaJenis.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNamaJenisMouseClicked(evt);
+            }
+        });
         BackFieldJenisMenu.add(txtNamaJenis, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 591, 33));
 
         tblJenisMenu.setModel(new javax.swing.table.DefaultTableModel(
@@ -882,7 +902,7 @@ public class Pegawai extends javax.swing.JFrame {
         btnPrintJenisMenu.setBackground(new java.awt.Color(236, 0, 141));
         btnPrintJenisMenu.setFont(new java.awt.Font("Garamond", 1, 20)); // NOI18N
         btnPrintJenisMenu.setForeground(new java.awt.Color(255, 255, 255));
-        btnPrintJenisMenu.setText("Print");
+        btnPrintJenisMenu.setText("Cetak");
         btnPrintJenisMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrintJenisMenuActionPerformed(evt);
@@ -903,6 +923,11 @@ public class Pegawai extends javax.swing.JFrame {
         txtDetail_Jenis.setForeground(new java.awt.Color(153, 153, 153));
         txtDetail_Jenis.setRows(5);
         txtDetail_Jenis.setText("Detail Menu");
+        txtDetail_Jenis.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtDetail_JenisMouseClicked(evt);
+            }
+        });
         jScrollPane6.setViewportView(txtDetail_Jenis);
 
         BackFieldJenisMenu.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 590, 110));
@@ -1534,8 +1559,17 @@ public class Pegawai extends javax.swing.JFrame {
         f.setText(title);
     }
     private void btnBaruPegawiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaruPegawiActionPerformed
-        // TODO add your handling code here:
-        clearPegawai();
+        // TODO add your handling code here:\
+
+        if (deff == 0) {
+            deff++;
+            clearPegawai();
+        } else if (deff == 1) {
+            backTitle();
+            deff = 0;
+        }
+
+//        System.out.println(deff);
     }//GEN-LAST:event_btnBaruPegawiActionPerformed
 
     private void btnCariPegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariPegawaiActionPerformed
@@ -1543,7 +1577,7 @@ public class Pegawai extends javax.swing.JFrame {
         String nama_pegawai = txtnama.getText();
         try {
             com.mysql.jdbc.Statement statement = (com.mysql.jdbc.Statement) conn.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM pegawai where nama_pegawai='" + nama_pegawai + "'");
+            rs = statement.executeQuery("SELECT * FROM pegawai where nama_pegawai='" + nama_pegawai + "'");
             DefaultTableModel tbl = new DefaultTableModel();
             tbl.addColumn("ID Pembeli");
             tbl.addColumn("Nama Pembeli");
@@ -1569,11 +1603,12 @@ public class Pegawai extends javax.swing.JFrame {
                     rs.getString("password"),
                     rs.getString("jabatan"),
                     rs.getString("no_telepon"),
-                    rs.getByte("foto")});
+                    rs.getBlob("foto")});
                 tblPegawai.setModel(tbl);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "Data Yang Anda Cari Tidak Sesuai");
+            System.out.println(e);
         }
         txtnama.setText("");
 
@@ -1585,12 +1620,6 @@ public class Pegawai extends javax.swing.JFrame {
         btnSimpanPegawai.setEnabled(false);
         txtPassword.setText("");
         clik(deff, "Masukkan Nama", txtnama);
-        if (deff == 0) {
-            clearPegawai();
-
-        } else {
-            backTitle();
-        }
 
     }//GEN-LAST:event_txtnamaMouseClicked
 
@@ -1713,8 +1742,7 @@ public class Pegawai extends javax.swing.JFrame {
         // TODO add your handling code here:
         btnCariMenu.setEnabled(true);
         btnSimpanMenu.setEnabled(false);
-        txtCarimenu.setText("");
-        txtCarimenu.setForeground(Color.BLACK);
+        clik(deff, "Masukkan Menu", txtCarimenu);
 
     }//GEN-LAST:event_txtCarimenuMouseClicked
 // ---- ini belum beres -------
@@ -1767,7 +1795,8 @@ public class Pegawai extends javax.swing.JFrame {
 
     private void txtID_MenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtID_MenuMouseClicked
         // TODO add your handling code here:
-        clearmenu();
+//        clearmenu();
+        clik(deff, "ID Menu", txtID_Menu);
         btnSimpanPegawai.setEnabled(true);
         btnBaruPegawi.setEnabled(true);
         btnCariPegawai.setEnabled(false);
@@ -2005,7 +2034,7 @@ public class Pegawai extends javax.swing.JFrame {
         resetBackground(btnMenu);
         resetBackground(btnJenisMenu);
         resetBackground(btnLaporan);
-        
+
         Pembyaran.setVisible(true);
         BackFieldPegawai.setVisible(false);
         BackFieldMenu.setVisible(false);
@@ -2031,18 +2060,19 @@ public class Pegawai extends javax.swing.JFrame {
 
     private void txtHargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHargaActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtHargaActionPerformed
 
     private void txtMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMenuMouseClicked
         // TODO add your handling code here:
-
+        clik(deff,"Nama Menu", txtMenu);
     }//GEN-LAST:event_txtMenuMouseClicked
 
     private void txtjenisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtjenisMouseClicked
         // TODO add your handling code here:
         btnCariJenisMenu.setEnabled(true);
         btnSimpanJenisMenu.setEnabled(false);
-        clearJenisMenu();
+        clik(deff,"Masukkan Jenis", txtjenis);
     }//GEN-LAST:event_txtjenisMouseClicked
 
     private void txtjenisInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtjenisInputMethodTextChanged
@@ -2083,6 +2113,7 @@ public class Pegawai extends javax.swing.JFrame {
 
     private void txtID_JenisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtID_JenisMouseClicked
         // TODO add your handling code here:
+        clik(deff, "ID Jenis", txtID_Jenis);
         btnSimpanJenisMenu.setEnabled(true);
         btnBaruJenisMenu.setEnabled(true);
         btnCariJenisMenu.setEnabled(false);
@@ -2257,7 +2288,8 @@ public class Pegawai extends javax.swing.JFrame {
             JasperViewer.viewReport(jp);
 
         } catch (JRException ex) {
-            Logger.getLogger(Laporan.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(Laporan.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
     }//GEN-LAST:event_jLabel13MouseClicked
 
@@ -2271,7 +2303,8 @@ public class Pegawai extends javax.swing.JFrame {
             JasperViewer.viewReport(jp);
 
         } catch (JRException ex) {
-            Logger.getLogger(Laporan.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(Laporan.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
     }//GEN-LAST:event_jLabel14MouseClicked
 
@@ -2285,7 +2318,8 @@ public class Pegawai extends javax.swing.JFrame {
             JasperViewer.viewReport(jp);
 
         } catch (JRException ex) {
-            Logger.getLogger(Laporan.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(Laporan.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
     }//GEN-LAST:event_jLabel15MouseClicked
 
@@ -2299,7 +2333,8 @@ public class Pegawai extends javax.swing.JFrame {
             JasperViewer.viewReport(jp);
 
         } catch (JRException ex) {
-            Logger.getLogger(Laporan.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(Laporan.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
     }//GEN-LAST:event_jLabel16MouseClicked
 
@@ -2313,7 +2348,8 @@ public class Pegawai extends javax.swing.JFrame {
             JasperViewer.viewReport(jp);
 
         } catch (JRException ex) {
-            Logger.getLogger(Laporan.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(Laporan.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
     }//GEN-LAST:event_jLabel17MouseClicked
 
@@ -2327,14 +2363,38 @@ public class Pegawai extends javax.swing.JFrame {
             JasperViewer.viewReport(jp);
 
         } catch (JRException ex) {
-            Logger.getLogger(Laporan.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(Laporan.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
     }//GEN-LAST:event_jLabel18MouseClicked
+
+    private void txtnamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnamaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnamaActionPerformed
+
+    private void txtDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDetailMouseClicked
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_txtDetailMouseClicked
+
+    private void txtHargaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtHargaMouseClicked
+        // TODO add your handling code here:
+        clik(deff, "Harga ", txtHarga);
+    }//GEN-LAST:event_txtHargaMouseClicked
+
+    private void txtNamaJenisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNamaJenisMouseClicked
+        // TODO add your handling code here:
+        clik(deff, "Nama Jenis Menu", txtNamaJenis);
+    }//GEN-LAST:event_txtNamaJenisMouseClicked
+
+    private void txtDetail_JenisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDetail_JenisMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDetail_JenisMouseClicked
 
 //    ------- codingan form menu --------
     public void showTablePegawai() {
         try {
-            tbmPegawai = new DefaultTableModel(new String[]{"ID Pegawai", "Nama Pegawai", "Jenis Kelamin", "Tempat Lahir", "Tanggal Lahir", "Alamat (Kota)", "Jabatan", "No Telepon", "Password", "Foto"}, 0);
+            tbmPegawai = new DefaultTableModel(new String[]{"ID Pegawai", "Nama Pegawai", "Jenis Kelamin", "Tempat Lahir", "Tanggal Lahir", "Alamat (Kota)", "Password", "Jabatan", "No Telepon", "Foto"}, 0);
             rs = selectPegawai();
             while (rs.next()) {
                 tbmPegawai.addRow(new Object[]{

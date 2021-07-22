@@ -172,6 +172,7 @@ public class Pesanan extends javax.swing.JFrame {
         PNoodle = new javax.swing.JButton();
         PBeverage = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -666,6 +667,18 @@ public class Pesanan extends javax.swing.JFrame {
                 jPanel1MouseClicked(evt);
             }
         });
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setFont(new java.awt.Font("Comic Sans MS", 1, 16)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Login As Gues !");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 720, -1, -1));
+
         Background.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, 768));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/background admin_Resize.jpg"))); // NOI18N
@@ -910,6 +923,12 @@ public class Pesanan extends javax.swing.JFrame {
         txtNama_Pembeli.setText(nama_pembeli);
     }//GEN-LAST:event_jPanel1MouseClicked
 
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new Login().setVisible(true);
+    }//GEN-LAST:event_jLabel5MouseClicked
+
     public void setbackground(JButton p) {
         p.setBackground(new Color(255, 51, 255));
     }
@@ -1121,6 +1140,7 @@ public class Pesanan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private com.toedter.calendar.JDateChooser jdcTanggal_Pemesanan;
